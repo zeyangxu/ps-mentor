@@ -9,6 +9,18 @@ import { createClient } from 'jsr:@supabase/supabase-js@2'
 console.log("Edge Function: Starting execution")
 
 Deno.serve(async (req) => {
+  // Handle CORS preflight requests
+  if (req.method === 'OPTIONS') {
+    return new Response(null, {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+        'Access-Control-Max-Age': '86400',
+      },
+    })
+  }
+
   try {
     console.log("Edge Function: Received request")
     
@@ -59,7 +71,7 @@ Deno.serve(async (req) => {
         headers: { 
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "POST",
+          "Access-Control-Allow-Methods": "POST, OPTIONS",
           "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type"
         } 
       },
@@ -73,7 +85,7 @@ Deno.serve(async (req) => {
         headers: { 
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "POST",
+          "Access-Control-Allow-Methods": "POST, OPTIONS",
           "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type"
         },
         status: 500

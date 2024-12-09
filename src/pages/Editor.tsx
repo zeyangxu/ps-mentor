@@ -56,15 +56,14 @@ const Editor = () => {
       console.log("Starting analysis request...");
       console.log("Content length:", content.length);
       
-      // Get the function URL from your Supabase project
-      const functionUrl = `${supabase.supabaseUrl}/functions/v1/analyze-statement`;
+      const functionUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/analyze-statement`;
       
       const response = await fetch(functionUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${session?.access_token}`,
-          'apikey': supabase.supabaseKey
+          'apikey': import.meta.env.VITE_SUPABASE_ANON_KEY
         },
         body: JSON.stringify({ content })
       });

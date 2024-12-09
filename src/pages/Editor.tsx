@@ -56,21 +56,26 @@ const Editor = () => {
       console.log("Starting analysis request...");
       console.log("Content length:", content.length);
       
-      const { data, error } = await supabase.functions.invoke('analyze-statement', {
-        body: { content },
+      // Get the function URL from your Supabase project
+      const functionUrl = `${supabase.supabaseUrl}/functions/v1/analyze-statement`;
+      
+      const response = await fetch(functionUrl, {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${session?.access_token}`,
+          'apikey': supabase.supabaseKey
         },
+        body: JSON.stringify({ content })
       });
       
-      console.log("Response received:", { data, error });
-      
-      if (error) {
-        console.error("Function error:", error);
-        throw error;
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
-
+      
+      const data = await response.json();
+      console.log("Response received:", data);
+      
       if (!data || !data.analysis) {
         console.error("Invalid response format:", data);
         throw new Error("Invalid response format from the function");

@@ -53,20 +53,27 @@ const Editor = () => {
 
     setIsLoading(true);
     try {
-      console.log("Calling analyze-statement function with content length:", content.length);
+      console.log("Starting analysis request...");
+      console.log("Content length:", content.length);
       
       const { data, error } = await supabase.functions.invoke('analyze-statement', {
         body: { content },
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${session?.access_token}`,
         },
       });
       
-      console.log("Function response:", { data, error });
+      console.log("Response received:", { data, error });
       
       if (error) {
-        console.error("Function error details:", error);
+        console.error("Function error:", error);
         throw error;
+      }
+
+      if (!data || !data.analysis) {
+        console.error("Invalid response format:", data);
+        throw new Error("Invalid response format from the function");
       }
       
       setAnalysis(data.analysis);
@@ -75,11 +82,11 @@ const Editor = () => {
         description: "Your personal statement has been analyzed.",
       });
     } catch (error) {
-      console.error("Full error details:", error);
+      console.error("Analysis error:", error);
       toast({
         variant: "destructive",
         title: "Error",
-        description: "Failed to analyze your statement. Please ensure the Edge Function is deployed and properly configured.",
+        description: "Failed to analyze your statement. Please check the console for more details.",
       });
     } finally {
       setIsLoading(false);

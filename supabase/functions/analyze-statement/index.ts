@@ -69,10 +69,8 @@ Deno.serve(async (req) => {
       JSON.stringify(data),
       { 
         headers: { 
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "POST, OPTIONS",
-          "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type"
+          ...corsHeaders,
+          "Content-Type": "application/json"
         } 
       },
     )
@@ -83,10 +81,8 @@ Deno.serve(async (req) => {
       JSON.stringify({message: err.message}),
       { 
         headers: { 
+          ...corsHeaders,
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "POST, OPTIONS",
-          "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type"
         },
         status: 500
       },

@@ -16,12 +16,19 @@ export function AuthForm() {
     setIsLoading(true);
 
     try {
+      console.log("Attempting authentication:", { isSignUp, email });
+      
       if (isSignUp) {
         const { error } = await supabase.auth.signUp({
           email,
           password,
+          options: {
+            emailRedirectTo: window.location.origin,
+          },
         });
+        
         if (error) throw error;
+        
         toast({
           title: "Check your email",
           description: "We've sent you a verification link.",
@@ -31,17 +38,31 @@ export function AuthForm() {
           email,
           password,
         });
-        if (error) throw error;
+        
+        if (error) {
+          console.error("Sign in error:", error);
+          throw error;
+        }
+        
         toast({
           title: "Welcome back!",
           description: "You've successfully signed in.",
         });
       }
     } catch (error) {
+      console.error("Auth error:", error);
+      
+      let errorMessage = "An unexpected error occurred";
+      if (error.message === "Invalid login credentials") {
+        errorMessage = "Invalid email or password";
+      } else if (error.message.includes("Email not confirmed")) {
+        errorMessage = "Please verify your email address before signing in";
+      }
+      
       toast({
         variant: "destructive",
-        title: "Error",
-        description: error.message,
+        title: "Authentication Error",
+        description: errorMessage,
       });
     } finally {
       setIsLoading(false);
@@ -56,6 +77,7 @@ export function AuthForm() {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         required
+        className="w-full"
       />
       <Input
         type="password"
@@ -63,6 +85,8 @@ export function AuthForm() {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         required
+        className="w-full"
+        minLength={6}
       />
       <Button type="submit" className="w-full" disabled={isLoading}>
         {isLoading ? "Loading..." : isSignUp ? "Sign Up" : "Sign In"}

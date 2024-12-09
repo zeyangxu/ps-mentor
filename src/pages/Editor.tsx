@@ -1,10 +1,31 @@
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Upload, Wand2 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/lib/supabase";
+import { AuthForm } from "@/components/auth/AuthForm";
 
 const Editor = () => {
   const [content, setContent] = useState("");
+  const [analysis, setAnalysis] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [session, setSession] = useState(null);
+  const { toast } = useToast();
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+    });
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -19,6 +40,51 @@ const Editor = () => {
       reader.readAsText(file);
     }
   };
+
+  const analyzeStatement = async () => {
+    if (!content.trim()) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Please enter your personal statement first.",
+      });
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      const { data, error } = await supabase.functions.invoke('analyze-statement', {
+        body: { content },
+      });
+      
+      if (error) throw error;
+      
+      setAnalysis(data.analysis);
+      toast({
+        title: "Analysis Complete",
+        description: "Your personal statement has been analyzed.",
+      });
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to analyze your statement. Please try again.",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  if (!session) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="w-full max-w-md p-6 bg-card rounded-lg shadow-lg">
+          <h1 className="text-2xl font-bold text-center mb-6">Welcome Back</h1>
+          <AuthForm />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background">
@@ -48,17 +114,28 @@ const Editor = () => {
               value={content}
               onChange={(e) => setContent(e.target.value)}
             />
-            <Button className="w-full gap-2" size="lg">
+            <Button 
+              className="w-full gap-2" 
+              size="lg" 
+              onClick={analyzeStatement}
+              disabled={isLoading}
+            >
               <Wand2 className="w-4 h-4" />
-              Analyze Statement
+              {isLoading ? "Analyzing..." : "Analyze Statement"}
             </Button>
           </div>
           
           <div className="bg-muted p-6 rounded-lg">
             <h2 className="text-2xl font-semibold mb-4">Analysis Results</h2>
-            <p className="text-muted-foreground">
-              Your analysis results will appear here after you submit your personal statement.
-            </p>
+            {analysis ? (
+              <div className="prose prose-sm max-w-none">
+                {analysis}
+              </div>
+            ) : (
+              <p className="text-muted-foreground">
+                Your analysis results will appear here after you submit your personal statement.
+              </p>
+            )}
           </div>
         </div>
       </div>

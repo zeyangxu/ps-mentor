@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/lib/supabase";
 import { AuthForm } from "@/components/auth/AuthForm";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 
 const Editor = () => {
   const [content, setContent] = useState("");
@@ -147,17 +149,53 @@ const Editor = () => {
             </Button>
           </div>
           
-          <div className="bg-muted p-6 rounded-lg">
-            <h2 className="text-2xl font-semibold mb-4">Analysis Results</h2>
-            {analysis ? (
-              <div className="prose prose-sm max-w-none">
-                {analysis}
-              </div>
-            ) : (
-              <p className="text-muted-foreground">
-                Your analysis results will appear here after you submit your personal statement.
-              </p>
-            )}
+          <div className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Analysis Results</CardTitle>
+              </CardHeader>
+              <CardContent>
+                {analysis ? (
+                  <div className="space-y-6">
+                    <Alert>
+                      <AlertTitle>Final Score</AlertTitle>
+                      <AlertDescription className="mt-2 text-lg font-semibold">
+                        {analysis.split('\n')[0].replace('1. **Final Score**: ', '')}
+                      </AlertDescription>
+                    </Alert>
+                    
+                    <Alert>
+                      <AlertTitle>Category</AlertTitle>
+                      <AlertDescription className="mt-2">
+                        {analysis.split('\n')[1].replace('2. **Category**: ', '')}
+                      </AlertDescription>
+                    </Alert>
+                    
+                    <div className="prose prose-sm max-w-none">
+                      <h3 className="text-lg font-semibold mb-4">Advice for Improvement</h3>
+                      <div className="space-y-4">
+                        {analysis
+                          .split('\n')
+                          .slice(2)
+                          .join('\n')
+                          .replace('3. **Advice for Improvement**: ', '')
+                          .split('- ')
+                          .filter(Boolean)
+                          .map((advice, index) => (
+                            <div key={index} className="pl-4 border-l-2 border-primary">
+                              <p className="text-sm text-muted-foreground">{advice.trim()}</p>
+                            </div>
+                          ))}
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <p className="text-muted-foreground text-center py-8">
+                    Your analysis results will appear here after you submit your personal statement.
+                  </p>
+                )}
+              </CardContent>
+            </Card>
           </div>
         </div>
       </div>

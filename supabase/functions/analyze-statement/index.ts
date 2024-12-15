@@ -26,6 +26,9 @@ Deno.serve(async (req) => {
     console.log("Edge Function: Received request")
     
     const { content } = await req.json()
+    if (!content) {
+      throw new Error("No content provided")
+    }
     console.log("Edge Function: Content length received:", content?.length)
     
     const authHeader = req.headers.get('Authorization')!
@@ -43,7 +46,7 @@ Deno.serve(async (req) => {
     const user = userData.user
     console.log("Edge Function: User authenticated:", !!user)
 
-    const res = await fetch('https://api.dify.ai/v1/workflows/run', {
+    const difyResponse = await fetch('https://api.dify.ai/v1/workflows/run', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -58,11 +61,19 @@ Deno.serve(async (req) => {
       })
     })
 
-    const json = await res.json()
-    console.log("Edge Function: Dify API response received")
+    if (!difyResponse.ok) {
+      throw new Error(`Dify API error: ${difyResponse.status} ${difyResponse.statusText}`)
+    }
+
+    const difyData = await difyResponse.json()
+    console.log("Edge Function: Dify API response:", difyData)
+
+    if (!difyData || !difyData.data || !difyData.data.outputs || !difyData.data.outputs.text) {
+      throw new Error("Invalid response format from Dify API")
+    }
 
     const data = {
-      analysis: json.data.outputs.text
+      analysis: difyData.data.outputs.text
     }
   
     console.log("Edge Function: Sending successful response")
@@ -79,7 +90,10 @@ Deno.serve(async (req) => {
     console.error("Edge Function Error:", err)
 
     return new Response(
-      JSON.stringify({message: err.message}),
+      JSON.stringify({
+        message: err.message,
+        details: err.stack
+      }),
       { 
         headers: { 
           ...corsHeaders,

@@ -3,7 +3,7 @@ import { supabase } from '@/lib/supabase'
 import { useToast } from '@/hooks/use-toast'
 
 export const useUsageTracking = () => {
-  const [usageCount, setUsageCount] = useState(0)
+  const [usageCount, setUsageCount] = useState<number | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<Error | null>(null)
   const { toast } = useToast()
@@ -20,24 +20,15 @@ export const useUsageTracking = () => {
         .eq('user_id', session.session.user.id)
         .maybeSingle()
 
-      // If no record exists, create one
+      // If no record exists, return null (don't create a record until first use)
       if (!data && !error) {
-        const { data: newData, error: insertError } = await supabase
-          .from('usage_tracking')
-          .insert({ 
-            user_id: session.session.user.id,
-            usage_count: 0 
-          })
-          .select('usage_count')
-          .single()
-
-        if (insertError) throw insertError
-        data = newData
+        setUsageCount(null)
+        return
       } else if (error) {
         throw error
       }
 
-      setUsageCount(data?.usage_count || 0)
+      setUsageCount(data?.usage_count || null)
     } catch (err) {
       console.error('Error fetching usage count:', err)
       setError(err instanceof Error ? err : new Error('Failed to fetch usage count'))
@@ -59,6 +50,6 @@ export const useUsageTracking = () => {
     usageCount,
     isLoading,
     error,
-    fetchUsageCount // Expose the fetch function
+    fetchUsageCount
   }
 }

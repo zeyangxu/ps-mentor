@@ -3,11 +3,14 @@ import { AlertCircle } from "lucide-react"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 
 interface UsageLimitProps {
-  usageCount: number
+  usageCount: number | null
   maxUsage?: number
 }
 
 export const UsageLimit = ({ usageCount, maxUsage = 3 }: UsageLimitProps) => {
+  // Only show usage information if we have a valid usage count
+  if (usageCount === null) return null
+  
   const remaining = usageCount
   
   return (

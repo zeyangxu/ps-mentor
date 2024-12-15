@@ -20,7 +20,8 @@ const Editor = () => {
   const { 
     usageCount, 
     isLoading: isLoadingUsage,
-    error: usageError 
+    error: usageError,
+    fetchUsageCount // Add this to destructure the new function
   } = useUsageTracking()
   
   const { 
@@ -84,6 +85,8 @@ const Editor = () => {
           title: "Analysis Complete",
           description: "Your personal statement has been analyzed.",
         })
+        // Refresh usage count after successful analysis
+        await fetchUsageCount()
       }
     } catch (error) {
       console.error("Analysis error:", error)

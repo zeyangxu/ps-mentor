@@ -5,6 +5,7 @@ import { useState, useEffect } from "react"
 import { useToast } from "@/hooks/use-toast"
 import { supabase } from "@/lib/supabase"
 import { AuthForm } from "@/components/auth/AuthForm"
+import { LogoutButton } from "@/components/auth/LogoutButton"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert"
 import { UsageLimit } from "@/components/UsageLimit"
@@ -112,6 +113,10 @@ const Editor = () => {
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
+        <div className="flex justify-between items-center mb-8">
+          <h1 className="text-3xl font-bold">Statement Sage</h1>
+          <LogoutButton />
+        </div>
         <div className="grid md:grid-cols-2 gap-8">
           <div className="space-y-4">
             <div className="flex justify-between items-center">

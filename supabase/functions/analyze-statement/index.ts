@@ -50,7 +50,7 @@ Deno.serve(async (req) => {
       throw new Error("User not authenticated");
     }
 
-    console.log("Edge Function: User authenticated:", !!user);
+    console.log("Edge Function: User authenticated:", JSON.stringify(user));
 
     // Check usage limit
     const { data: usageData, error: usageError } = await supabaseClient

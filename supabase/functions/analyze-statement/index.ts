@@ -45,7 +45,41 @@ Deno.serve(async (req) => {
     const token = authHeader.replace("Bearer ", "");
     const { data: userData } = await supabaseClient.auth.getUser(token);
     const user = userData.user;
+    
+    if (!user) {
+      throw new Error("User not authenticated");
+    }
+
     console.log("Edge Function: User authenticated:", !!user);
+
+    // Check usage limit
+    const { data: usageData, error: usageError } = await supabaseClient
+      .from('usage_tracking')
+      .select('usage_count')
+      .eq('user_id', user.id)
+      .single();
+
+    if (usageError) {
+      console.error("Usage check error:", usageError);
+      throw new Error("Failed to check usage limit");
+    }
+
+    const currentUsage = usageData?.usage_count || 0;
+    if (currentUsage >= 3) {
+      return new Response(
+        JSON.stringify({
+          error: "Usage limit exceeded",
+          message: "You have reached your maximum number of analyses",
+        }),
+        {
+          status: 403,
+          headers: {
+            ...corsHeaders,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+    }
 
     const difyResponse = await fetch("https://api.dify.ai/v1/workflows/run", {
       method: "POST",
@@ -80,6 +114,22 @@ Deno.serve(async (req) => {
       !difyData.data.outputs.text
     ) {
       throw new Error("Invalid response format from Dify API");
+    }
+
+    // Increment usage count after successful analysis
+    const { error: updateError } = await supabaseClient
+      .from('usage_tracking')
+      .upsert(
+        { 
+          user_id: user.id, 
+          usage_count: currentUsage + 1 
+        },
+        { onConflict: 'user_id' }
+      );
+
+    if (updateError) {
+      console.error("Usage update error:", updateError);
+      throw new Error("Failed to update usage count");
     }
 
     const data = {

@@ -65,7 +65,7 @@ Deno.serve(async (req) => {
     }
 
     const currentUsage = usageData?.usage_count || 0;
-    if (currentUsage >= 3) {
+    if (currentUsage <= 0) {
       return new Response(
         JSON.stringify({
           error: "Usage limit exceeded",

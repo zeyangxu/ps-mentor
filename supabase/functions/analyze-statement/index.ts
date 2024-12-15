@@ -81,6 +81,7 @@ Deno.serve(async (req) => {
     }
 
     const currentUsage = usageData?.usage_count || 0;
+    console.log("Edge Function: Usage checking:", currentUsage);
     if (currentUsage <= 0) {
       return new Response(
         JSON.stringify({

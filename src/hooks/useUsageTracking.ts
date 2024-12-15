@@ -39,35 +39,9 @@ export const useUsageTracking = () => {
     fetchUsageCount()
   }, [toast])
 
-  const incrementUsage = async () => {
-    try {
-      const { data: session } = await supabase.auth.getSession()
-      if (!session.session?.user) throw new Error('No authenticated user')
-
-      const { error } = await supabase
-        .from('usage_tracking')
-        .upsert(
-          { 
-            user_id: session.session.user.id, 
-            usage_count: usageCount + 1 
-          },
-          { onConflict: 'user_id' }
-        )
-
-      if (error) throw error
-
-      setUsageCount(prev => prev + 1)
-      return true
-    } catch (err) {
-      console.error('Error updating usage count:', err)
-      throw err
-    }
-  }
-
   return {
     usageCount,
     isLoading,
-    error,
-    incrementUsage
+    error
   }
 }

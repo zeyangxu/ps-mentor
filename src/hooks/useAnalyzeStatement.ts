@@ -5,7 +5,6 @@ import { useUsageTracking } from './useUsageTracking'
 export const useAnalyzeStatement = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<Error | null>(null)
-  const { incrementUsage } = useUsageTracking()
 
   const analyzeStatement = async (content: string) => {
     setIsLoading(true)
@@ -37,7 +36,6 @@ export const useAnalyzeStatement = () => {
         throw new Error("Invalid response format from the function")
       }
       
-      await incrementUsage()
       return data.analysis
     } catch (err) {
       console.error('Analysis error:', err)

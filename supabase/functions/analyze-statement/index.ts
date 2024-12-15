@@ -54,18 +54,18 @@ Deno.serve(async (req) => {
 
     // Check usage limit - First try to get existing record
     let { data: usageData, error: usageError } = await supabaseClient
-      .from('usage_tracking')
-      .select('usage_count')
+      .from('usage_limit')
+      .select()
       .eq('user_id', user.id)
-      .single();
+      .single()
 
     console.log("Usage data:", usageData, "Error:", usageError);
 
     // If no record exists, create one with count 0
     if (usageError && usageError.code === 'PGRST116') {
       const { data: newUsageData, error: insertError } = await supabaseClient
-        .from('usage_tracking')
-        .insert({ user_id: user.id, usage_count: 0 })
+        .from('usage_limit')
+        .insert({ user_id: user.id, remaining_usage: 3 })
         .select()
         .single();
 
@@ -80,8 +80,8 @@ Deno.serve(async (req) => {
       throw new Error("Failed to check usage limit");
     }
 
-    const currentUsage = usageData?.usage_count || 0;
-    if (currentUsage >= 3) {
+    const currentUsage = usageData?.remaining_usage || 0;
+    if (currentUsage <= 0) {
       return new Response(
         JSON.stringify({
           error: "Usage limit exceeded",
@@ -149,8 +149,8 @@ Deno.serve(async (req) => {
 
     // Increment usage count after successful analysis
     const { error: updateError } = await supabaseClient
-      .from('usage_tracking')
-      .update({ usage_count: currentUsage + 1 })
+      .from('usage_limit')
+      .update({ remaining_usage: currentUsage - 1 })
       .eq('user_id', user.id);
 
     if (updateError) {

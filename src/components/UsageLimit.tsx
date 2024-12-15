@@ -8,7 +8,7 @@ interface UsageLimitProps {
 }
 
 export const UsageLimit = ({ usageCount, maxUsage = 3 }: UsageLimitProps) => {
-  const remaining = maxUsage - usageCount
+  const remaining = usageCount
   
   return (
     <div className="space-y-4">

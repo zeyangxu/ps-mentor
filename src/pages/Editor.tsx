@@ -158,7 +158,7 @@ const Editor = () => {
               className="w-full gap-2" 
               size="lg" 
               onClick={handleAnalyze}
-              disabled={isAnalyzing || isLoadingUsage || (usageCount!== null && usageCount <= 0)}
+              disabled={isAnalyzing || isLoadingUsage}
             >
               <Wand2 className="w-4 h-4" />
               {isAnalyzing ? "Analyzing..." : "Analyze Statement"}

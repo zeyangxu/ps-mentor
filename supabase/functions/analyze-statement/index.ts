@@ -52,20 +52,36 @@ Deno.serve(async (req) => {
 
     console.log("Edge Function: User authenticated:", JSON.stringify(user));
 
-    // Check usage limit
-    const { data: usageData, error: usageError } = await supabaseClient
-      .from('usage_limit')
-      .select('remaining_usage')
+    // Check usage limit - First try to get existing record
+    let { data: usageData, error: usageError } = await supabaseClient
+      .from('usage_tracking')
+      .select('usage_count')
       .eq('user_id', user.id)
       .single();
 
-    if (usageError) {
+    console.log("Usage data:", usageData, "Error:", usageError);
+
+    // If no record exists, create one with count 0
+    if (usageError && usageError.code === 'PGRST116') {
+      const { data: newUsageData, error: insertError } = await supabaseClient
+        .from('usage_tracking')
+        .insert({ user_id: user.id, usage_count: 0 })
+        .select()
+        .single();
+
+      if (insertError) {
+        console.error("Error creating usage record:", insertError);
+        throw new Error("Failed to initialize usage tracking");
+      }
+
+      usageData = newUsageData;
+    } else if (usageError) {
       console.error("Usage check error:", usageError);
       throw new Error("Failed to check usage limit");
     }
 
     const currentUsage = usageData?.usage_count || 0;
-    if (currentUsage <= 0) {
+    if (currentUsage >= 3) {
       return new Response(
         JSON.stringify({
           error: "Usage limit exceeded",
@@ -110,6 +126,7 @@ Deno.serve(async (req) => {
         }
       }
     }
+
     console.log("Edge Function: Dify response:", JSON.stringify(difyResponse));
 
     if (!difyResponse.ok) {
@@ -133,13 +150,8 @@ Deno.serve(async (req) => {
     // Increment usage count after successful analysis
     const { error: updateError } = await supabaseClient
       .from('usage_tracking')
-      .upsert(
-        { 
-          user_id: user.id, 
-          usage_count: currentUsage + 1 
-        },
-        { onConflict: 'user_id' }
-      );
+      .update({ usage_count: currentUsage + 1 })
+      .eq('user_id', user.id);
 
     if (updateError) {
       console.error("Usage update error:", updateError);
@@ -150,7 +162,7 @@ Deno.serve(async (req) => {
       analysis: difyData.data.outputs.text,
     };
 
-    console.log("Edge Function: Sending su$ccessful response");
+    console.log("Edge Function: Sending successful response");
     return new Response(JSON.stringify(data), {
       headers: {
         ...corsHeaders,

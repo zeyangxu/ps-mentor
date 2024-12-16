@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
@@ -10,6 +11,7 @@ export function AuthForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,7 +36,7 @@ export function AuthForm() {
           description: "We've sent you a verification link.",
         });
       } else {
-        const { error } = await supabase.auth.signInWithPassword({
+        const { data, error } = await supabase.auth.signInWithPassword({
           email,
           password,
         });
@@ -43,11 +45,18 @@ export function AuthForm() {
           console.error("Sign in error:", error);
           throw error;
         }
-        
-        toast({
-          title: "Welcome back!",
-          description: "You've successfully signed in.",
-        });
+
+        if (data?.session) {
+          toast({
+            title: "Welcome back!",
+            description: "You've successfully signed in.",
+          });
+          
+          setTimeout(() => {
+            console.log("Navigating to editor with session:", data.session);
+            navigate("/editor");
+          }, 100);
+        }
       }
     } catch (error) {
       console.error("Auth error:", error);

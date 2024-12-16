@@ -28,7 +28,7 @@ export const useUsageTracking = () => {
         throw error
       }
 
-      setUsageCount(data?.usage_count || null)
+      setUsageCount(data?.usage_count ?? null)
     } catch (err) {
       console.error('Error fetching usage count:', err)
       setError(err instanceof Error ? err : new Error('Failed to fetch usage count'))

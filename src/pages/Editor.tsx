@@ -11,11 +11,13 @@ import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert"
 import { UsageLimit } from "@/components/UsageLimit"
 import { useUsageTracking } from "@/hooks/useUsageTracking"
 import { useAnalyzeStatement } from "@/hooks/useAnalyzeStatement"
+import { Navigate } from "react-router-dom"
 
 const Editor = () => {
   const [content, setContent] = useState("")
   const [analysis, setAnalysis] = useState<string | null>(null)
   const [session, setSession] = useState(null)
+  const [isLoadingSession, setIsLoadingSession] = useState(true)
   const { toast } = useToast()
   
   const { 
@@ -32,18 +34,33 @@ const Editor = () => {
   } = useAnalyzeStatement()
 
   useEffect(() => {
+    setIsLoadingSession(true)
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session)
+      setIsLoadingSession(false)
     })
 
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session)
+      setIsLoadingSession(false)
     })
 
     return () => subscription.unsubscribe()
   }, [])
+
+  if (isLoadingSession) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+      </div>
+    )
+  }
+
+  if (!session) {
+    return <Navigate to="/login" replace />
+  }
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -97,17 +114,6 @@ const Editor = () => {
         description: "Failed to analyze your statement. Please try again.",
       })
     }
-  }
-
-  if (!session) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="w-full max-w-md p-6 bg-card rounded-lg shadow-lg">
-          <h1 className="text-2xl font-bold text-center mb-6">Welcome Back</h1>
-          <AuthForm />
-        </div>
-      </div>
-    )
   }
 
   return (

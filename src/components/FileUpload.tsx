@@ -38,19 +38,27 @@ export const FileUpload = ({ onUpload }: FileUploadProps) => {
     }
   };
 
+  const handleButtonClick = () => {
+    fileInputRef.current?.click();
+  };
+
   return (
-    <Button variant="outline" className="gap-2">
-      <Upload className="w-4 h-4" />
-      <label className="cursor-pointer">
+    <>
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept=".txt,.doc,.docx"
+        className="hidden"
+        onChange={handleFileUpload}
+      />
+      <Button 
+        variant="outline" 
+        className="gap-2"
+        onClick={handleButtonClick}
+      >
+        <Upload className="w-4 h-4" />
         Upload
-        <input
-          ref={fileInputRef}
-          type="file"
-          accept=".txt,.doc,.docx"
-          className="hidden"
-          onChange={handleFileUpload}
-        />
-      </label>
-    </Button>
+      </Button>
+    </>
   );
 };

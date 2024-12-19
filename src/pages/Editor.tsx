@@ -4,7 +4,6 @@ import { Upload, Wand2 } from "lucide-react"
 import { useState, useEffect } from "react"
 import { useToast } from "@/hooks/use-toast"
 import { supabase } from "@/lib/supabase"
-import { AuthForm } from "@/components/auth/AuthForm"
 import { LogoutButton } from "@/components/auth/LogoutButton"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert"
@@ -12,6 +11,7 @@ import { UsageLimit } from "@/components/UsageLimit"
 import { useUsageTracking } from "@/hooks/useUsageTracking"
 import { useAnalyzeStatement } from "@/hooks/useAnalyzeStatement"
 import { Navigate } from "react-router-dom"
+import { extractTextFromFile } from "@/utils/documentProcessing"
 
 const Editor = () => {
   const [content, setContent] = useState("")
@@ -62,19 +62,26 @@ const Editor = () => {
     return <Navigate to="/login" replace />
   }
 
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (file) {
-      const reader = new FileReader()
-      reader.onload = (e) => {
-        const text = e.target?.result
-        if (typeof text === "string") {
-          setContent(text)
-        }
-      }
-      reader.readAsText(file)
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    try {
+      const text = await extractTextFromFile(file);
+      setContent(text);
+      toast({
+        title: "File Uploaded",
+        description: "Your document has been successfully processed.",
+      });
+    } catch (error) {
+      console.error("File upload error:", error);
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to process the document. Please try again with a supported file type.",
+      });
     }
-  }
+  };
 
   const handleAnalyze = async () => {
     if (!session?.user) {
@@ -134,7 +141,7 @@ const Editor = () => {
                     Upload
                     <input
                       type="file"
-                      accept=".txt"
+                      accept=".txt,.doc,.docx"
                       className="hidden"
                       onChange={handleFileUpload}
                     />
@@ -222,7 +229,7 @@ const Editor = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Editor
+export default Editor;

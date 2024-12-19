@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
-import { Upload, Wand2 } from "lucide-react"
+import { Wand2 } from "lucide-react"
 import { useState, useEffect } from "react"
 import { useToast } from "@/hooks/use-toast"
 import { supabase } from "@/lib/supabase"
@@ -11,7 +11,7 @@ import { UsageLimit } from "@/components/UsageLimit"
 import { useUsageTracking } from "@/hooks/useUsageTracking"
 import { useAnalyzeStatement } from "@/hooks/useAnalyzeStatement"
 import { Navigate } from "react-router-dom"
-import { extractTextFromFile } from "@/utils/documentProcessing"
+import { FileUpload } from "@/components/FileUpload"
 
 const Editor = () => {
   const [content, setContent] = useState("")
@@ -24,7 +24,7 @@ const Editor = () => {
     usageCount, 
     isLoading: isLoadingUsage,
     error: usageError,
-    fetchUsageCount // Add this to destructure the new function
+    fetchUsageCount
   } = useUsageTracking()
   
   const { 
@@ -62,27 +62,6 @@ const Editor = () => {
     return <Navigate to="/login" replace />
   }
 
-  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    try {
-      const text = await extractTextFromFile(file);
-      setContent(text);
-      toast({
-        title: "File Uploaded",
-        description: "Your document has been successfully processed.",
-      });
-    } catch (error) {
-      console.error("File upload error:", error);
-      toast({
-        variant: "destructive",
-        title: "Error",
-        description: "Failed to process the document. Please try again with a supported file type.",
-      });
-    }
-  };
-
   const handleAnalyze = async () => {
     if (!session?.user) {
       toast({
@@ -110,7 +89,6 @@ const Editor = () => {
           title: "Analysis Complete",
           description: "Your personal statement has been analyzed.",
         })
-        // Refresh usage count after successful analysis
         await fetchUsageCount()
       }
     } catch (error) {
@@ -135,18 +113,7 @@ const Editor = () => {
             <div className="flex justify-between items-center">
               <h2 className="text-2xl font-semibold">Your Personal Statement</h2>
               <div className="flex gap-2">
-                <Button variant="outline" className="gap-2">
-                  <Upload className="w-4 h-4" />
-                  <label className="cursor-pointer">
-                    Upload
-                    <input
-                      type="file"
-                      accept=".txt,.doc,.docx"
-                      className="hidden"
-                      onChange={handleFileUpload}
-                    />
-                  </label>
-                </Button>
+                <FileUpload onUpload={setContent} />
               </div>
             </div>
             

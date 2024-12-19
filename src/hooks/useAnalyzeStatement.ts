@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { supabase } from '@/lib/supabase'
 import { useUsageTracking } from './useUsageTracking'
+import { cleanTextForAnalysis } from '@/utils/textProcessing'
 
 export const useAnalyzeStatement = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -14,6 +15,7 @@ export const useAnalyzeStatement = () => {
       const { data: session } = await supabase.auth.getSession()
       if (!session.session) throw new Error('No authenticated session')
 
+      const cleanedContent = cleanTextForAnalysis(content)
       const functionUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/analyze-statement`
       
       const response = await fetch(functionUrl, {
@@ -23,7 +25,7 @@ export const useAnalyzeStatement = () => {
           'Authorization': `Bearer ${session.session.access_token}`,
           'apikey': import.meta.env.VITE_SUPABASE_ANON_KEY
         },
-        body: JSON.stringify({ content })
+        body: JSON.stringify({ content: cleanedContent })
       })
       
       if (!response.ok) {

@@ -26,7 +26,7 @@ const features = [
   },
   {
     title: "职业规划",
-    description: "你的职业规划是否具体且明确？是否有清晰的发展脉络？",
+    description: "你的规划是否具体且明确？是否有清晰的发展脉络？",
     icon: <Target className="w-6 h-6 text-primary" />,
   },
   {

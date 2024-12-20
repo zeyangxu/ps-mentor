@@ -13,7 +13,7 @@ const Index = () => {
             AI驱动的个人陈述评估系统
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-            通过顶尖AI
+            通过顶尖AI技术
           </p>
           <Link to="/editor">
             <Button size="lg" className="gap-2">

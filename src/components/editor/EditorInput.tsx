@@ -65,7 +65,7 @@ export const EditorInput = ({
         disabled={isAnalyzing || isLoadingUsage}
       >
         <Wand2 className="w-4 h-4" />
-        {isAnalyzing ? "分析中..." : "分析陈述"}
+        {isAnalyzing ? "分析中..." : "文书深度评估"}
       </Button>
     </div>
   );

@@ -80,7 +80,7 @@ const Index = () => {
 const features = [
   {
     title: "申请动机",
-    description: "评估你的学习动机和目标是否清晰、具体且令人信服",
+    description: "深入分析你的学习动机是否源于真实的学术兴趣和职业规划，评估你对所选专业的理解深度，以及你的目标陈述是否具有说服力和可实现性",
     icon: <Target className="w-6 h-6 text-primary" />,
   },
   {

@@ -28,7 +28,7 @@ const Index = () => {
             <CardContent className="p-0">
               <h2 className="text-2xl font-semibold mb-4">文书/PS的重要性</h2>
               <p className="text-muted-foreground leading-relaxed">
-                个人陈述（Personal Statement, 简称PS）是欧美大学申请中至关重要的一环。一篇出色的PS不仅能<span className="underline">弥补学术成绩及相关经验的不足</span>，还能帮助申请者在众多竞争者中脱颖而出。而相反，一篇质量不佳的PS可能会拉低整体申请水平，甚至让招生官对申请者的能力和动机产生质疑。
+                个人陈述（Personal Statement, 简称PS）是欧美大学申请中至关重要的一环。一篇出色的PS不仅能<span className="underline">弥补学术成绩及相关经验的不足</span>，还能帮助申请者在众多竞争者中脱颖而出。而相反，一篇质量不佳的PS可能会<span className="underline">拉低整体申请水平</span>，甚至让招生官对申请者的能力和动机产生质疑。
               </p>
             </CardContent>
           </Card>

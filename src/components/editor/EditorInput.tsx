@@ -34,6 +34,13 @@ export const EditorInput = ({
           <FileUpload onUpload={setContent} />
         </div>
       </div>
+
+      <Alert className="bg-secondary border-secondary">
+        <Shield className="h-4 w-4" />
+        <AlertDescription>
+          您的隐私安全是我们首要考虑的因素。我们的系统不会录入您的文书信息，请放心使用。
+        </AlertDescription>
+      </Alert>
       
       {usageError ? (
         <Alert variant="destructive">
@@ -66,13 +73,6 @@ export const EditorInput = ({
           <Progress value={100} className="w-full animate-[progress_2s_ease-in-out_infinite]" />
         )}
       </div>
-
-      <Alert className="bg-secondary border-secondary">
-        <Shield className="h-4 w-4" />
-        <AlertDescription>
-          您的隐私安全是我们首要考虑的因素。我们的系统不会录入您的文书信息，请放心使用。
-        </AlertDescription>
-      </Alert>
 
       <Alert className="bg-secondary border-secondary">
         <Info className="h-4 w-4" />

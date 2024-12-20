@@ -105,7 +105,7 @@ const Editor = () => {
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold">个人陈述分析助手</h1>
+          <h1 className="text-3xl font-bold">文书/PS分析助手</h1>
           <LogoutButton />
         </div>
         <div className="grid md:grid-cols-2 gap-8">

@@ -31,7 +31,7 @@ const features = [
   },
   {
     title: "写作质量",
-    description: "全面评估文章的结构、逻辑性、语言表达和整体连贯性",
+    description: "你的语言是否正确、准确、流畅又具个人风格？",
     icon: <FileText className="w-6 h-6 text-primary" />,
   },
 ];

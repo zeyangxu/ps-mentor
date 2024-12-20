@@ -66,8 +66,8 @@ const Editor = () => {
     if (!session?.user) {
       toast({
         variant: "destructive",
-        title: "Error",
-        description: "Please sign in to analyze your statement.",
+        title: "错误",
+        description: "请先登录以分析您的陈述。",
       })
       return
     }
@@ -75,8 +75,8 @@ const Editor = () => {
     if (!content.trim()) {
       toast({
         variant: "destructive",
-        title: "Error",
-        description: "Please enter your personal statement first.",
+        title: "错误",
+        description: "请先输入您的个人陈述。",
       })
       return
     }
@@ -86,8 +86,8 @@ const Editor = () => {
       if (result) {
         setAnalysis(result)
         toast({
-          title: "Analysis Complete",
-          description: "Your personal statement has been analyzed.",
+          title: "分析完成",
+          description: "您的个人陈述已分析完成。",
         })
         await fetchUsageCount()
       }
@@ -95,8 +95,8 @@ const Editor = () => {
       console.error("Analysis error:", error)
       toast({
         variant: "destructive",
-        title: "Error",
-        description: "Failed to analyze your statement. Please try again.",
+        title: "错误",
+        description: "分析您的陈述时出错。请重试。",
       })
     }
   }
@@ -105,13 +105,13 @@ const Editor = () => {
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold">Statement Sage</h1>
+          <h1 className="text-3xl font-bold">个人陈述分析助手</h1>
           <LogoutButton />
         </div>
         <div className="grid md:grid-cols-2 gap-8">
           <div className="space-y-4">
             <div className="flex justify-between items-center">
-              <h2 className="text-2xl font-semibold">Your Personal Statement</h2>
+              <h2 className="text-2xl font-semibold">您的个人陈述</h2>
               <div className="flex gap-2">
                 <FileUpload onUpload={setContent} />
               </div>
@@ -119,9 +119,9 @@ const Editor = () => {
             
             {usageError ? (
               <Alert variant="destructive">
-                <AlertTitle>Error Loading Usage</AlertTitle>
+                <AlertTitle>加载使用情况时出错</AlertTitle>
                 <AlertDescription>
-                  Unable to load your usage information. Please try refreshing the page.
+                  无法加载您的使用情况。请刷新页面重试。
                 </AlertDescription>
               </Alert>
             ) : (
@@ -129,7 +129,7 @@ const Editor = () => {
             )}
             
             <Textarea
-              placeholder="Paste your personal statement here..."
+              placeholder="在此粘贴您的个人陈述..."
               className="min-h-[500px] resize-none"
               value={content}
               onChange={(e) => setContent(e.target.value)}
@@ -141,34 +141,34 @@ const Editor = () => {
               disabled={isAnalyzing || isLoadingUsage}
             >
               <Wand2 className="w-4 h-4" />
-              {isAnalyzing ? "Analyzing..." : "Analyze Statement"}
+              {isAnalyzing ? "分析中..." : "分析陈述"}
             </Button>
           </div>
           
           <div className="space-y-6">
             <Card>
               <CardHeader>
-                <CardTitle>Analysis Results</CardTitle>
+                <CardTitle>分析结果</CardTitle>
               </CardHeader>
               <CardContent>
                 {analysis ? (
                   <div className="space-y-6">
                     <Alert>
-                      <AlertTitle>Final Score</AlertTitle>
+                      <AlertTitle>最终得分</AlertTitle>
                       <AlertDescription className="mt-2 text-lg font-semibold">
                         {analysis.split('\n')[0].replace('1. **Final Score**: ', '')}
                       </AlertDescription>
                     </Alert>
                     
                     <Alert>
-                      <AlertTitle>Category</AlertTitle>
+                      <AlertTitle>类别</AlertTitle>
                       <AlertDescription className="mt-2">
                         {analysis.split('\n')[1].replace('2. **Category**: ', '')}
                       </AlertDescription>
                     </Alert>
                     
                     <div className="prose prose-sm max-w-none">
-                      <h3 className="text-lg font-semibold mb-4">Advice for Improvement</h3>
+                      <h3 className="text-lg font-semibold mb-4">改进建议</h3>
                       <div className="space-y-4">
                         {analysis
                           .split('\n')
@@ -187,7 +187,7 @@ const Editor = () => {
                   </div>
                 ) : (
                   <p className="text-muted-foreground text-center py-8">
-                    Your analysis results will appear here after you submit your personal statement.
+                    提交个人陈述后，分析结果将显示在此处。
                   </p>
                 )}
               </CardContent>
@@ -196,7 +196,7 @@ const Editor = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Editor;
+export default Editor

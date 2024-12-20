@@ -8,7 +8,6 @@ interface UsageLimitProps {
 }
 
 export const UsageLimit = ({ usageCount, maxUsage = 3 }: UsageLimitProps) => {
-  // Only show usage information if we have a valid usage count
   if (usageCount === null) return null
   
   const remaining = usageCount
@@ -16,18 +15,18 @@ export const UsageLimit = ({ usageCount, maxUsage = 3 }: UsageLimitProps) => {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <span className="text-sm text-muted-foreground">Analysis Credits</span>
+        <span className="text-sm text-muted-foreground">分析次数</span>
         <Badge variant={remaining > 0 ? "secondary" : "destructive"}>
-          {remaining} remaining
+          剩余 {remaining} 次
         </Badge>
       </div>
       
       {remaining <= 0 && (
         <Alert variant="destructive">
           <AlertCircle className="h-4 w-4" />
-          <AlertTitle>Usage Limit Reached</AlertTitle>
+          <AlertTitle>已达使用限制</AlertTitle>
           <AlertDescription>
-            You have used all your free analysis credits. Please contact support for more information.
+            您已用完所有免费分析次数。请联系客服获取更多信息。
           </AlertDescription>
         </Alert>
       )}

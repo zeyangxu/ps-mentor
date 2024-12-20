@@ -50,7 +50,7 @@ const Index = () => {
           <p className="text-base text-muted-foreground leading-relaxed max-w-4xl mx-auto font-bold">
             我们将从以下六大维度切入，对您的PS展开深度解析，不仅为你<span className="text-violet-500 drop-shadow-[0_0_1px_#8B5CF6]">精准打分，解读每一项得分背后的原因，个性化的修改建议</span>，
             <br />
-            还会给出个性化的修改建议，助你的 PS 脱颖而出，为留学申请增添有力筹码！
+            助你的 PS 脱颖而出，为留学申请增添有力筹码！
           </p>
         </div>
 

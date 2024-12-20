@@ -113,7 +113,7 @@ const Editor = () => {
             usageCount={usageCount}
             usageError={usageError}
           />
-          <AnalysisResults analysis={analysis} />
+          <AnalysisResults analysis={analysis} isAnalyzing={isAnalyzing} />
         </div>
       </div>
     </div>

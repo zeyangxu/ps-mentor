@@ -1,11 +1,29 @@
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert"
+import { Progress } from "@/components/ui/progress"
 
 interface AnalysisResultsProps {
   analysis: string | null;
+  isAnalyzing?: boolean;
 }
 
-export const AnalysisResults = ({ analysis }: AnalysisResultsProps) => {
+export const AnalysisResults = ({ analysis, isAnalyzing }: AnalysisResultsProps) => {
+  if (isAnalyzing) {
+    return (
+      <Card>
+        <CardHeader>
+          <CardTitle>分析中...</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <p className="text-muted-foreground text-center">
+            正在分析您的文书/PS，请稍候...
+          </p>
+          <Progress value={100} className="animate-[progress_2s_ease-in-out_infinite]" />
+        </CardContent>
+      </Card>
+    );
+  }
+
   if (!analysis) {
     return (
       <Card>

@@ -40,6 +40,16 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      keyframes: {
+        progress: {
+          '0%': { transform: 'translateX(-100%)' },
+          '50%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(100%)' }
+        }
+      },
+      animation: {
+        progress: 'progress 2s ease-in-out infinite',
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

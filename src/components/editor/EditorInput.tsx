@@ -6,6 +6,7 @@ import { UsageLimit } from "@/components/UsageLimit"
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert"
 import { Shield, Info } from "lucide-react"
 import { Progress } from "@/components/ui/progress"
+import { PaymentOptions } from "./PaymentOptions"
 
 interface EditorInputProps {
   content: string;
@@ -73,6 +74,8 @@ export const EditorInput = ({
           <Progress value={100} className="w-full animate-[progress_2s_ease-in-out_infinite]" />
         )}
       </div>
+
+      <PaymentOptions />
 
       <Alert className="bg-secondary border-secondary">
         <Info className="h-4 w-4" />

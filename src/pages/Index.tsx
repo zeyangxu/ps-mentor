@@ -42,8 +42,9 @@ const Index = () => {
       <div className="container mx-auto px-4 py-16 max-w-6xl">
         {/* Hero Section */}
         <div className="text-center animate-fade-up mb-20">
-          <div className="flex justify-center mb-6">
-            <Sparkles className="w-12 h-12 text-primary animate-pulse" />
+          <div className="flex justify-center mb-6 relative">
+            <div className="absolute inset-0 bg-primary/10 rounded-full blur-xl animate-pulse"></div>
+            <Sparkles className="w-12 h-12 text-primary animate-[spin_3s_linear_infinite] hover:scale-110 transition-all duration-300" />
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 leading-tight">
             留学文书锐评器

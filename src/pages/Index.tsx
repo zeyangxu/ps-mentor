@@ -11,7 +11,16 @@ const features = [
   },
   {
     title: "学术能力",
-    description: "你是否充分展现了具体的学术能力，而非只对课程理论泛泛而谈？",
+    description: (
+      <div className="flex items-center gap-2">
+        你是否充分展现了具体的学术能力，而非只对课程理论泛泛而谈？
+        <img 
+          src="/lovable-uploads/547add8b-b616-47d9-9a54-10859acb0459.png" 
+          alt="思考表情" 
+          className="w-6 h-6 inline-block"
+        />
+      </div>
+    ),
     icon: <GraduationCap className="w-6 h-6 text-primary" />,
   },
   {

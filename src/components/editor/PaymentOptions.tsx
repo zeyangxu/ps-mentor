@@ -26,7 +26,7 @@ export const PaymentOptions = () => {
                   onClick={() => setSelectedImage("/lovable-uploads/bc1db9f3-a61f-49b7-bd7f-240a3e196786.png")}
                 />
               </DialogTrigger>
-              <p className="mt-2 text-lg font-semibold">¥19.90</p>
+              <p className="mt-2 text-lg font-semibold">¥19.90/次</p>
             </Card>
             <Card className="p-4 flex flex-col items-center">
               <DialogTrigger asChild>
@@ -56,7 +56,7 @@ export const PaymentOptions = () => {
                   onClick={() => setSelectedImage("/lovable-uploads/426c581c-0a3f-4603-9666-f8aac0d8a256.png")}
                 />
               </DialogTrigger>
-              <p className="mt-2 text-lg font-semibold">¥19.90</p>
+              <p className="mt-2 text-lg font-semibold">¥19.90/次</p>
             </Card>
             <Card className="p-4 flex flex-col items-center">
               <DialogTrigger asChild>

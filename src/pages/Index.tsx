@@ -11,7 +11,7 @@ const features = [
   },
   {
     title: "学术能力",
-    description: "分析你的学术背景是否符合项目要求，并有效展示你的学术潜力",
+    description: "你是否充分展现了具体的学术能力，而非对课程理论泛泛而谈？",
     icon: <GraduationCap className="w-6 h-6 text-primary" />,
   },
   {

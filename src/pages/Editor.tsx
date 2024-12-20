@@ -67,7 +67,7 @@ const Editor = () => {
       toast({
         variant: "destructive",
         title: "错误",
-        description: "请先登录以分析您的陈述。",
+        description: "请先登录以分析您的文书/PS。",
       })
       return
     }
@@ -76,7 +76,7 @@ const Editor = () => {
       toast({
         variant: "destructive",
         title: "错误",
-        description: "请先输入您的个人陈述。",
+        description: "请先输入您的文书/PS。",
       })
       return
     }
@@ -96,7 +96,7 @@ const Editor = () => {
       toast({
         variant: "destructive",
         title: "错误",
-        description: "分析您的陈述时出错。请重试。",
+        description: "分析您的文书/PS时出错。请重试。",
       })
     }
   }
@@ -111,7 +111,7 @@ const Editor = () => {
         <div className="grid md:grid-cols-2 gap-8">
           <div className="space-y-4">
             <div className="flex justify-between items-center">
-              <h2 className="text-2xl font-semibold">您的个人陈述</h2>
+              <h2 className="text-2xl font-semibold">您的文书/PS</h2>
               <div className="flex gap-2">
                 <FileUpload onUpload={setContent} />
               </div>
@@ -129,7 +129,7 @@ const Editor = () => {
             )}
             
             <Textarea
-              placeholder="在此粘贴您的个人陈述..."
+              placeholder="在此粘贴您的文书/PS..."
               className="min-h-[500px] resize-none"
               value={content}
               onChange={(e) => setContent(e.target.value)}

@@ -62,6 +62,13 @@ const Index = () => {
             </Card>
           ))}
         </div>
+
+        {/* New Content Section */}
+        <div className="mt-20 text-center animate-fade-up">
+          <p className="text-lg text-muted-foreground leading-relaxed max-w-4xl mx-auto">
+            我们将从以下六大维度切入，对您的PS展开全方位、深层次的解析，不仅为你精准打分，还会详细解读每一项得分背后的原因，并据此提出极具针对性与建设性的修改建议，助你的 PS 脱颖而出，为留学申请增添有力筹码！
+          </p>
+        </div>
       </div>
     </div>
   );

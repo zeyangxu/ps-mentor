@@ -13,7 +13,7 @@ const Index = () => {
             AI驱动的个人陈述评估系统
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-            最顶尖的AI技术，最专业的留学团队，最全面的文书深度评估
+            最前沿的 AI 算法，最资深的研发团队，最精细的文书多维剖析，为你的留学征途保驾护航！
           </p>
           <Link to="/editor">
             <Button size="lg" className="gap-2">

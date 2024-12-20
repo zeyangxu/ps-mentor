@@ -11,7 +11,9 @@ const Login = () => {
           <AlertDescription className="ml-2">
             目前我们仅支持邮箱这一种注册方式，给您带来不便，还请谅解。
             <br />
-            注册成功后您可以免费体验三次反馈超千字的文书深度评估！点击注册后请查收邮箱的确认邮件~
+            点击注册后请查收邮箱的确认邮件~
+            <br />
+            注册成功后您可以免费体验三次反馈超千字的文书深度评估！
           </AlertDescription>
         </Alert>
         <div className="w-full bg-card rounded-lg shadow-lg p-8">

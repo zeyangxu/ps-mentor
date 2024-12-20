@@ -51,13 +51,6 @@ export const AnalysisResults = ({ analysis, isAnalyzing }: AnalysisResultsProps)
             </AlertDescription>
           </Alert>
           
-          <Alert>
-            <AlertTitle>类别</AlertTitle>
-            <AlertDescription className="mt-2">
-              {analysis.split('\n')[1].replace('2. **Category**: ', '')}
-            </AlertDescription>
-          </Alert>
-          
           <div className="prose prose-sm max-w-none">
             <h3 className="text-lg font-semibold mb-4">改进建议</h3>
             <div className="space-y-4">

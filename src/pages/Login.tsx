@@ -4,7 +4,7 @@ import { InfoIcon } from "lucide-react"
 
 const Login = () => {
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center">
+    <div className="min-h-screen bg-gradient-to-b from-secondary/50 to-background flex items-center justify-center">
       <div className="max-w-xl w-full mx-auto px-6">
         <Alert className="mb-6">
           <InfoIcon className="h-4 w-4" />

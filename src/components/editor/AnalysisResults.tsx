@@ -30,7 +30,7 @@ export const AnalysisResults = ({ analysis, isAnalyzing }: AnalysisResultsProps)
         </CardHeader>
         <CardContent>
           <p className="text-muted-foreground text-center py-8">
-            提交个人陈述后，分析结果将显示在此处。
+            提交文书后，分析结果将在此处显示。
           </p>
         </CardContent>
       </Card>

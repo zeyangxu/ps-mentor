@@ -12,15 +12,15 @@ export function LogoutButton() {
       if (error) throw error
       
       toast({
-        title: "Logged out",
-        description: "You've been successfully logged out.",
+        title: "已登出",
+        description: "您已成功登出。",
       })
     } catch (error) {
       console.error("Logout error:", error)
       toast({
         variant: "destructive",
-        title: "Error",
-        description: "Failed to log out. Please try again.",
+        title: "错误",
+        description: "登出失败，请重试。",
       })
     }
   }
@@ -33,7 +33,7 @@ export function LogoutButton() {
       className="gap-2"
     >
       <LogOut className="h-4 w-4" />
-      Logout
+      登出
     </Button>
   )
 }

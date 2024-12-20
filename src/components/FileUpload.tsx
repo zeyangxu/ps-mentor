@@ -20,15 +20,15 @@ export const FileUpload = ({ onUpload }: FileUploadProps) => {
       const text = await extractTextFromFile(file);
       onUpload(text);
       toast({
-        title: "File Uploaded",
-        description: "Your document has been successfully processed.",
+        title: "文件上传成功",
+        description: "您的文档已成功处理。",
       });
     } catch (error) {
       console.error("File upload error:", error);
       toast({
         variant: "destructive",
-        title: "Error",
-        description: "Failed to process the document. Please try again with a supported file type.",
+        title: "错误",
+        description: "处理文档失败。请使用支持的文件类型重试。",
       });
     }
 
@@ -57,7 +57,7 @@ export const FileUpload = ({ onUpload }: FileUploadProps) => {
         onClick={handleButtonClick}
       >
         <Upload className="w-4 h-4" />
-        Upload
+        上传
       </Button>
     </>
   );

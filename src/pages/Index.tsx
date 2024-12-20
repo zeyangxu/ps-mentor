@@ -44,7 +44,7 @@ const Index = () => {
         </div>
 
         {/* Features Grid */}
-        <h2 className="text-3xl font-bold text-center mb-12">六大评估维度</h2>
+        <h2 className="text-3xl font-bold text-center mb-12">我们将从以下六个维度全面评估你的PS</h2>
         <div className="grid md:grid-cols-3 gap-8">
           {features.map((feature, index) => (
             <Card

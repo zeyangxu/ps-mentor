@@ -44,7 +44,7 @@ const Index = () => {
         </div>
 
         {/* Features Section */}
-        <h2 className="text-3xl font-bold text-center mb-12">六大评估维度</h2>
+        <h2 className="text-3xl font-bold text-center mb-6">六大评估维度</h2>
         
         <div className="text-center animate-fade-up mb-12">
           <p className="text-base text-muted-foreground leading-relaxed max-w-4xl mx-auto font-bold">

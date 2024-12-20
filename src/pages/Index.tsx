@@ -26,7 +26,7 @@ const features = [
   },
   {
     title: "职业规划",
-    description: "评估你的职业目标是否明确，以及与所选项目的匹配度",
+    description: "你的职业规划是否具体且明确？是否有清晰的发展脉络？",
     icon: <Target className="w-6 h-6 text-primary" />,
   },
   {

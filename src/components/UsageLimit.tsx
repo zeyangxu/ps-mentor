@@ -15,7 +15,7 @@ export const UsageLimit = ({ usageCount, maxUsage = 3 }: UsageLimitProps) => {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <span className="text-sm text-muted-foreground">分析次数</span>
+        <span className="text-sm text-muted-foreground">免费分析次数</span>
         <Badge variant={remaining > 0 ? "secondary" : "destructive"}>
           剩余 {remaining} 次
         </Badge>

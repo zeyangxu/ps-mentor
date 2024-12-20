@@ -4,7 +4,7 @@ import { Wand2 } from "lucide-react"
 import { FileUpload } from "@/components/FileUpload"
 import { UsageLimit } from "@/components/UsageLimit"
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert"
-import { Shield } from "lucide-react"
+import { Shield, Info } from "lucide-react"
 import { Progress } from "@/components/ui/progress"
 
 interface EditorInputProps {
@@ -32,6 +32,13 @@ export const EditorInput = ({
         <Shield className="h-4 w-4" />
         <AlertDescription>
           您的隐私安全是我们首要考虑的因素。我们的系统不会录入您的文书信息，请放心使用。
+        </AlertDescription>
+      </Alert>
+
+      <Alert className="bg-secondary border-secondary">
+        <Info className="h-4 w-4" />
+        <AlertDescription>
+          经严谨测试与验证，在文书字数处于 800 至 1100 字的区间范围内时，我们的评估系统能够呈现最为精准的结果，为您提供最具价值的反馈。然而，鉴于部分学校对文书字数有着相对较小的特定要求，在此我们诚挚地建议您，在参考我们评估结果的同时，结合目标学校的具体字数规范，对文书进行灵活且合理的调整与优化，以确保文书既能符合学校的要求，又能最大程度地展现您的优势与特色，从而为您的留学申请之路保驾护航。
         </AlertDescription>
       </Alert>
 

@@ -5,6 +5,7 @@ import { FileUpload } from "@/components/FileUpload"
 import { UsageLimit } from "@/components/UsageLimit"
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert"
 import { Shield } from "lucide-react"
+import { Progress } from "@/components/ui/progress"
 
 interface EditorInputProps {
   content: string;
@@ -58,15 +59,20 @@ export const EditorInput = ({
         value={content}
         onChange={(e) => setContent(e.target.value)}
       />
-      <Button 
-        className="w-full gap-2" 
-        size="lg" 
-        onClick={handleAnalyze}
-        disabled={isAnalyzing || isLoadingUsage}
-      >
-        <Wand2 className="w-4 h-4" />
-        {isAnalyzing ? "分析中..." : "文书深度评估"}
-      </Button>
+      <div className="space-y-2">
+        <Button 
+          className="w-full gap-2" 
+          size="lg" 
+          onClick={handleAnalyze}
+          disabled={isAnalyzing || isLoadingUsage}
+        >
+          <Wand2 className="w-4 h-4" />
+          {isAnalyzing ? "分析中..." : "文书深度评估"}
+        </Button>
+        {isAnalyzing && (
+          <Progress value={100} className="w-full animate-[progress_2s_ease-in-out_infinite]" />
+        )}
+      </div>
     </div>
   );
 };

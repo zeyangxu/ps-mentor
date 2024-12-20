@@ -10,7 +10,7 @@ const Index = () => {
         {/* Hero Section */}
         <div className="text-center animate-fade-up mb-20">
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 leading-tight">
-            AI驱动的个人陈述评估系统
+            留学文书锐评器
           </h1>
           <p className="text-base md:text-lg text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
             <span className="font-bold">最前沿的 AI 算法，最资深的研发团队，最精细的文书多维剖析，为您的留学保驾护航！</span>

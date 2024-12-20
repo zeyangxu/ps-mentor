@@ -13,7 +13,7 @@ const Index = () => {
             AI驱动的个人陈述评估系统
           </h1>
           <p className="text-base md:text-lg text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-            <span className="font-bold">最前沿的 AI 算法，最资深的研发团队，最精细的文书多维剖析，为你的留学保驾护航！</span>
+            <span className="font-bold">最前沿的 AI 算法，最资深的研发团队，最精细的文书多维剖析，为您的留学保驾护航！</span>
           </p>
           <Link to="/editor">
             <Button size="lg" className="gap-2">
@@ -49,9 +49,9 @@ const Index = () => {
         <div className="text-center animate-fade-up mb-12">
           <p className="text-base text-muted-foreground leading-relaxed max-w-4xl mx-auto font-bold">
             我们将从以下六大维度切入，对您的PS展开深度解析，<br />
-            <span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed]">为你</span><span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed]">精准打分，解读每一项得分背后的原因，提供个性化的修改建议</span>，
+            <span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed]">为您</span><span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed]">精准打分，解读每一项得分背后的原因，提供个性化的修改建议</span>，
             <br />
-            助你的 PS 脱颖而出，为留学申请增添有力筹码！
+            助您的 PS 脱颖而出，为留学申请增添有力筹码！
           </p>
         </div>
 

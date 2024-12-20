@@ -48,7 +48,9 @@ const Index = () => {
         
         <div className="text-center animate-fade-up mb-12">
           <p className="text-base text-muted-foreground leading-relaxed max-w-4xl mx-auto font-bold">
-            我们将从以下六大维度切入，对您的PS展开深度解析，不仅为你精准打分，解读每一项得分背后的原因，还会给出个性化的修改建议，助你的 PS 脱颖而出，为留学申请增添有力筹码！
+            我们将从以下六大维度切入，对您的PS展开深度解析，不仅为你精准打分，解读每一项得分背后的原因，
+            <br />
+            还会给出个性化的修改建议，助你的 PS 脱颖而出，为留学申请增添有力筹码！
           </p>
         </div>
 

@@ -9,7 +9,7 @@ export const PaymentOptions = () => {
     <div className="space-y-8">
       <div className="border-2 border-gray-200 rounded-lg p-6">
         <div className="text-gray-700 leading-relaxed space-y-4 text-sm">
-          <p>亲爱的用户，非常感谢您对我们产品的青睐与信任！若您期望获取更多此服务，烦请扫描下方二维码进行付款。<br /><br />单次服务价格为 19.9 元，若您选择 5 次服务套餐，仅需 79.9 元，性价比超高！<br /><br />在付款时，请您<span className="font-bold text-primary">务必在备注栏填写您的注册邮箱</span>，我们会在 12 小时内于后台为您迅速开通相应的服务权限，再次感谢您的选择！😊</p>
+          <p>亲爱的用户，非常感谢您对我们产品的青睐与信任！若您期望获取更多此服务，烦请扫描下方二维码进行付款。<br /><br />单次服务价格为 19.9 元，若您选择 5 次服务套餐，仅需 79.9 元，性价比超高！<br /><br />在付款时，请您<span className="font-bold text-primary">务必在备注栏准确填写您的注册邮箱</span>，我们会在 12 小时内于后台为您迅速开通相应的服务权限，再次感谢您的选择！😊</p>
         </div>
       </div>
 

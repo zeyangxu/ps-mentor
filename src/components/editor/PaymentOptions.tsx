@@ -7,6 +7,10 @@ export const PaymentOptions = () => {
 
   return (
     <div className="space-y-8">
+      <div className="text-center text-gray-700 leading-relaxed space-y-4">
+        <p>亲爱的用户，非常感谢您对我们产品的青睐与信任！若您期望获取更多此服务，烦请扫描下方二维码进行付款。单次服务价格为 19.9 元，若您选择 5 次服务套餐，仅需 79.9 元，性价比超高！在付款时，请您务必在备注栏填写您的注册邮箱，我们会在 12 小时内于后台为您迅速开通相应的服务权限，在此感谢您的选择！</p>
+      </div>
+
       <div className="space-y-4">
         <h3 className="text-xl font-semibold text-center">推荐使用支付宝</h3>
         <div className="grid md:grid-cols-2 gap-4">

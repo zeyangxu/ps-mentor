@@ -43,35 +43,34 @@ const Index = () => {
           </Card>
         </div>
 
-        {/* Features Section */}
-        <h2 className="text-3xl font-bold text-center mb-6">六大评估维度</h2>
-        
-        <div className="text-center animate-fade-up mb-12">
-          <p className="text-base text-muted-foreground leading-relaxed max-w-4xl mx-auto font-bold">
-            我们将从以下六大维度切入，对您的PS展开深度解析，<br />
-            <span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed]">为您</span><span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed]">精准打分，解读每一项得分背后的原因，提供个性化的修改建议</span>，
-            <br />
-            助您的 PS 脱颖而出，为留学申请增添有力筹码！
-          </p>
-        </div>
+      {/* Features Section */}
+      <h2 className="text-3xl font-bold text-center mb-6">六大评估维度</h2>
+      
+      <div className="text-center animate-fade-up mb-12">
+        <p className="text-base text-muted-foreground leading-relaxed max-w-4xl mx-auto font-bold">
+          我们将从以下六大维度切入，对您的PS展开深度解析，<br />
+          <span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed]">为您</span><span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed]">精准打分，解读每一项得分背后的原因，提供个性化的修改建议</span>，
+          <br />
+          助您的 PS 脱颖而出，为留学申请增添有力筹码！
+        </p>
+      </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {features.map((feature, index) => (
-            <Card
-              key={feature.title}
-              className="p-6 animate-fade-up"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <CardContent className="p-0">
-                <div className="bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
-                  {feature.icon}
-                </div>
-                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                <p className="text-muted-foreground">{feature.description}</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+      <div className="grid md:grid-cols-3 gap-8">
+        {features.map((feature, index) => (
+          <Card
+            key={feature.title}
+            className="p-6 animate-fade-up"
+            style={{ animationDelay: `${index * 100}ms` }}
+          >
+            <CardContent className="p-0">
+              <div className="bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                {feature.icon}
+              </div>
+              <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+              <p className="text-muted-foreground">{feature.description}</p>
+            </CardContent>
+          </Card>
+        ))}
       </div>
     </div>
   );
@@ -80,7 +79,7 @@ const Index = () => {
 const features = [
   {
     title: "申请动机",
-    description: "深入分析你的学习动机是否源于真实的学术兴趣和职业规划，评估你对所选专业的理解深度，以及你的目标陈述是否具有说服力和可实现性",
+    description: "评估你的申请动机是否清晰、具体且令人信服",
     icon: <Target className="w-6 h-6 text-primary" />,
   },
   {

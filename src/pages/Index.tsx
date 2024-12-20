@@ -16,7 +16,7 @@ const features = [
   },
   {
     title: "实习经验",
-    description: "评估你的实习和职业经历如何支持你的申请目标",
+    description: "你是否详细描绘了具体工作任务中的硬技能与软实习，而非生硬罗列实习或职业经历的基本信息？",
     icon: <BriefcaseIcon className="w-6 h-6 text-primary" />,
   },
   {

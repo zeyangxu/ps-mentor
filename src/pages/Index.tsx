@@ -21,7 +21,7 @@ const features = [
   },
   {
     title: "选校原因",
-    description: "分析你对目标院校和项目的了解程度及选择理由的说服力",
+    description: "你的选校理由是否仅仅只提及了院校的声望排名？",
     icon: <BookOpen className="w-6 h-6 text-primary" />,
   },
   {

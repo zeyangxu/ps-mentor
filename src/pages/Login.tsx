@@ -4,7 +4,7 @@ const Login = () => {
   return (
     <div className="min-h-screen bg-background flex items-center justify-center">
       <div className="max-w-xl w-full mx-auto px-6">
-        <div className="mb-4 text-sm text-muted-foreground">
+        <div className="mb-4 text-sm text-muted-foreground bg-card rounded-lg shadow-sm p-4 w-4/5 mx-auto">
           目前我们仅支持邮箱这一种注册方式，给您带来不便，还请谅解。
           <br />
           注册成功后您可以免费体验三次反馈超千字的文书深度评估！点击注册后请查收邮箱的确认邮件~

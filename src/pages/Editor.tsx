@@ -98,11 +98,24 @@ const Editor = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-secondary/50 to-background relative overflow-hidden">
-      {/* Decorative animated elements */}
+      {/* Decorative elements */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 left-20 w-24 h-24 rounded-full bg-primary/20 animate-progress origin-center" />
-        <div className="absolute bottom-20 right-20 w-32 h-32 rounded-full bg-primary/20 animate-progress [animation-delay:1s] origin-center" />
-        <div className="absolute top-40 right-40 w-16 h-16 rounded-full bg-primary/20 animate-progress [animation-delay:2s] origin-center" />
+        <div className="absolute top-8 left-8 w-24 h-24">
+          <div className="absolute w-16 h-1 bg-primary/20 rounded-full transform rotate-45"></div>
+          <div className="absolute w-16 h-1 bg-primary/20 rounded-full transform rotate-45 translate-y-4"></div>
+          <div className="absolute w-16 h-1 bg-primary/20 rounded-full transform rotate-45 translate-y-8"></div>
+          <div className="absolute w-3 h-3 bg-primary/30 rounded-full -translate-x-2"></div>
+          <div className="absolute w-2 h-2 bg-primary/30 rounded-full translate-x-16 translate-y-6"></div>
+          <div className="absolute w-2 h-2 bg-primary/30 rounded-full translate-x-12 translate-y-12"></div>
+        </div>
+        <div className="absolute top-8 right-8 w-24 h-24">
+          <div className="absolute w-16 h-1 bg-primary/20 rounded-full transform -rotate-45"></div>
+          <div className="absolute w-16 h-1 bg-primary/20 rounded-full transform -rotate-45 translate-y-4"></div>
+          <div className="absolute w-16 h-1 bg-primary/20 rounded-full transform -rotate-45 translate-y-8"></div>
+          <div className="absolute w-3 h-3 bg-primary/30 rounded-full translate-x-14"></div>
+          <div className="absolute w-2 h-2 bg-primary/30 rounded-full -translate-x-2 translate-y-6"></div>
+          <div className="absolute w-2 h-2 bg-primary/30 rounded-full translate-x-2 translate-y-12"></div>
+        </div>
       </div>
 
       <div className="container mx-auto px-4 py-8 relative animate-fade-up">

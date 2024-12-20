@@ -13,7 +13,7 @@ const Login = () => {
             <br />
             点击注册后请前往您的邮箱点击确认链接完成注册。
             <br />
-            注册成功后您可以免费体验三次反馈超千字的文书深度评估。
+            注册成功后您可以免费体验三次反馈超千字的文书深度评估。😊
           </AlertDescription>
         </Alert>
         <div className="w-full bg-card rounded-lg shadow-lg p-8">

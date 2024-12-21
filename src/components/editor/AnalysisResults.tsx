@@ -67,7 +67,10 @@ export const AnalysisResults = ({ analysis, isAnalyzing }: AnalysisResultsProps)
 
   // Parse the response which contains both language versions
   const parsedResponse = JSON.parse(analysis);
-  const analysisData: AnalysisData = JSON.parse(parsedResponse[language]);
+  const analysisData: AnalysisData = JSON.parse(
+    language === "zh" ? parsedResponse.chinese : parsedResponse.english
+  );
+  
   const scorePercentage = (analysisData.overall_score / analysisData.max_score) * 100;
 
   return (

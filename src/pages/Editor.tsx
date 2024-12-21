@@ -7,7 +7,6 @@ import { useAnalyzeStatement } from "@/hooks/useAnalyzeStatement"
 import { Navigate } from "react-router-dom"
 import { EditorInput } from "@/components/editor/EditorInput"
 import { AnalysisResults } from "@/components/editor/AnalysisResults"
-import { Header } from "@/components/Header"
 
 const Editor = () => {
   const [content, setContent] = useState("")
@@ -99,27 +98,6 @@ const Editor = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-secondary/50 to-background relative overflow-hidden">
-      <Header />
-      {/* Decorative elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-8 left-8 w-24 h-24">
-          <div className="absolute w-16 h-1 bg-primary/20 rounded-full transform rotate-45"></div>
-          <div className="absolute w-16 h-1 bg-primary/20 rounded-full transform rotate-45 translate-y-4"></div>
-          <div className="absolute w-16 h-1 bg-primary/20 rounded-full transform rotate-45 translate-y-8"></div>
-          <div className="absolute w-3 h-3 bg-primary/30 rounded-full -translate-x-2"></div>
-          <div className="absolute w-2 h-2 bg-primary/30 rounded-full translate-x-16 translate-y-6"></div>
-          <div className="absolute w-2 h-2 bg-primary/30 rounded-full translate-x-12 translate-y-12"></div>
-        </div>
-        <div className="absolute top-8 right-8 w-24 h-24">
-          <div className="absolute w-16 h-1 bg-primary/20 rounded-full transform -rotate-45"></div>
-          <div className="absolute w-16 h-1 bg-primary/20 rounded-full transform -rotate-45 translate-y-4"></div>
-          <div className="absolute w-16 h-1 bg-primary/20 rounded-full transform -rotate-45 translate-y-8"></div>
-          <div className="absolute w-3 h-3 bg-primary/30 rounded-full translate-x-14"></div>
-          <div className="absolute w-2 h-2 bg-primary/30 rounded-full -translate-x-2 translate-y-6"></div>
-          <div className="absolute w-2 h-2 bg-primary/30 rounded-full translate-x-2 translate-y-12"></div>
-        </div>
-      </div>
-
       <div className="container mx-auto px-4 py-8 relative animate-fade-up">
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-bold hover:text-primary transition-colors duration-300">文书/PS分析助手</h1>

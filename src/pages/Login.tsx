@@ -1,13 +1,11 @@
 import { AuthForm } from "@/components/auth/AuthForm"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { InfoIcon } from "lucide-react"
-import { Header } from "@/components/Header"
 
 const Login = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-secondary/50 to-background relative overflow-hidden">
-      <Header />
-      <div className="flex items-center justify-center min-h-[calc(100vh-88px)]">
+      <div className="flex items-center justify-center min-h-screen">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-20 left-20 w-24 h-24 rounded-full bg-primary/10 animate-pulse [animation-duration:3s]" />
           <div className="absolute bottom-20 right-20 w-32 h-32 rounded-full bg-primary/10 animate-pulse [animation-duration:3s] [animation-delay:1s]" />

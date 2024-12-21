@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, FileText, Sparkles, Target, BookOpen, BriefcaseIcon, GraduationCap, Brain, Rocket, PenTool } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
-import { Header } from "@/components/Header";
 
 const features = [
   {
@@ -40,27 +39,8 @@ const features = [
 const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-secondary/50 to-background relative">
-      <Header />
-      {/* Decorative elements */}
-      <div className="absolute top-8 left-8 w-24 h-24">
-        <div className="absolute w-16 h-1 bg-primary/20 rounded-full transform rotate-45"></div>
-        <div className="absolute w-16 h-1 bg-primary/20 rounded-full transform rotate-45 translate-y-4"></div>
-        <div className="absolute w-16 h-1 bg-primary/20 rounded-full transform rotate-45 translate-y-8"></div>
-        <div className="absolute w-3 h-3 bg-primary/30 rounded-full -translate-x-2"></div>
-        <div className="absolute w-2 h-2 bg-primary/30 rounded-full translate-x-16 translate-y-6"></div>
-        <div className="absolute w-2 h-2 bg-primary/30 rounded-full translate-x-12 translate-y-12"></div>
-      </div>
-      <div className="absolute top-8 right-8 w-24 h-24">
-        <div className="absolute w-16 h-1 bg-primary/20 rounded-full transform -rotate-45"></div>
-        <div className="absolute w-16 h-1 bg-primary/20 rounded-full transform -rotate-45 translate-y-4"></div>
-        <div className="absolute w-16 h-1 bg-primary/20 rounded-full transform -rotate-45 translate-y-8"></div>
-        <div className="absolute w-3 h-3 bg-primary/30 rounded-full translate-x-14"></div>
-        <div className="absolute w-2 h-2 bg-primary/30 rounded-full -translate-x-2 translate-y-6"></div>
-        <div className="absolute w-2 h-2 bg-primary/30 rounded-full translate-x-2 translate-y-12"></div>
-      </div>
-
+      {/* Hero Section */}
       <div className="container mx-auto px-4 py-16 max-w-6xl">
-        {/* Hero Section */}
         <div className="text-center animate-fade-up mb-20">
           <div className="flex justify-center mb-6">
             <Sparkles className="w-12 h-12 text-primary animate-[spin_8s_linear_infinite]" />

@@ -26,6 +26,11 @@ interface AnalysisData {
   };
 }
 
+interface AnalysisResponse {
+  chinese: string;
+  english: string;
+}
+
 interface AnalysisResultsProps {
   analysis: string | null;
   isAnalyzing?: boolean;
@@ -65,10 +70,12 @@ export const AnalysisResults = ({ analysis, isAnalyzing }: AnalysisResultsProps)
     );
   }
 
-  // Parse the response which contains both language versions
-  const parsedResponse = JSON.parse(analysis);
+  // First parse the response to get the language versions
+  const response = JSON.parse(analysis) as AnalysisResponse;
+  
+  // Then parse the specific language version
   const analysisData: AnalysisData = JSON.parse(
-    language === "zh" ? parsedResponse.chinese : parsedResponse.english
+    language === "zh" ? response.chinese : response.english
   );
   
   const scorePercentage = (analysisData.overall_score / analysisData.max_score) * 100;

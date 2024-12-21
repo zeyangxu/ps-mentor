@@ -63,12 +63,12 @@ const Index = () => {
         {/* Hero Section */}
         <div className="text-center animate-fade-up mb-20">
           <div className="flex justify-center mb-6">
-            <Sparkles className="w-12 h-12 text-primary animate-[spin_8s_linear_infinite] hover:scale-125 transition-transform duration-300" />
+            <Sparkles className="w-12 h-12 text-primary animate-[spin_8s_linear_infinite]" />
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 leading-tight hover:text-primary transition-colors duration-300">
             留学文书锐评器
           </h1>
-          <p className="text-base md:text-lg text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
             <span className="font-bold hover:text-primary transition-colors duration-300">最前沿的 AI 算法，最资深的研发团队，最精细的文书多维剖析，为您的留学保驾护航！</span>
           </p>
           <Link to="/editor">
@@ -106,12 +106,12 @@ const Index = () => {
         </div>
 
         {/* Features Section */}
-        <h2 className="text-3xl font-bold text-center mb-6 hover:text-primary transition-colors duration-300">六大评估维度</h2>
+        <h2 className="text-4xl font-bold text-center mb-6 hover:text-primary transition-colors duration-300">六大评估维度</h2>
 
         <div className="text-center animate-fade-up mb-12">
-          <p className="text-base text-muted-foreground leading-relaxed max-w-4xl mx-auto font-bold hover:text-foreground transition-colors duration-300">
+          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-4xl mx-auto font-bold hover:text-foreground transition-colors duration-300">
             我们将从以下六大维度切入，对您的PS展开深度解析，<br />
-            <span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed] hover:drop-shadow-[0_0_2px_#7c3aed] transition-all duration-300">为您精准打分，解读每一项得分背后的原因，提供个性化的修改建议</span>，
+            <span className="text-primary">为您精准打分，解读每一项得分背后的原因，提供个性化的修改建议</span>，
             <br />
             助您的 PS 脱颖而出，为留学申请增添有力筹码！
           </p>

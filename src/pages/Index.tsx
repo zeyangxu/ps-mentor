@@ -38,18 +38,18 @@ const features = [
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-secondary/50 to-background relative">
+    <div className="min-h-screen bg-gradient-to-b from-secondary/50 to-background relative overflow-hidden">
       {/* Animated decorative elements */}
-      <div className="absolute top-0 left-0 w-32 h-32 md:w-48 md:h-48 opacity-50">
-        <div className="absolute inset-0 bg-primary/20 rounded-full animate-[spin_8s_linear_infinite]" />
-        <div className="absolute inset-2 bg-primary/20 rounded-full animate-[spin_12s_linear_infinite_reverse]" />
-        <div className="absolute inset-4 bg-primary/20 rounded-full animate-[spin_16s_linear_infinite]" />
+      <div className="absolute top-0 left-0 w-48 h-48 md:w-64 md:h-64 opacity-70">
+        <div className="absolute inset-0 border-4 border-dashed border-primary/30 rounded-lg animate-[spin_12s_linear_infinite] origin-center" />
+        <div className="absolute inset-8 border-4 border-dashed border-primary/20 rounded-lg animate-[spin_16s_linear_infinite_reverse] origin-center" />
+        <div className="absolute inset-16 border-4 border-dashed border-primary/10 rounded-lg animate-[spin_20s_linear_infinite] origin-center" />
       </div>
       
-      <div className="absolute top-0 right-0 w-32 h-32 md:w-48 md:h-48 opacity-50">
-        <div className="absolute inset-0 bg-primary/20 rounded-full animate-[spin_8s_linear_infinite_reverse]" />
-        <div className="absolute inset-2 bg-primary/20 rounded-full animate-[spin_12s_linear_infinite]" />
-        <div className="absolute inset-4 bg-primary/20 rounded-full animate-[spin_16s_linear_infinite_reverse]" />
+      <div className="absolute top-0 right-0 w-48 h-48 md:w-64 md:h-64 opacity-70">
+        <div className="absolute inset-0 border-4 border-dashed border-primary/30 rounded-lg animate-[spin_12s_linear_infinite_reverse] origin-center" />
+        <div className="absolute inset-8 border-4 border-dashed border-primary/20 rounded-lg animate-[spin_16s_linear_infinite] origin-center" />
+        <div className="absolute inset-16 border-4 border-dashed border-primary/10 rounded-lg animate-[spin_20s_linear_infinite_reverse] origin-center" />
       </div>
 
       {/* Hero Section */}

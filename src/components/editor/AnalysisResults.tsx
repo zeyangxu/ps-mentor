@@ -1,12 +1,50 @@
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert"
 import { Progress } from "@/components/ui/progress"
-import { Info, Star, TrendingUp, CheckCircle2, AlertCircle } from "lucide-react"
+import { Info, Star, TrendingUp, CheckCircle2, AlertCircle, BookOpen, Award, GraduationCap } from "lucide-react"
+
+interface CriteriaAnalysis {
+  score: number;
+  justification: string;
+  advice_for_improvement: string[];
+}
+
+interface AnalysisData {
+  overall_score: number;
+  max_score: number;
+  overall_level: string;
+  analysis_of_each_criteria: {
+    purpose_and_motivation: CriteriaAnalysis;
+    academic_competence: CriteriaAnalysis;
+    professional_internship_competence: CriteriaAnalysis;
+    program_specific_reasons: CriteriaAnalysis;
+    future_career_planning: CriteriaAnalysis;
+    quality_of_writing: CriteriaAnalysis;
+  };
+}
 
 interface AnalysisResultsProps {
   analysis: string | null;
   isAnalyzing?: boolean;
 }
+
+const criteriaIcons: Record<string, any> = {
+  purpose_and_motivation: Star,
+  academic_competence: BookOpen,
+  professional_internship_competence: Award,
+  program_specific_reasons: GraduationCap,
+  future_career_planning: TrendingUp,
+  quality_of_writing: CheckCircle2,
+};
+
+const criteriaNames: Record<string, string> = {
+  purpose_and_motivation: "目的与动机",
+  academic_competence: "学术能力",
+  professional_internship_competence: "专业/实习能力",
+  program_specific_reasons: "项目选择原因",
+  future_career_planning: "职业规划",
+  quality_of_writing: "写作质量",
+};
 
 export const AnalysisResults = ({ analysis, isAnalyzing }: AnalysisResultsProps) => {
   if (isAnalyzing) {
@@ -40,35 +78,14 @@ export const AnalysisResults = ({ analysis, isAnalyzing }: AnalysisResultsProps)
     );
   }
 
-  // Parse the score from the first line
-  const scoreMatch = analysis.match(/(\d+)\s*out of\s*(\d+)/);
-  const score = scoreMatch ? parseInt(scoreMatch[1]) : 0;
-  const maxScore = scoreMatch ? parseInt(scoreMatch[2]) : 60;
-  const scorePercentage = (score / maxScore) * 100;
-
-  // Get the category from the second line
-  const categoryMatch = analysis.match(/Category\**:\s*([^]*?)(?=\d\.|$)/);
-  const category = categoryMatch ? categoryMatch[1].trim() : "";
-
-  // Extract improvement advice
-  const adviceMatch = analysis.match(/Advice for Improvement\**:\s*([^]*?)(?=\d\.|$)/);
-  const adviceText = adviceMatch ? adviceMatch[1] : "";
-  const advicePoints = adviceText
-    .split('-')
-    .filter(point => point.trim())
-    .map(point => {
-      const [title, ...description] = point.split(':');
-      return {
-        title: title.trim(),
-        description: description.join(':').trim()
-      };
-    });
+  const analysisData: AnalysisData = JSON.parse(analysis);
+  const scorePercentage = (analysisData.overall_score / analysisData.max_score) * 100;
 
   return (
     <Card className="border-2">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <Star className="w-5 h-5 text-primary" />
+          <Award className="w-5 h-5 text-primary" />
           评估结果
         </CardTitle>
       </CardHeader>
@@ -77,35 +94,51 @@ export const AnalysisResults = ({ analysis, isAnalyzing }: AnalysisResultsProps)
           <div className="space-y-2">
             <div className="flex justify-between items-center">
               <span className="text-sm font-medium">总分</span>
-              <span className="text-sm font-medium">{score}/{maxScore}</span>
+              <span className="text-sm font-medium">
+                {analysisData.overall_score}/{analysisData.max_score}
+              </span>
             </div>
-            <Progress 
-              value={scorePercentage} 
-              className="h-2"
-            />
+            <Progress value={scorePercentage} className="h-2" />
             <p className="text-sm text-muted-foreground mt-1">
-              类别: <span className="font-medium text-foreground">{category}</span>
+              整体水平: <span className="font-medium text-foreground capitalize">{analysisData.overall_level}</span>
             </p>
           </div>
 
           <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <TrendingUp className="w-5 h-5 text-primary" />
-              <h3 className="font-semibold">改进建议</h3>
-            </div>
-            <div className="grid gap-4">
-              {advicePoints.map((point, index) => (
-                <div key={index} className="p-4 rounded-lg border bg-card">
-                  <h4 className="font-medium mb-2 flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-primary" />
-                    {point.title}
-                  </h4>
-                  <p className="text-sm text-muted-foreground">
-                    {point.description}
-                  </p>
-                </div>
-              ))}
-            </div>
+            {Object.entries(analysisData.analysis_of_each_criteria).map(([key, criteria]) => {
+              const IconComponent = criteriaIcons[key];
+              return (
+                <Card key={key} className="border bg-card/50">
+                  <CardContent className="p-4 space-y-3">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <IconComponent className="w-5 h-5 text-primary" />
+                        <h4 className="font-medium">{criteriaNames[key]}</h4>
+                      </div>
+                      <span className="text-sm font-medium">
+                        得分: {criteria.score}
+                      </span>
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      {criteria.justification}
+                    </p>
+                    <div className="space-y-2">
+                      <p className="text-sm font-medium flex items-center gap-2">
+                        <AlertCircle className="w-4 h-4 text-primary" />
+                        改进建议:
+                      </p>
+                      <ul className="space-y-1">
+                        {criteria.advice_for_improvement.map((advice, index) => (
+                          <li key={index} className="text-sm text-muted-foreground pl-4 relative before:content-['•'] before:absolute before:left-0">
+                            {advice}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
 
           <Alert className="mt-6 bg-secondary border-secondary">

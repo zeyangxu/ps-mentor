@@ -111,7 +111,7 @@ const Index = () => {
         <div className="text-center animate-fade-up mb-12">
           <p className="text-base text-muted-foreground leading-relaxed max-w-4xl mx-auto font-bold">
             我们将从以下六大维度切入，对您的PS展开深度解析，<br />
-            <span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed]">为您</span><span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed]">精准打分，解读每一项得分背后的原因，提供个性化的修改建议</span>，
+            <span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed]">为您<span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed]">精准打分，解读每一项得分背后的原因，提供个性化的修改建议</span>，
             <br />
             助您的 PS 脱颖而出，为留学申请增添有力筹码！
           </p>

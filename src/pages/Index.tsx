@@ -99,7 +99,7 @@ const Index = () => {
               </div>
               <h2 className="text-2xl font-semibold mb-4">现存问题</h2>
               <p className="text-muted-foreground leading-relaxed">
-                在实际申请过程中，许多申请者因<span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed]">缺乏对PS写作要求的系统理解</span>，或受到<span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed]">市面上质量参差不齐的文书代写机构的影响</span>，往往难以撰写出符合学校期望的个人陈述。这不仅增加了申请的难度，也使一些本具竞争力的申请者未能有效展现自己的潜力，错失录取机会！
+                在实际申请过程中，许多申请者因<span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed]">缺乏对PS写作要求的系统理解</span>，或受到<span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed]">市面上质量参差不齐的文书代写机构的影响</span>，往往难以撰写出符合学校期望的文书/PS。这不仅增加了申请的难度，也使一些本具竞争力的申请者未能有效展现自己的潜力，错失录取机会！
               </p>
             </CardContent>
           </Card>

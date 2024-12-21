@@ -98,7 +98,7 @@ const Editor = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-secondary/50 to-background relative overflow-hidden">
-      <div className="container mx-auto px-4 py-8 relative animate-fade-up">
+      <div className="container mx-auto px-4 pt-24 pb-8 relative animate-fade-up">
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-bold hover:text-primary transition-colors duration-300">文书/PS分析助手</h1>
           <LogoutButton />
@@ -118,7 +118,7 @@ const Editor = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Editor;
+export default Editor

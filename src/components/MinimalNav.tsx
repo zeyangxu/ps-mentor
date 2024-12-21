@@ -27,24 +27,31 @@ export const MinimalNav = () => {
   if (isHomePage) return null
 
   return (
-    <div className="fixed top-0 left-0 right-0 p-4 flex justify-between items-center z-50">
-      <Link to="/" className="hover:text-primary transition-colors">
-        <Home className="w-6 h-6" />
-      </Link>
-      
-      {email ? (
-        <div className="flex items-center gap-2">
-          <User className="w-4 h-4" />
-          <span className="text-sm text-muted-foreground">{email}</span>
+    <div className="fixed top-0 left-0 right-0 bg-background/80 backdrop-blur-sm border-b z-50">
+      <div className="container mx-auto px-4">
+        <div className="h-16 flex justify-between items-center">
+          <Link to="/">
+            <Button variant="outline" size="sm" className="gap-2">
+              <Home className="w-4 h-4" />
+              主页
+            </Button>
+          </Link>
+          
+          {email ? (
+            <Button variant="outline" size="sm" className="gap-2">
+              <User className="w-4 h-4" />
+              <span className="text-sm">{email}</span>
+            </Button>
+          ) : (
+            <Link to="/login">
+              <Button variant="outline" size="sm" className="gap-2">
+                <User className="w-4 h-4" />
+                登录
+              </Button>
+            </Link>
+          )}
         </div>
-      ) : (
-        <Link to="/login">
-          <Button variant="ghost" size="sm" className="gap-2">
-            <User className="w-4 h-4" />
-            登录
-          </Button>
-        </Link>
-      )}
+      </div>
     </div>
   )
 }

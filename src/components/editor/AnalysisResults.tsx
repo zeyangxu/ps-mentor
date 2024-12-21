@@ -1,9 +1,10 @@
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
-import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert"
 import { Progress } from "@/components/ui/progress"
-import { Info, Star, TrendingUp, CheckCircle2, AlertCircle, BookOpen, Award, GraduationCap } from "lucide-react"
+import { Award } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
+import { CriteriaCard } from "./analysis/CriteriaCard"
+import { Disclaimer } from "./analysis/Disclaimer"
 
 interface CriteriaAnalysis {
   score: number;
@@ -30,34 +31,6 @@ interface AnalysisResultsProps {
   isAnalyzing?: boolean;
 }
 
-const criteriaIcons: Record<string, any> = {
-  purpose_and_motivation: Star,
-  academic_competence: BookOpen,
-  professional_internship_competence: Award,
-  program_specific_reasons: GraduationCap,
-  future_career_planning: TrendingUp,
-  quality_of_writing: CheckCircle2,
-};
-
-const criteriaNames: Record<string, Record<string, string>> = {
-  en: {
-    purpose_and_motivation: "Purpose & Motivation",
-    academic_competence: "Academic Competence",
-    professional_internship_competence: "Professional/Internship Competence",
-    program_specific_reasons: "Program-specific Reasons",
-    future_career_planning: "Future Career Planning",
-    quality_of_writing: "Quality of Writing",
-  },
-  zh: {
-    purpose_and_motivation: "目的与动机",
-    academic_competence: "学术能力",
-    professional_internship_competence: "专业/实习能力",
-    program_specific_reasons: "项目选择原因",
-    future_career_planning: "职业规划",
-    quality_of_writing: "写作质量",
-  }
-};
-
 export const AnalysisResults = ({ analysis, isAnalyzing }: AnalysisResultsProps) => {
   const [language, setLanguage] = useState<"en" | "zh">("zh");
 
@@ -71,7 +44,7 @@ export const AnalysisResults = ({ analysis, isAnalyzing }: AnalysisResultsProps)
           <p className="text-muted-foreground text-center">
             正在分析您的文书/PS，请稍候...
           </p>
-          <Progress value={33} className="w-full animate-[progress_2s_ease-out]" />
+          <Progress value={33} className="w-full" />
         </CardContent>
       </Card>
     );
@@ -92,6 +65,7 @@ export const AnalysisResults = ({ analysis, isAnalyzing }: AnalysisResultsProps)
     );
   }
 
+  // Parse the response which contains both language versions
   const parsedResponse = JSON.parse(analysis);
   const analysisData: AnalysisData = JSON.parse(parsedResponse[language]);
   const scorePercentage = (analysisData.overall_score / analysisData.max_score) * 100;
@@ -136,65 +110,17 @@ export const AnalysisResults = ({ analysis, isAnalyzing }: AnalysisResultsProps)
           </div>
 
           <div className="space-y-4">
-            {Object.entries(analysisData.analysis_of_each_criteria).map(([key, criteria]) => {
-              const IconComponent = criteriaIcons[key];
-              return (
-                <Card key={key} className="border bg-card/50">
-                  <CardContent className="p-4 space-y-3">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <IconComponent className="w-5 h-5 text-primary" />
-                        <h4 className="font-medium">{criteriaNames[language][key]}</h4>
-                      </div>
-                      <span className="text-sm font-medium">
-                        {language === "zh" ? "得分" : "Score"}: {criteria.score}
-                      </span>
-                    </div>
-                    <p className="text-sm text-muted-foreground">
-                      {criteria.justification}
-                    </p>
-                    <div className="space-y-2">
-                      <p className="text-sm font-medium flex items-center gap-2">
-                        <AlertCircle className="w-4 h-4 text-primary" />
-                        {language === "zh" ? "改进建议" : "Suggestions for Improvement"}:
-                      </p>
-                      <ul className="space-y-1">
-                        {criteria.advice_for_improvement.map((advice, index) => (
-                          <li key={index} className="text-sm text-muted-foreground pl-4 relative before:content-['•'] before:absolute before:left-0">
-                            {advice}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
+            {Object.entries(analysisData.analysis_of_each_criteria).map(([key, criteria]) => (
+              <CriteriaCard
+                key={key}
+                criteriaKey={key}
+                criteria={criteria}
+                language={language}
+              />
+            ))}
           </div>
 
-          <Alert className="mt-6 bg-secondary border-secondary">
-            <Info className="h-4 w-4" />
-            <AlertTitle className="mb-2">{language === "zh" ? "声明" : "Disclaimer"}</AlertTitle>
-            <AlertDescription className="text-sm">
-              {language === "zh" ? (
-                <>
-                  我们的产品仅对已给定的内容展开分析，并不涉及对文书 AI 率的评估。您的评估分数与文书的 AI 率不存在直接或间接的关联。
-                  <br /><br />
-                  一篇好的文书可以使用 AI 作为工具进行辅助，但我们不支持使用 AI 直接生成内容，这会很大程度影响您的申请成功率。
-                  <br /><br />
-                  倘若您有专业的 AI 率检测需求，建议您使用诸如 turnitin 等专业的 AI 检测率工具进行检测，以确保检测结果的专业性与准确性。
-                </>
-              ) : (
-                <>
-                  Our product only analyzes the provided content and does not assess the AI detection rate of your statement. Your evaluation score has no direct or indirect correlation with the AI rate of your statement.
-                  <br /><br />
-                  While AI can be used as a tool to assist in writing a good statement, we do not support using AI to directly generate content as this can significantly affect your application success rate.
-                  <br /><br />
-                  If you need professional AI detection services, we recommend using professional tools like Turnitin to ensure accurate and professional detection results.
-                </>
-              )}
-            </AlertDescription>
-          </Alert>
+          <Disclaimer language={language} />
         </div>
       </CardContent>
     </Card>

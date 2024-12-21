@@ -7,7 +7,6 @@ import { useAnalyzeStatement } from "@/hooks/useAnalyzeStatement"
 import { Navigate } from "react-router-dom"
 import { EditorInput } from "@/components/editor/EditorInput"
 import { AnalysisResults } from "@/components/editor/AnalysisResults"
-import { Header } from "@/components/Header"
 
 const Editor = () => {
   const [content, setContent] = useState("")
@@ -99,7 +98,6 @@ const Editor = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-secondary/50 to-background relative overflow-hidden">
-      <Header />
       {/* Decorative elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-8 left-8 w-24 h-24">

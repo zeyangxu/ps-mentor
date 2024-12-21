@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, FileText, Sparkles, Target, BookOpen, BriefcaseIcon, GraduationCap, Brain, Rocket, PenTool } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
-import { Header } from "@/components/Header";
 
 const features = [
   {
@@ -40,7 +39,6 @@ const features = [
 const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-secondary/50 to-background relative">
-      <Header />
       {/* Decorative elements */}
       <div className="absolute top-8 left-8 w-24 h-24">
         <div className="absolute w-16 h-1 bg-primary/20 rounded-full transform rotate-45"></div>

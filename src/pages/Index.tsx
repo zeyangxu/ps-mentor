@@ -71,7 +71,7 @@ const Index = () => {
           </p>
           <Link to="/editor">
             <Button size="lg" className="gap-2">
-              开始评估abc <ArrowRight className="w-4 h-4" />
+              开始评估 <ArrowRight className="w-4 h-4" />
             </Button>
           </Link>
         </div>
@@ -89,7 +89,7 @@ const Index = () => {
               </p>
             </CardContent>
           </Card>
-          
+
           <Card className="p-6 animate-fade-up group hover:shadow-lg transition-all duration-300" style={{ animationDelay: "100ms" }}>
             <CardContent className="p-0">
               <div className="flex items-center justify-center mb-4">
@@ -105,7 +105,7 @@ const Index = () => {
 
         {/* Features Section */}
         <h2 className="text-3xl font-bold text-center mb-6">六大评估维度</h2>
-        
+
         <div className="text-center animate-fade-up mb-12">
           <p className="text-base text-muted-foreground leading-relaxed max-w-4xl mx-auto font-bold">
             我们将从以下六大维度切入，对您的PS展开深度解析，<br />

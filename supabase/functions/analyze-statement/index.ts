@@ -147,7 +147,8 @@ Deno.serve(async (req) => {
       !difyData ||
       !difyData.data ||
       !difyData.data.outputs ||
-      !difyData.data.outputs.text
+      !difyData.data.outputs.english ||
+      !difyData.data.outputs.chinese
     ) {
       throw new Error("Invalid response format from Dify API");
     }
@@ -164,7 +165,10 @@ Deno.serve(async (req) => {
     }
 
     const data = {
-      analysis: difyData.data.outputs.text,
+      analysis: {
+        english: difyData.data.outputs.english,
+        chinese: difyData.data.outputs.chinese
+      }
     };
 
     console.log("Edge Function: Sending successful response");

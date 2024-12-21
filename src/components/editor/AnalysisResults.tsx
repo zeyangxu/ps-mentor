@@ -1,7 +1,7 @@
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert"
 import { Progress } from "@/components/ui/progress"
-import { Info } from "lucide-react"
+import { Info, Star, TrendingUp, CheckCircle2, AlertCircle } from "lucide-react"
 
 interface AnalysisResultsProps {
   analysis: string | null;
@@ -40,35 +40,71 @@ export const AnalysisResults = ({ analysis, isAnalyzing }: AnalysisResultsProps)
     );
   }
 
+  // Parse the score from the first line
+  const scoreMatch = analysis.match(/(\d+)\s*out of\s*(\d+)/);
+  const score = scoreMatch ? parseInt(scoreMatch[1]) : 0;
+  const maxScore = scoreMatch ? parseInt(scoreMatch[2]) : 60;
+  const scorePercentage = (score / maxScore) * 100;
+
+  // Get the category from the second line
+  const categoryMatch = analysis.match(/Category\**:\s*([^]*?)(?=\d\.|$)/);
+  const category = categoryMatch ? categoryMatch[1].trim() : "";
+
+  // Extract improvement advice
+  const adviceMatch = analysis.match(/Advice for Improvement\**:\s*([^]*?)(?=\d\.|$)/);
+  const adviceText = adviceMatch ? adviceMatch[1] : "";
+  const advicePoints = adviceText
+    .split('-')
+    .filter(point => point.trim())
+    .map(point => {
+      const [title, ...description] = point.split(':');
+      return {
+        title: title.trim(),
+        description: description.join(':').trim()
+      };
+    });
+
   return (
     <Card className="border-2">
       <CardHeader>
-        <CardTitle>评估结果</CardTitle>
+        <CardTitle className="flex items-center gap-2">
+          <Star className="w-5 h-5 text-primary" />
+          评估结果
+        </CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-6">
-          <Alert>
-            <AlertTitle>最终得分</AlertTitle>
-            <AlertDescription className="mt-2 text-lg font-semibold">
-              {analysis.split('\n')[0].replace('1. **Final Score**: ', '')}
-            </AlertDescription>
-          </Alert>
+          <div className="space-y-2">
+            <div className="flex justify-between items-center">
+              <span className="text-sm font-medium">总分</span>
+              <span className="text-sm font-medium">{score}/{maxScore}</span>
+            </div>
+            <Progress 
+              value={scorePercentage} 
+              className="h-2"
+            />
+            <p className="text-sm text-muted-foreground mt-1">
+              类别: <span className="font-medium text-foreground">{category}</span>
+            </p>
+          </div>
 
-          <div className="prose prose-sm max-w-none">
-            <h3 className="text-lg font-semibold mb-4">改进建议</h3>
-            <div className="space-y-4">
-              {analysis
-                .split('\n')
-                .slice(2)
-                .join('\n')
-                .replace('3. **Advice for Improvement**: ', '')
-                .split('- ')
-                .filter(Boolean)
-                .map((advice, index) => (
-                  <div key={index} className="pl-4 border-l-2 border-primary">
-                    <p className="text-sm text-muted-foreground">{advice.trim()}</p>
-                  </div>
-                ))}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2">
+              <TrendingUp className="w-5 h-5 text-primary" />
+              <h3 className="font-semibold">改进建议</h3>
+            </div>
+            <div className="grid gap-4">
+              {advicePoints.map((point, index) => (
+                <div key={index} className="p-4 rounded-lg border bg-card">
+                  <h4 className="font-medium mb-2 flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-primary" />
+                    {point.title}
+                  </h4>
+                  <p className="text-sm text-muted-foreground">
+                    {point.description}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
 

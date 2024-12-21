@@ -28,7 +28,7 @@ export const EditorInput = ({
   usageError,
   analysis,
 }: EditorInputProps) => {
-  const hasUsageLeft = usageCount > 0;
+  const hasUsageLeft = usageCount > 0 || usageCount === null;
 
   return (
     <div className="space-y-4">

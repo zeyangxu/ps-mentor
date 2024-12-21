@@ -9,9 +9,9 @@ interface UsageLimitProps {
 
 export const UsageLimit = ({ usageCount, maxUsage = 3 }: UsageLimitProps) => {
   if (usageCount === null) return null
-  
+
   const remaining = usageCount
-  
+
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
@@ -20,13 +20,13 @@ export const UsageLimit = ({ usageCount, maxUsage = 3 }: UsageLimitProps) => {
           剩余 {remaining} 次
         </Badge>
       </div>
-      
+
       {remaining <= 0 && (
         <Alert variant="destructive">
           <AlertCircle className="h-4 w-4" />
           <AlertTitle>已达使用限制</AlertTitle>
           <AlertDescription>
-            您已用完所有免费分析次数。请联系客服获取更多信息。
+            您已用完所有免费分析次数。如需要更多次服务，请按提示扫码付款，并将截图发给客服。
           </AlertDescription>
         </Alert>
       )}

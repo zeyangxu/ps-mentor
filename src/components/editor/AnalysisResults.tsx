@@ -57,7 +57,7 @@ export const AnalysisResults = ({ analysis, isAnalyzing }: AnalysisResultsProps)
           <p className="text-muted-foreground text-center">
             正在分析您的文书/PS，请稍候...
           </p>
-          <Progress value={33} className="w-full animate-[progress_2s_ease-in-out_infinite]" />
+          <Progress value={33} className="w-full animate-[progress-lr_2s_linear_infinite]" />
         </CardContent>
       </Card>
     );

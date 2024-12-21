@@ -45,7 +45,7 @@ Deno.serve(async (req) => {
     const token = authHeader.replace("Bearer ", "");
     const { data: userData } = await supabaseClient.auth.getUser(token);
     const user = userData.user;
-
+    
     if (!user) {
       throw new Error("User not authenticated");
     }
@@ -109,28 +109,13 @@ Deno.serve(async (req) => {
 
     console.log("Sending request to Dify with payload:", JSON.stringify(difyPayload));
 
-    // const difyResponse = await fetch("https://api.dify.ai/v1/workflows/run", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     Authorization: `Bearer app-zNUj8dFNmGhyWgQHJOkPuqUs`,
-    //   },
-    //   body: JSON.stringify(difyPayload),
-    // });
-
     const difyResponse = await fetch("https://api.dify.ai/v1/workflows/run", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer app-zNUj8dFNmGhyWgQHJOkPuqUs`,
       },
-      body: JSON.stringify({
-        inputs: {
-          personal_statement: content,
-        },
-        response_mode: "blocking",
-        user: "test",
-      }),
+      body: JSON.stringify(difyPayload),
     });
 
     if (!difyResponse.ok) {

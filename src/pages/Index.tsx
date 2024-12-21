@@ -39,8 +39,21 @@ const features = [
 const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-secondary/50 to-background relative">
+      {/* Animated decorative elements */}
+      <div className="absolute top-0 left-0 w-32 h-32 md:w-48 md:h-48 opacity-50">
+        <div className="absolute inset-0 bg-primary/20 rounded-full animate-[spin_8s_linear_infinite]" />
+        <div className="absolute inset-2 bg-primary/20 rounded-full animate-[spin_12s_linear_infinite_reverse]" />
+        <div className="absolute inset-4 bg-primary/20 rounded-full animate-[spin_16s_linear_infinite]" />
+      </div>
+      
+      <div className="absolute top-0 right-0 w-32 h-32 md:w-48 md:h-48 opacity-50">
+        <div className="absolute inset-0 bg-primary/20 rounded-full animate-[spin_8s_linear_infinite_reverse]" />
+        <div className="absolute inset-2 bg-primary/20 rounded-full animate-[spin_12s_linear_infinite]" />
+        <div className="absolute inset-4 bg-primary/20 rounded-full animate-[spin_16s_linear_infinite_reverse]" />
+      </div>
+
       {/* Hero Section */}
-      <div className="container mx-auto px-4 py-16 max-w-6xl">
+      <div className="container mx-auto px-4 py-16 max-w-6xl relative z-10">
         <div className="text-center animate-fade-up mb-20">
           <div className="flex justify-center mb-6">
             <Sparkles className="w-12 h-12 text-primary animate-[spin_8s_linear_infinite]" />

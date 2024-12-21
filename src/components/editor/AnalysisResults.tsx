@@ -30,7 +30,7 @@ export const AnalysisResults = ({ analysis, isAnalyzing }: AnalysisResultsProps)
         </CardHeader>
         <CardContent>
           <p className="text-muted-foreground text-center py-8">
-            提交文书后，分析结果将在此处显示。
+            提交文书后，评估结果将在此处显示。
           </p>
         </CardContent>
       </Card>
@@ -40,7 +40,7 @@ export const AnalysisResults = ({ analysis, isAnalyzing }: AnalysisResultsProps)
   return (
     <Card>
       <CardHeader>
-        <CardTitle>分析结果</CardTitle>
+        <CardTitle>评估结果</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-6">
@@ -50,7 +50,7 @@ export const AnalysisResults = ({ analysis, isAnalyzing }: AnalysisResultsProps)
               {analysis.split('\n')[0].replace('1. **Final Score**: ', '')}
             </AlertDescription>
           </Alert>
-          
+
           <div className="prose prose-sm max-w-none">
             <h3 className="text-lg font-semibold mb-4">改进建议</h3>
             <div className="space-y-4">

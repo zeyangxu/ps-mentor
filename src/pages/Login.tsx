@@ -13,7 +13,7 @@ const Login = () => {
           <div className="absolute bottom-20 right-20 w-32 h-32 rounded-full bg-primary/10 animate-pulse [animation-duration:3s] [animation-delay:1s]" />
           <div className="absolute top-40 right-40 w-16 h-16 rounded-full bg-primary/10 animate-pulse [animation-duration:3s] [animation-delay:2s]" />
         </div>
-        
+
         <div className="max-w-xl w-full mx-auto px-6 relative animate-fade-up">
           <Alert className="mb-6">
             <InfoIcon className="h-4 w-4" />
@@ -22,7 +22,7 @@ const Login = () => {
               <br />
               点击注册后请前往您的邮箱点击确认链接完成注册。
               <br />
-              注册成功后您可以免费体验三次反馈超千字的文书深度评估。😊
+              注册成功后您可以免费体验2次反馈超千字的文书深度评估。😊
             </AlertDescription>
           </Alert>
           <div className="w-full bg-card rounded-lg shadow-lg p-8 relative z-10 hover:scale-[1.01] transition-transform duration-300">

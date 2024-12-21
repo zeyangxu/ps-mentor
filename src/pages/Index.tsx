@@ -71,7 +71,7 @@ const Index = () => {
           </p>
           <Link to="/editor">
             <Button size="lg" className="gap-2">
-              开始评估 <ArrowRight className="w-4 h-4" />
+              开始评估abc <ArrowRight className="w-4 h-4" />
             </Button>
           </Link>
         </div>

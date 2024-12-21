@@ -63,16 +63,16 @@ const Index = () => {
         {/* Hero Section */}
         <div className="text-center animate-fade-up mb-20">
           <div className="flex justify-center mb-6">
-            <Sparkles className="w-12 h-12 text-primary animate-[spin_8s_linear_infinite] hover:scale-125 transition-transform duration-300" />
+            <Sparkles className="w-12 h-12 text-primary animate-[spin_8s_linear_infinite]" />
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 leading-tight hover:text-primary transition-colors duration-300">
+          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 leading-tight">
             留学文书锐评器
           </h1>
           <p className="text-base md:text-lg text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-            <span className="font-bold hover:text-primary transition-colors duration-300">最前沿的 AI 算法，最资深的研发团队，最精细的文书多维剖析，为您的留学保驾护航！</span>
+            <span className="font-bold">最前沿的 AI 算法，最资深的研发团队，最精细的文书多维剖析，为您的留学保驾护航！</span>
           </p>
           <Link to="/editor">
-            <Button size="lg" className="gap-2 transform hover:scale-110 hover:shadow-lg transition-all duration-300 ease-in-out">
+            <Button size="lg" className="gap-2">
               开始评估 <ArrowRight className="w-4 h-4" />
             </Button>
           </Link>
@@ -80,38 +80,38 @@ const Index = () => {
 
         {/* Main Content */}
         <div className="grid md:grid-cols-2 gap-8 mb-20">
-          <Card className="p-6 animate-fade-up group hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+          <Card className="p-6 animate-fade-up">
             <CardContent className="p-0">
               <div className="flex items-center justify-center mb-4">
-                <Target className="w-8 h-8 text-primary group-hover:scale-125 group-hover:rotate-12 transition-all duration-300" />
+                <Target className="w-8 h-8 text-primary" />
               </div>
-              <h2 className="text-2xl font-semibold mb-4 group-hover:text-primary transition-colors duration-300">文书/PS的重要性</h2>
-              <p className="text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors duration-300">
-                个人陈述（Personal Statement, 简称PS）是欧美大学申请中至关重要的一环。一篇出色的PS能<span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed] group-hover:drop-shadow-[0_0_2px_#7c3aed] transition-all duration-300">弥补学术成绩及相关经验的不足</span>，帮助申请者在众多竞争者中脱颖而出。而相反，一篇质量不佳的PS可能会<span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed] group-hover:drop-shadow-[0_0_2px_#7c3aed] transition-all duration-300">拉低整体申请水平</span>，甚至让招生官对申请者的能力和动机产生质疑。
+              <h2 className="text-2xl font-semibold mb-4">文书/PS的重要性</h2>
+              <p className="text-muted-foreground leading-relaxed">
+                个人陈述（Personal Statement, 简称PS）是欧美大学申请中至关重要的一环。一篇出色的PS能<span className="text-primary">弥补学术成绩及相关经验的不足</span>，帮助申请者在众多竞争者中脱颖而出。而相反，一篇质量不佳的PS可能会<span className="text-primary">拉低整体申请水平</span>，甚至让招生官对申请者的能力和动机产生质疑。
               </p>
             </CardContent>
           </Card>
 
-          <Card className="p-6 animate-fade-up group hover:shadow-xl hover:-translate-y-2 transition-all duration-300" style={{ animationDelay: "100ms" }}>
+          <Card className="p-6 animate-fade-up" style={{ animationDelay: "100ms" }}>
             <CardContent className="p-0">
               <div className="flex items-center justify-center mb-4">
-                <FileText className="w-8 h-8 text-primary group-hover:scale-125 group-hover:rotate-12 transition-all duration-300" />
+                <FileText className="w-8 h-8 text-primary" />
               </div>
-              <h2 className="text-2xl font-semibold mb-4 group-hover:text-primary transition-colors duration-300">现存问题</h2>
-              <p className="text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors duration-300">
-                在实际申请过程中，许多申请者因<span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed] group-hover:drop-shadow-[0_0_2px_#7c3aed] transition-all duration-300">缺乏对PS写作要求的系统理解</span>，或受到<span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed] group-hover:drop-shadow-[0_0_2px_#7c3aed] transition-all duration-300">市面上质量参差不齐的文书代写机构的影响</span>，往往难以撰写出符合学校期望的文书/PS。这不仅增加了申请的难度，也使一些本具竞争力的申请者未能有效展现自己的潜力，错失录取机会！
+              <h2 className="text-2xl font-semibold mb-4">现存问题</h2>
+              <p className="text-muted-foreground leading-relaxed">
+                在实际申请过程中，许多申请者因<span className="text-primary">缺乏对PS写作要求的系统理解</span>，或受到<span className="text-primary">市面上质量参差不齐的文书代写机构的影响</span>，往往难以撰写出符合学校期望的文书/PS。这不仅增加了申请的难度，也使一些本具竞争力的申请者未能有效展现自己的潜力，错失录取机会！
               </p>
             </CardContent>
           </Card>
         </div>
 
         {/* Features Section */}
-        <h2 className="text-3xl font-bold text-center mb-6 hover:text-primary transition-colors duration-300">六大评估维度</h2>
+        <h2 className="text-3xl font-bold text-center mb-6">六大评估维度</h2>
 
         <div className="text-center animate-fade-up mb-12">
-          <p className="text-base text-muted-foreground leading-relaxed max-w-4xl mx-auto font-bold hover:text-foreground transition-colors duration-300">
+          <p className="text-base text-muted-foreground leading-relaxed max-w-4xl mx-auto font-bold">
             我们将从以下六大维度切入，对您的PS展开深度解析，<br />
-            <span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed] hover:drop-shadow-[0_0_2px_#7c3aed] transition-all duration-300">为您精准打分，解读每一项得分背后的原因，提供个性化的修改建议</span>，
+            <span className="text-primary">为您精准打分，解读每一项得分背后的原因，提供个性化的修改建议</span>，
             <br />
             助您的 PS 脱颖而出，为留学申请增添有力筹码！
           </p>
@@ -121,15 +121,15 @@ const Index = () => {
           {features.map((feature, index) => (
             <Card
               key={feature.title}
-              className="p-6 animate-fade-up group hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
+              className="p-6 animate-fade-up"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <CardContent className="p-0">
-                <div className="bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4 group-hover:scale-125 group-hover:bg-primary/20 transition-all duration-300">
+                <div className="bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors duration-300">{feature.title}</h3>
-                <p className="text-muted-foreground group-hover:text-foreground transition-colors duration-300">{feature.description}</p>
+                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                <p className="text-muted-foreground">{feature.description}</p>
               </CardContent>
             </Card>
           ))}

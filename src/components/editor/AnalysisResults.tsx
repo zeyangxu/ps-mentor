@@ -2,6 +2,8 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert"
 import { Progress } from "@/components/ui/progress"
 import { Info, Star, TrendingUp, CheckCircle2, AlertCircle, BookOpen, Award, GraduationCap } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { useState } from "react"
 
 interface CriteriaAnalysis {
   score: number;
@@ -37,16 +39,28 @@ const criteriaIcons: Record<string, any> = {
   quality_of_writing: CheckCircle2,
 };
 
-const criteriaNames: Record<string, string> = {
-  purpose_and_motivation: "目的与动机",
-  academic_competence: "学术能力",
-  professional_internship_competence: "专业/实习能力",
-  program_specific_reasons: "项目选择原因",
-  future_career_planning: "职业规划",
-  quality_of_writing: "写作质量",
+const criteriaNames: Record<string, Record<string, string>> = {
+  en: {
+    purpose_and_motivation: "Purpose & Motivation",
+    academic_competence: "Academic Competence",
+    professional_internship_competence: "Professional/Internship Competence",
+    program_specific_reasons: "Program-specific Reasons",
+    future_career_planning: "Future Career Planning",
+    quality_of_writing: "Quality of Writing",
+  },
+  zh: {
+    purpose_and_motivation: "目的与动机",
+    academic_competence: "学术能力",
+    professional_internship_competence: "专业/实习能力",
+    program_specific_reasons: "项目选择原因",
+    future_career_planning: "职业规划",
+    quality_of_writing: "写作质量",
+  }
 };
 
 export const AnalysisResults = ({ analysis, isAnalyzing }: AnalysisResultsProps) => {
+  const [language, setLanguage] = useState<"en" | "zh">("zh");
+
   if (isAnalyzing) {
     return (
       <Card className="border-2">
@@ -78,29 +92,46 @@ export const AnalysisResults = ({ analysis, isAnalyzing }: AnalysisResultsProps)
     );
   }
 
-  const analysisData: AnalysisData = JSON.parse(analysis);
+  const parsedResponse = JSON.parse(analysis);
+  const analysisData: AnalysisData = JSON.parse(parsedResponse[language]);
   const scorePercentage = (analysisData.overall_score / analysisData.max_score) * 100;
 
   return (
     <Card className="border-2">
-      <CardHeader>
+      <CardHeader className="flex-row justify-between items-center space-y-0">
         <CardTitle className="flex items-center gap-2">
           <Award className="w-5 h-5 text-primary" />
           评估结果
         </CardTitle>
+        <div className="flex gap-2">
+          <Button
+            variant={language === "zh" ? "default" : "outline"}
+            size="sm"
+            onClick={() => setLanguage("zh")}
+          >
+            中文
+          </Button>
+          <Button
+            variant={language === "en" ? "default" : "outline"}
+            size="sm"
+            onClick={() => setLanguage("en")}
+          >
+            English
+          </Button>
+        </div>
       </CardHeader>
       <CardContent>
         <div className="space-y-6">
           <div className="space-y-2">
             <div className="flex justify-between items-center">
-              <span className="text-sm font-medium">总分</span>
+              <span className="text-sm font-medium">{language === "zh" ? "总分" : "Total Score"}</span>
               <span className="text-sm font-medium">
                 {analysisData.overall_score}/{analysisData.max_score}
               </span>
             </div>
             <Progress value={scorePercentage} className="h-2" />
             <p className="text-sm text-muted-foreground mt-1">
-              整体水平: <span className="font-medium text-foreground capitalize">{analysisData.overall_level}</span>
+              {language === "zh" ? "整体水平" : "Overall Level"}: <span className="font-medium text-foreground capitalize">{analysisData.overall_level}</span>
             </p>
           </div>
 
@@ -113,10 +144,10 @@ export const AnalysisResults = ({ analysis, isAnalyzing }: AnalysisResultsProps)
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <IconComponent className="w-5 h-5 text-primary" />
-                        <h4 className="font-medium">{criteriaNames[key]}</h4>
+                        <h4 className="font-medium">{criteriaNames[language][key]}</h4>
                       </div>
                       <span className="text-sm font-medium">
-                        得分: {criteria.score}
+                        {language === "zh" ? "得分" : "Score"}: {criteria.score}
                       </span>
                     </div>
                     <p className="text-sm text-muted-foreground">
@@ -125,7 +156,7 @@ export const AnalysisResults = ({ analysis, isAnalyzing }: AnalysisResultsProps)
                     <div className="space-y-2">
                       <p className="text-sm font-medium flex items-center gap-2">
                         <AlertCircle className="w-4 h-4 text-primary" />
-                        改进建议:
+                        {language === "zh" ? "改进建议" : "Suggestions for Improvement"}:
                       </p>
                       <ul className="space-y-1">
                         {criteria.advice_for_improvement.map((advice, index) => (
@@ -143,13 +174,25 @@ export const AnalysisResults = ({ analysis, isAnalyzing }: AnalysisResultsProps)
 
           <Alert className="mt-6 bg-secondary border-secondary">
             <Info className="h-4 w-4" />
-            <AlertTitle className="mb-2">声明</AlertTitle>
+            <AlertTitle className="mb-2">{language === "zh" ? "声明" : "Disclaimer"}</AlertTitle>
             <AlertDescription className="text-sm">
-              我们的产品仅对已给定的内容展开分析，并不涉及对文书 AI 率的评估。您的评估分数与文书的 AI 率不存在直接或间接的关联。
-              <br /><br />
-              一篇好的文书可以使用 AI 作为工具进行辅助，但我们不支持使用 AI 直接生成内容，这会很大程度影响您的申请成功率。
-              <br /><br />
-              倘若您有专业的 AI 率检测需求，建议您使用诸如 turnitin 等专业的 AI 检测率工具进行检测，以确保检测结果的专业性与准确性。
+              {language === "zh" ? (
+                <>
+                  我们的产品仅对已给定的内容展开分析，并不涉及对文书 AI 率的评估。您的评估分数与文书的 AI 率不存在直接或间接的关联。
+                  <br /><br />
+                  一篇好的文书可以使用 AI 作为工具进行辅助，但我们不支持使用 AI 直接生成内容，这会很大程度影响您的申请成功率。
+                  <br /><br />
+                  倘若您有专业的 AI 率检测需求，建议您使用诸如 turnitin 等专业的 AI 检测率工具进行检测，以确保检测结果的专业性与准确性。
+                </>
+              ) : (
+                <>
+                  Our product only analyzes the provided content and does not assess the AI detection rate of your statement. Your evaluation score has no direct or indirect correlation with the AI rate of your statement.
+                  <br /><br />
+                  While AI can be used as a tool to assist in writing a good statement, we do not support using AI to directly generate content as this can significantly affect your application success rate.
+                  <br /><br />
+                  If you need professional AI detection services, we recommend using professional tools like Turnitin to ensure accurate and professional detection results.
+                </>
+              )}
             </AlertDescription>
           </Alert>
         </div>

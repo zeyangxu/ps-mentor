@@ -1,6 +1,7 @@
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert"
 import { Progress } from "@/components/ui/progress"
+import { Info } from "lucide-react"
 
 interface AnalysisResultsProps {
   analysis: string | null;
@@ -70,6 +71,16 @@ export const AnalysisResults = ({ analysis, isAnalyzing }: AnalysisResultsProps)
                 ))}
             </div>
           </div>
+
+          <Alert className="mt-6 bg-secondary border-secondary">
+            <Info className="h-4 w-4" />
+            <AlertTitle className="mb-2">声明</AlertTitle>
+            <AlertDescription className="text-sm">
+              我们的产品功能仅限于对已给定的内容展开分析，并不涉及对其 AI 率的评估打分操作。产品所给出的分数与文书的 AI 率不存在任何直接或间接的关联。
+              <br /><br />
+              倘若您有专业的 AI 率检测需求，建议您使用诸如 turnitin 等专业的 AI 检测率工具进行检测，以确保检测结果的专业性与准确性。
+            </AlertDescription>
+          </Alert>
         </div>
       </CardContent>
     </Card>

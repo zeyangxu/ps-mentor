@@ -32,7 +32,7 @@ export const EditorInput = ({
   return (
     <div className="space-y-4">
       <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-semibold">您的文书/PS</h2>
+        <h2 className="text-2xl font-semibold hover:text-primary transition-colors duration-300">您的文书/PS</h2>
         <div className="flex gap-2">
           <FileUpload onUpload={setContent} />
         </div>
@@ -98,6 +98,6 @@ export const EditorInput = ({
         </>
       )
       }
-    </div >
+    </div>
   );
 };

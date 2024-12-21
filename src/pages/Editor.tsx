@@ -122,7 +122,7 @@ const Editor = () => {
 
       <div className="container mx-auto px-4 py-8 relative animate-fade-up">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold">文书/PS分析助手</h1>
+          <h1 className="text-3xl font-bold hover:text-primary transition-colors duration-300">文书/PS分析助手</h1>
           <LogoutButton />
         </div>
         <div className="grid md:grid-cols-2 gap-8">

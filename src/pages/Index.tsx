@@ -68,7 +68,7 @@ const Index = () => {
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 leading-tight hover:text-primary transition-colors duration-300">
             留学文书锐评器
           </h1>
-          <p className="text-base md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base md:text-xl text-muted-foreground mb-8 mx-auto leading-relaxed whitespace-nowrap overflow-x-auto flex justify-center">
             <span className="font-bold hover:text-primary transition-colors duration-300">最前沿的 AI 算法，最资深的研发团队，最精细的文书多维剖析，为您的留学保驾护航！</span>
           </p>
           <Link to="/editor">

@@ -45,7 +45,7 @@ const Index = () => {
         <div className="absolute inset-8 border-4 border-dashed border-primary/20 rounded-lg animate-[spin_16s_linear_infinite_reverse] origin-center" />
         <div className="absolute inset-16 border-4 border-dashed border-primary/10 rounded-lg animate-[spin_20s_linear_infinite] origin-center" />
       </div>
-      
+
       <div className="absolute top-0 right-0 w-48 h-48 md:w-64 md:h-64 opacity-70">
         <div className="absolute inset-0 border-4 border-dashed border-primary/30 rounded-lg animate-[spin_12s_linear_infinite_reverse] origin-center" />
         <div className="absolute inset-8 border-4 border-dashed border-primary/20 rounded-lg animate-[spin_16s_linear_infinite] origin-center" />
@@ -59,7 +59,7 @@ const Index = () => {
             <Sparkles className="w-12 h-12 text-primary animate-[spin_8s_linear_infinite]" />
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 leading-tight hover:text-primary transition-colors duration-300">
-            留学文书锐评器
+            Dr. PS Checker
           </h1>
           <p className="text-base md:text-xl text-muted-foreground mb-8 mx-auto leading-relaxed whitespace-nowrap overflow-x-auto flex justify-center">
             <span className="font-bold hover:text-primary transition-colors duration-300">最前沿的 AI 算法，最资深的研发团队，最精细的文书多维剖析，为您的留学保驾护航！</span>

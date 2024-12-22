@@ -106,7 +106,7 @@ const Index = () => {
             Dr PS Checker 将从以下六大维度切入，对您的PS展开深度解析，<br />
             <span className="text-primary">为您精准打分，解读每一项得分背后的原因，提供个性化的修改建议</span>，
             <br />
-            助您的 PS 脱颖而出，为留学申请增添有力筹码！
+            超千字的PS评估报告，助您的 PS 脱颖而出，为留学申请增添有力筹码！
           </p>
         </div>
 

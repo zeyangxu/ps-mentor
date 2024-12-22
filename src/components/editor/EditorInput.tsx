@@ -33,7 +33,7 @@ export const EditorInput = ({
   return (
     <div className="space-y-4">
       <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-semibold hover:text-primary transition-colors duration-300">您的文书/PS</h2>
+        <h2 className="text-2xl font-semibold hover:text-primary transition-colors duration-300">您的文书/PS分析助手</h2>
         <div className="flex gap-2">
           {hasUsageLeft && <FileUpload onUpload={setContent} />}
         </div>

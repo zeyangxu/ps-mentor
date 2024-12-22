@@ -21,7 +21,7 @@ const features = [
   },
   {
     title: "选校原因",
-    description: "您的选校理由是否仅仅只是放之四海而皆准的”院校声望排名“，而非个性化定制？",
+    description: "您的选校理由是否个性化定制，而非只是放之四海而皆准的”院校声望排名“？",
     icon: <BookOpen className="w-6 h-6 text-primary" />,
   },
   {

@@ -80,7 +80,7 @@ const Index = () => {
               </div>
               <h2 className="text-2xl font-semibold mb-4 group-hover:text-primary transition-colors duration-300">留学文书/PS的重要性</h2>
               <p className="text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors duration-300">
-                个人陈述（Personal Statement, 简称PS）是欧美大学申请中至关重要的一环。一篇出色的PS能<span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed] group-hover:drop-shadow-[0_0_2px_#7c3aed] transition-all duration-300">弥补学术成绩及相关经验的不足</span>，帮助申请者在众多竞争者中脱颖而出。而相反，一篇质量不佳的PS可能会<span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed] group-hover:drop-shadow-[0_0_2px_#7c3aed] transition-all duration-300">拉低整体申请水平</span>，甚至让招生官对申请者的能力和动机产生质疑。
+                个人陈述（Personal Statement, 简称文书/PS）是欧美大学申请中至关重要的一环。一篇出色的PS能<span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed] group-hover:drop-shadow-[0_0_2px_#7c3aed] transition-all duration-300">弥补学术成绩及相关经验的不足</span>，帮助申请者在众多竞争者中脱颖而出。而相反，一篇质量不佳的PS可能会<span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed] group-hover:drop-shadow-[0_0_2px_#7c3aed] transition-all duration-300">拉低整体申请水平</span>，甚至让招生官对申请者的能力和动机产生质疑。
               </p>
             </CardContent>
           </Card>

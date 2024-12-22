@@ -6,32 +6,32 @@ import { Card, CardContent } from "@/components/ui/card";
 const features = [
   {
     title: "申请动机",
-    description: "你的学习动机是否清晰、具体且令人信服？",
+    description: "您的申请动机是否足够清晰、具体，兼具个人特色和学术兴趣？",
     icon: <Brain className="w-6 h-6 text-primary" />,
   },
   {
     title: "学术能力",
-    description: "你是否充分展现了具体的学术能力，而非只对课程理论泛泛而谈？",
+    description: "您是否充分展现了具体的学术能力，而非只对所学课程泛泛而谈？",
     icon: <GraduationCap className="w-6 h-6 text-primary" />,
   },
   {
     title: "实习经验",
-    description: "你是否详细描绘了具体工作任务中的硬技能与软实习，而非生硬罗列实习或职业经历的基本信息？",
+    description: "您是否详细描绘了具体工作任务中的硬技能与软实习，而非生硬罗列实习或职业经历的基本信息？",
     icon: <BriefcaseIcon className="w-6 h-6 text-primary" />,
   },
   {
     title: "选校原因",
-    description: "你的选校理由是否仅仅只提及了院校的声望排名？",
+    description: "您的选校理由是否仅仅只是放之四海而皆准的”院校声望排名“，而非个性化定制？",
     icon: <BookOpen className="w-6 h-6 text-primary" />,
   },
   {
     title: "职业规划",
-    description: "你的规划是否具体且明确？是否有清晰的发展脉络？",
+    description: "您的规划是否具体且明确？是否有清晰的职业发展脉络？",
     icon: <Rocket className="w-6 h-6 text-primary" />,
   },
   {
     title: "写作质量",
-    description: "你的语言是否正确、准确、流畅又具个人风格？",
+    description: "您的语言是否正确、准确、流畅又具个人风格？",
     icon: <PenTool className="w-6 h-6 text-primary" />,
   },
 ];

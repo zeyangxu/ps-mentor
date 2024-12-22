@@ -1,5 +1,4 @@
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
-import { Progress } from "@/components/ui/progress"
 import { Award } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
@@ -45,11 +44,15 @@ export const AnalysisResults = ({ analysis, isAnalyzing }: AnalysisResultsProps)
         <CardHeader>
           <CardTitle>分析中...</CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
-          <p className="text-muted-foreground text-center">
-            正在分析您的文书/PS，请稍候...
+        <CardContent className="flex flex-col items-center justify-center py-12 space-y-6">
+          <div className="relative w-24 h-24">
+            <div className="absolute inset-0 border-4 border-dashed border-primary/30 rounded-full animate-[spin_3s_linear_infinite]" />
+            <div className="absolute inset-2 border-4 border-dashed border-primary/20 rounded-full animate-[spin_4s_linear_infinite_reverse]" />
+            <div className="absolute inset-4 border-4 border-dashed border-primary/10 rounded-full animate-[spin_5s_linear_infinite]" />
+          </div>
+          <p className="text-muted-foreground text-center animate-pulse">
+            正在深度分析您的文书/PS，请稍候...
           </p>
-          <Progress value={33} className="w-full" />
         </CardContent>
       </Card>
     );
@@ -113,7 +116,12 @@ export const AnalysisResults = ({ analysis, isAnalyzing }: AnalysisResultsProps)
                 {analysisData.overall_score}/{analysisData.max_score}
               </span>
             </div>
-            <Progress value={scorePercentage} className="h-2" />
+            <div className="h-2 bg-secondary rounded-full overflow-hidden">
+              <div 
+                className="h-full bg-primary rounded-full transition-all duration-1000 ease-out"
+                style={{ width: `${scorePercentage}%` }}
+              />
+            </div>
             <p className="text-sm text-muted-foreground mt-1">
               {language === "zh" ? "整体水平" : "Overall Level"}: <span className="font-medium text-foreground capitalize">{analysisData.overall_level}</span>
             </p>

@@ -78,7 +78,7 @@ const Index = () => {
               <div className="flex items-center justify-center mb-4">
                 <Target className="w-8 h-8 text-primary group-hover:scale-125 group-hover:rotate-12 transition-all duration-300" />
               </div>
-              <h2 className="text-2xl font-semibold mb-4 group-hover:text-primary transition-colors duration-300">文书/PS的重要性</h2>
+              <h2 className="text-2xl font-semibold mb-4 group-hover:text-primary transition-colors duration-300">留学文书/PS的重要性</h2>
               <p className="text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors duration-300">
                 个人陈述（Personal Statement, 简称PS）是欧美大学申请中至关重要的一环。一篇出色的PS能<span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed] group-hover:drop-shadow-[0_0_2px_#7c3aed] transition-all duration-300">弥补学术成绩及相关经验的不足</span>，帮助申请者在众多竞争者中脱颖而出。而相反，一篇质量不佳的PS可能会<span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed] group-hover:drop-shadow-[0_0_2px_#7c3aed] transition-all duration-300">拉低整体申请水平</span>，甚至让招生官对申请者的能力和动机产生质疑。
               </p>
@@ -90,7 +90,7 @@ const Index = () => {
               <div className="flex items-center justify-center mb-4">
                 <FileText className="w-8 h-8 text-primary group-hover:scale-125 group-hover:rotate-12 transition-all duration-300" />
               </div>
-              <h2 className="text-2xl font-semibold mb-4 group-hover:text-primary transition-colors duration-300">现存问题</h2>
+              <h2 className="text-2xl font-semibold mb-4 group-hover:text-primary transition-colors duration-300">留学文书/PS现存困境</h2>
               <p className="text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors duration-300">
                 在实际申请过程中，许多申请者因<span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed] group-hover:drop-shadow-[0_0_2px_#7c3aed] transition-all duration-300">缺乏对PS写作要求的系统理解</span>，或受到<span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed] group-hover:drop-shadow-[0_0_2px_#7c3aed] transition-all duration-300">市面上质量参差不齐的文书代写机构的影响</span>，往往难以撰写出符合学校期望的文书/PS。这不仅增加了申请的难度，也使一些本具竞争力的申请者未能有效展现自己的潜力，错失录取机会！
               </p>

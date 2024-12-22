@@ -62,7 +62,7 @@ export const AnalysisResults = ({ analysis, isAnalyzing }: AnalysisResultsProps)
     return (
       <Card className="border-2">
         <CardHeader>
-          <CardTitle>分析结果</CardTitle>
+          <CardTitle>评估报告</CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-muted-foreground text-center py-8">

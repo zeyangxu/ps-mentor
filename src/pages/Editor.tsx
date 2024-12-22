@@ -15,18 +15,18 @@ const Editor = () => {
   const [session, setSession] = useState(null)
   const [isLoadingSession, setIsLoadingSession] = useState(true)
   const { toast } = useToast()
-  
-  const { 
-    usageCount, 
+
+  const {
+    usageCount,
     isLoading: isLoadingUsage,
     error: usageError,
     fetchUsageCount
   } = useUsageTracking()
-  
-  const { 
-    analyzeStatement, 
+
+  const {
+    analyzeStatement,
     isLoading: isAnalyzing,
-    error: analysisError 
+    error: analysisError
   } = useAnalyzeStatement()
 
   useEffect(() => {
@@ -101,7 +101,7 @@ const Editor = () => {
     <div className="min-h-screen bg-gradient-to-b from-secondary/50 to-background relative overflow-hidden">
       <div className="container mx-auto px-4 pt-24 pb-8 relative animate-fade-up">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold hover:text-primary transition-colors duration-300">文书/PS分析助手</h1>
+          <h1 className="text-3xl font-bold hover:text-primary transition-colors duration-300">Dr. PS Checker</h1>
           <LogoutButton />
         </div>
         <div className="grid md:grid-cols-2 gap-8">

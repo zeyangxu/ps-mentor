@@ -14,8 +14,7 @@ const OWNER_RSA_KEY =
 const PLATFORM_RSA_KEY =
   "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApvhuxBKuzEBRzJR3d3raeqERV8NXBSX3S1ZjyW4tcZ+MOdeb7iWIFUNuhKakOUWaUOWtBtnM1CrNI43MNxv9urrNvychR4F/QO6MamHHz9Tkniuu8uB+M0S04QYL2AFoMbcM8sIiR23A16Lt0EFieneJbALIn6VXLTRjnyBJmVvjufKWBNMhVPaPufaVlBgkojf92oLHVIZn6DFFjX7EJN9ijVH9jJTb/qbjxWBoaOiVCvMCItteuUX1qxm5gzdBhL5NWF8j+kpkO2P6y+zb8TT5RDTT6zyaForK2FBmQMyhuIkElvXIdeQ+xvtnx2G5XH+VMRV60+S3t9wtJno2QQIDAQAB";
 
-const PRIVATE_RSA_KEY = 
-`-----BEGIN PRIVATE KEY-----
+const PRIVATE_RSA_KEY = `-----BEGIN PRIVATE KEY-----
 MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDKqffiMDRO3Had
 7MIWfvi/MIUPtCq9oxlqxbcGZV8JT2IJP7JvLZYVIXGQbvLqcr1xcdUD6ORWhgF3
 Lha1lXb4a5tDI7/rkJ4YwEYRro3FEXx0yVlxABHjCKD0qVIJjtgCesXOewgsD7L7
@@ -95,9 +94,9 @@ export async function requestYiPaySubmitSigned(params: YiPaymentRequest) {
     // Generate signature
     const { signedParams } = APISignature.sign({
       params: {
-        ...params, 
+        ...params,
         out_trade_no: generateTimestampConcise(),
-        timestamp: String(Math.floor(Date.now() / 1000))
+        timestamp: String(Math.floor(Date.now() / 1000)),
       },
       privateKey: PRIVATE_RSA_KEY,
     });
@@ -111,7 +110,7 @@ export async function requestYiPaySubmitSigned(params: YiPaymentRequest) {
       body: new URLSearchParams(signedParams).toString(),
     });
 
-    console.log('requestYiPaySubmitSigned', { signedParams, response });
+    console.log("requestYiPaySubmitSigned", { signedParams, response });
 
     return await response.json();
   } catch (error) {
@@ -148,13 +147,12 @@ export class APISignature {
     let paramString = this.filterAndSortParams(params);
 
     // remove the last & if it exists
-    if (paramString.endsWith('&')) {
+    if (paramString.endsWith("&")) {
       paramString = paramString.slice(0, -1);
     }
 
     // Step 3: Generate RSA signature
     const signature = this.generateSignature(paramString, privateKey);
-
 
     // Add signature to parameters
     const signedParams = {
@@ -163,7 +161,7 @@ export class APISignature {
       sign: signature,
     };
 
-    console.log('APISignature', { paramString, signature, signedParams });
+    console.log("APISignature", { paramString, signature, signedParams });
 
     return {
       signedParams,
@@ -176,9 +174,7 @@ export class APISignature {
    * @param params Original parameters
    * @returns Filtered and sorted parameters
    */
-  private static filterAndSortParams(
-    params: Record<string, any>,
-  ): string {
+  private static filterAndSortParams(params: Record<string, any>): string {
     // Remove sign and sign_type parameters
     const { sign, sign_type, ...restParams } = params;
 
@@ -186,12 +182,9 @@ export class APISignature {
     const sortedKeys = Object.keys(restParams).sort();
 
     // Create new sorted object
-    return sortedKeys.reduce(
-      (acc, key) => {
-        return acc + `${key}=${restParams[key]}&`;
-      },
-      "",
-    );
+    return sortedKeys.reduce((acc, key) => {
+      return acc + `${key}=${restParams[key]}&`;
+    }, "");
   }
 
   /**
@@ -252,5 +245,5 @@ async function makeAPIRequest(
 
 function generateTimestampConcise(): string {
   const d: Date = new Date();
-  return `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, '0')}${String(d.getDate()).padStart(2, '0')}${String(d.getHours()).padStart(2, '0')}${String(d.getMinutes()).padStart(2, '0')}${String(d.getSeconds()).padStart(2, '0')}${String(d.getMilliseconds()).padStart(3, '0')}`;
+  return `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, "0")}${String(d.getDate()).padStart(2, "0")}${String(d.getHours()).padStart(2, "0")}${String(d.getMinutes()).padStart(2, "0")}${String(d.getSeconds()).padStart(2, "0")}${String(d.getMilliseconds()).padStart(3, "0")}`;
 }

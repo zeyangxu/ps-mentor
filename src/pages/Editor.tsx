@@ -7,10 +7,11 @@ import { useAnalyzeStatement } from "@/hooks/useAnalyzeStatement"
 import { Navigate } from "react-router-dom"
 import { EditorInput } from "@/components/editor/EditorInput"
 import { AnalysisResults } from "@/components/editor/AnalysisResults"
+import { AnalysisResponse } from "@/types/analysis"
 
 const Editor = () => {
   const [content, setContent] = useState("")
-  const [analysis, setAnalysis] = useState<string | null>(null)
+  const [analysis, setAnalysis] = useState<AnalysisResponse | null>(null)
   const [session, setSession] = useState(null)
   const [isLoadingSession, setIsLoadingSession] = useState(true)
   const { toast } = useToast()

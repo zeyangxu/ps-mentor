@@ -4,9 +4,9 @@
 
 // Setup type definitions for built-in Supabase Runtime APIs
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
-import crypto from "crypto";
+import crypto from "node:crypto";
 
-const YI_PAY_ENDPOINT = "https://yi-pay.com/api/pay/submit";
+const YI_PAY_ENDPOINT = "https://yi-pay.com/api/pay/create";
 
 const OWNER_RSA_KEY =
   "MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDKqffiMDRO3Had7MIWfvi/MIUPtCq9oxlqxbcGZV8JT2IJP7JvLZYVIXGQbvLqcr1xcdUD6ORWhgF3Lha1lXb4a5tDI7/rkJ4YwEYRro3FEXx0yVlxABHjCKD0qVIJjtgCesXOewgsD7L7PaZ+wStl78WEd3PwVPHclePX0hwUd0TCyWQxTyAXv0+FWnT+IGhvlbApnPNcEf9fT6l6Zxmm8vHc+O4C/7g3oN5gqIFT4djdbiWf14L+znn/2ji51Kek8oysk+bz8xco5iqwO3XqxttH9vgqF0RvxGuLTKNzQq4zHUUgSqsBxlXPfXL9CUDSzKkrZ9apBvV1dHRdeGkZAgMBAAECggEBALkUrk+/7BVVG3KwRLQcsviPzAUCacIUEGNFOxe5PiiXeZWuuTr1a8nSaA8ac/eOX9oZtgrDBrzJ1s7LpWuhmyvVwc53+I6d3PQHrDX7rncZuApD083x3WP0fmHRvB0EedsR2lHuZBExKShvLf02VnbamQyXtqb2PIdRz+lKdeBtRtAn9EQNCEQANxy4r91ZyUmwjUZJNOM1MJjbicub/kqpreF8Zm+z2BzgQOHHklceS0NM3MP44iGB9KOwFH3TL8kjYNQ+nqwHp2vTtjKE4biMzvwmT0C3aoFvYad5U52YTE0ckjANZatsrEXYeqSflqX1HVQmTImqNg6N/QpFfLECgYEA8x8+wSfejccvW44+ZrqRQqIsRbAiqbOGnfhUzRyBZUF73ubY2YgR54E4BZTg8DwrCq4df2U24spw6o/h7RLf61JKwxhE+ORjhAmOwFTi7AFm5WZ+nW7jh+ScPkLzLC04HzzgAFIVlDDraQP8NBsBmZbFTl6pBUnppbShYDltmWUCgYEA1WYbnAbAmA8Xko8Qvnq/Caj6gG9QEw2AP14gF4ECrNgYukM45JQR1cp21ao2t0O1IrkPcACT3KdfcipG5xs6FtmtBvkNvGCWoVrthKtyQLQ3/b8x6PfVhiQxzOcw4fMTNjtnVJGkiyrbPifCLDvHfQ3Gb+K8jEbAjAENVkrPL6UCgYBwgPnyOjfjldPVY0p/EUCc/BzOlsZDj17xBPSBAfri112x9VNNvojCf2pkMtOwd7dXNuFRjY3LfvCnqrNamIxkAe20wCtSnaVreVzEpcNogPGToE1hHupNfT3MFgEfZUF+OxZRL6rqq4SUURLJLeIcp8dgD6/ZUa28T40J0SllfQKBgGZ5fQKk33Flte0kFGdT7E8IPRrV2T78+bv0SDbhNdaogt9XDof9br8aVYxvC41fzyjYc0hWjqqkGRpqoNez5GY6q3Mwv97ZBxx+3JYb+maF5GlOmfoEoR2kXeHGl1u5bV1ak1kyAzDtKJElaIHzRu2PYt4xpFc8VpQkoTHyBKIdAoGBAKofM4GzjSFyHZeZd2W3Vf5ax3guFwNx0NidUwWwYYb3ulJshvHY4e7C+QAQKH7LgeyCArNo0wKBIGN1Xrtm/IHhH2jrGbThYKQrKqgMokvJlVBLzukLEL8PHg4FRkN/UtibugnS3ZzaNgKcPnq4gx48V947Z1xgZuGfs0hiF8IS";
@@ -14,8 +14,35 @@ const OWNER_RSA_KEY =
 const PLATFORM_RSA_KEY =
   "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApvhuxBKuzEBRzJR3d3raeqERV8NXBSX3S1ZjyW4tcZ+MOdeb7iWIFUNuhKakOUWaUOWtBtnM1CrNI43MNxv9urrNvychR4F/QO6MamHHz9Tkniuu8uB+M0S04QYL2AFoMbcM8sIiR23A16Lt0EFieneJbALIn6VXLTRjnyBJmVvjufKWBNMhVPaPufaVlBgkojf92oLHVIZn6DFFjX7EJN9ijVH9jJTb/qbjxWBoaOiVCvMCItteuUX1qxm5gzdBhL5NWF8j+kpkO2P6y+zb8TT5RDTT6zyaForK2FBmQMyhuIkElvXIdeQ+xvtnx2G5XH+VMRV60+S3t9wtJno2QQIDAQAB";
 
-const PRIVATE_RSA_KEY =
-  "MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDKqffiMDRO3Had7MIWfvi/MIUPtCq9oxlqxbcGZV8JT2IJP7JvLZYVIXGQbvLqcr1xcdUD6ORWhgF3Lha1lXb4a5tDI7/rkJ4YwEYRro3FEXx0yVlxABHjCKD0qVIJjtgCesXOewgsD7L7PaZ+wStl78WEd3PwVPHclePX0hwUd0TCyWQxTyAXv0+FWnT+IGhvlbApnPNcEf9fT6l6Zxmm8vHc+O4C/7g3oN5gqIFT4djdbiWf14L+znn/2ji51Kek8oysk+bz8xco5iqwO3XqxttH9vgqF0RvxGuLTKNzQq4zHUUgSqsBxlXPfXL9CUDSzKkrZ9apBvV1dHRdeGkZAgMBAAECggEBALkUrk+/7BVVG3KwRLQcsviPzAUCacIUEGNFOxe5PiiXeZWuuTr1a8nSaA8ac/eOX9oZtgrDBrzJ1s7LpWuhmyvVwc53+I6d3PQHrDX7rncZuApD083x3WP0fmHRvB0EedsR2lHuZBExKShvLf02VnbamQyXtqb2PIdRz+lKdeBtRtAn9EQNCEQANxy4r91ZyUmwjUZJNOM1MJjbicub/kqpreF8Zm+z2BzgQOHHklceS0NM3MP44iGB9KOwFH3TL8kjYNQ+nqwHp2vTtjKE4biMzvwmT0C3aoFvYad5U52YTE0ckjANZatsrEXYeqSflqX1HVQmTImqNg6N/QpFfLECgYEA8x8+wSfejccvW44+ZrqRQqIsRbAiqbOGnfhUzRyBZUF73ubY2YgR54E4BZTg8DwrCq4df2U24spw6o/h7RLf61JKwxhE+ORjhAmOwFTi7AFm5WZ+nW7jh+ScPkLzLC04HzzgAFIVlDDraQP8NBsBmZbFTl6pBUnppbShYDltmWUCgYEA1WYbnAbAmA8Xko8Qvnq/Caj6gG9QEw2AP14gF4ECrNgYukM45JQR1cp21ao2t0O1IrkPcACT3KdfcipG5xs6FtmtBvkNvGCWoVrthKtyQLQ3/b8x6PfVhiQxzOcw4fMTNjtnVJGkiyrbPifCLDvHfQ3Gb+K8jEbAjAENVkrPL6UCgYBwgPnyOjfjldPVY0p/EUCc/BzOlsZDj17xBPSBAfri112x9VNNvojCf2pkMtOwd7dXNuFRjY3LfvCnqrNamIxkAe20wCtSnaVreVzEpcNogPGToE1hHupNfT3MFgEfZUF+OxZRL6rqq4SUURLJLeIcp8dgD6/ZUa28T40J0SllfQKBgGZ5fQKk33Flte0kFGdT7E8IPRrV2T78+bv0SDbhNdaogt9XDof9br8aVYxvC41fzyjYc0hWjqqkGRpqoNez5GY6q3Mwv97ZBxx+3JYb+maF5GlOmfoEoR2kXeHGl1u5bV1ak1kyAzDtKJElaIHzRu2PYt4xpFc8VpQkoTHyBKIdAoGBAKofM4GzjSFyHZeZd2W3Vf5ax3guFwNx0NidUwWwYYb3ulJshvHY4e7C+QAQKH7LgeyCArNo0wKBIGN1Xrtm/IHhH2jrGbThYKQrKqgMokvJlVBLzukLEL8PHg4FRkN/UtibugnS3ZzaNgKcPnq4gx48V947Z1xgZuGfs0hiF8IS";
+const PRIVATE_RSA_KEY = 
+`-----BEGIN PRIVATE KEY-----
+MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDKqffiMDRO3Had
+7MIWfvi/MIUPtCq9oxlqxbcGZV8JT2IJP7JvLZYVIXGQbvLqcr1xcdUD6ORWhgF3
+Lha1lXb4a5tDI7/rkJ4YwEYRro3FEXx0yVlxABHjCKD0qVIJjtgCesXOewgsD7L7
+PaZ+wStl78WEd3PwVPHclePX0hwUd0TCyWQxTyAXv0+FWnT+IGhvlbApnPNcEf9f
+T6l6Zxmm8vHc+O4C/7g3oN5gqIFT4djdbiWf14L+znn/2ji51Kek8oysk+bz8xco
+5iqwO3XqxttH9vgqF0RvxGuLTKNzQq4zHUUgSqsBxlXPfXL9CUDSzKkrZ9apBvV1
+dHRdeGkZAgMBAAECggEBALkUrk+/7BVVG3KwRLQcsviPzAUCacIUEGNFOxe5PiiX
+eZWuuTr1a8nSaA8ac/eOX9oZtgrDBrzJ1s7LpWuhmyvVwc53+I6d3PQHrDX7rncZ
+uApD083x3WP0fmHRvB0EedsR2lHuZBExKShvLf02VnbamQyXtqb2PIdRz+lKdeBt
+RtAn9EQNCEQANxy4r91ZyUmwjUZJNOM1MJjbicub/kqpreF8Zm+z2BzgQOHHklce
+S0NM3MP44iGB9KOwFH3TL8kjYNQ+nqwHp2vTtjKE4biMzvwmT0C3aoFvYad5U52Y
+TE0ckjANZatsrEXYeqSflqX1HVQmTImqNg6N/QpFfLECgYEA8x8+wSfejccvW44+
+ZrqRQqIsRbAiqbOGnfhUzRyBZUF73ubY2YgR54E4BZTg8DwrCq4df2U24spw6o/h
+7RLf61JKwxhE+ORjhAmOwFTi7AFm5WZ+nW7jh+ScPkLzLC04HzzgAFIVlDDraQP8
+NBsBmZbFTl6pBUnppbShYDltmWUCgYEA1WYbnAbAmA8Xko8Qvnq/Caj6gG9QEw2A
+P14gF4ECrNgYukM45JQR1cp21ao2t0O1IrkPcACT3KdfcipG5xs6FtmtBvkNvGCW
+oVrthKtyQLQ3/b8x6PfVhiQxzOcw4fMTNjtnVJGkiyrbPifCLDvHfQ3Gb+K8jEbA
+jAENVkrPL6UCgYBwgPnyOjfjldPVY0p/EUCc/BzOlsZDj17xBPSBAfri112x9VNN
+vojCf2pkMtOwd7dXNuFRjY3LfvCnqrNamIxkAe20wCtSnaVreVzEpcNogPGToE1h
+HupNfT3MFgEfZUF+OxZRL6rqq4SUURLJLeIcp8dgD6/ZUa28T40J0SllfQKBgGZ5
+fQKk33Flte0kFGdT7E8IPRrV2T78+bv0SDbhNdaogt9XDof9br8aVYxvC41fzyjY
+c0hWjqqkGRpqoNez5GY6q3Mwv97ZBxx+3JYb+maF5GlOmfoEoR2kXeHGl1u5bV1a
+k1kyAzDtKJElaIHzRu2PYt4xpFc8VpQkoTHyBKIdAoGBAKofM4GzjSFyHZeZd2W3
+Vf5ax3guFwNx0NidUwWwYYb3ulJshvHY4e7C+QAQKH7LgeyCArNo0wKBIGN1Xrtm
+/IHhH2jrGbThYKQrKqgMokvJlVBLzukLEL8PHg4FRkN/UtibugnS3ZzaNgKcPnq4
+gx48V947Z1xgZuGfs0hiF8IS
+-----END PRIVATE KEY-----`;
 
 type YiPaymentRequestSigned = YiPaymentRequest & {
   // 签名字符串 - Signature string
@@ -67,7 +94,11 @@ export async function requestYiPaySubmitSigned(params: YiPaymentRequest) {
   try {
     // Generate signature
     const { signedParams } = APISignature.sign({
-      params,
+      params: {
+        ...params, 
+        out_trade_no: generateTimestampConcise(),
+        timestamp: String(Math.floor(Date.now() / 1000))
+      },
       privateKey: PRIVATE_RSA_KEY,
     });
 
@@ -75,10 +106,12 @@ export async function requestYiPaySubmitSigned(params: YiPaymentRequest) {
     const response = await fetch(YI_PAY_ENDPOINT, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/x-www-form-urlencoded",
       },
-      body: JSON.stringify(signedParams),
+      body: new URLSearchParams(signedParams).toString(),
     });
+
+    console.log('requestYiPaySubmitSigned', { signedParams, response });
 
     return await response.json();
   } catch (error) {
@@ -112,20 +145,25 @@ export class APISignature {
     const { params, privateKey } = options;
 
     // Step 1: Filter and sort parameters
-    const filteredParams = this.filterAndSortParams(params);
+    let paramString = this.filterAndSortParams(params);
 
-    // Step 2: Create parameter string
-    const paramString = this.createParamString(filteredParams);
+    // remove the last & if it exists
+    if (paramString.endsWith('&')) {
+      paramString = paramString.slice(0, -1);
+    }
 
     // Step 3: Generate RSA signature
     const signature = this.generateSignature(paramString, privateKey);
 
+
     // Add signature to parameters
     const signedParams = {
       ...params,
-      sign_type: "SHA256WithRSA",
+      sign_type: "RSA",
       sign: signature,
     };
+
+    console.log('APISignature', { paramString, signature, signedParams });
 
     return {
       signedParams,
@@ -140,7 +178,7 @@ export class APISignature {
    */
   private static filterAndSortParams(
     params: Record<string, any>,
-  ): Record<string, any> {
+  ): string {
     // Remove sign and sign_type parameters
     const { sign, sign_type, ...restParams } = params;
 
@@ -150,10 +188,9 @@ export class APISignature {
     // Create new sorted object
     return sortedKeys.reduce(
       (acc, key) => {
-        acc[key] = restParams[key];
-        return acc;
+        return acc + `${key}=${restParams[key]}&`;
       },
-      {} as Record<string, any>,
+      "",
     );
   }
 
@@ -178,7 +215,7 @@ export class APISignature {
     content: string,
     privateKey: string,
   ): string {
-    const sign = crypto.createSign("SHA256");
+    const sign = crypto.createSign("RSA-SHA256");
     sign.update(content);
     return sign.sign(privateKey, "base64");
   }
@@ -211,4 +248,9 @@ async function makeAPIRequest(
     console.error("API request failed:", error);
     throw error;
   }
+}
+
+function generateTimestampConcise(): string {
+  const d: Date = new Date();
+  return `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, '0')}${String(d.getDate()).padStart(2, '0')}${String(d.getHours()).padStart(2, '0')}${String(d.getMinutes()).padStart(2, '0')}${String(d.getSeconds()).padStart(2, '0')}${String(d.getMilliseconds()).padStart(3, '0')}`;
 }

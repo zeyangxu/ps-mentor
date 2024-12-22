@@ -6,6 +6,7 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "jsr:@supabase/supabase-js@2";
 import { corsHeaders } from "../_shared/cors.ts";
+import { DIFY_API_KEY_NO_SYNTH } from "../../common/constants.ts";
 
 console.log("Edge Function: Starting execution");
 
@@ -54,17 +55,17 @@ Deno.serve(async (req) => {
 
     // Check usage limit - First try to get existing record
     let { data: usageData, error: usageError } = await supabaseClient
-      .from('usage_tracking')
+      .from("usage_tracking")
       .select()
-      .eq('user_id', user.id)
+      .eq("user_id", user.id)
       .single();
 
     console.log("Usage data:", usageData, "Error:", usageError);
 
     // If no record exists, create one with count 0
-    if (usageError && usageError.code === 'PGRST116') {
+    if (usageError && usageError.code === "PGRST116") {
       const { data: newUsageData, error: insertError } = await supabaseClient
-        .from('usage_tracking')
+        .from("usage_tracking")
         .insert({ user_id: user.id, usage_count: 2, email: user.email })
         .select()
         .single();
@@ -94,7 +95,7 @@ Deno.serve(async (req) => {
             ...corsHeaders,
             "Content-Type": "application/json",
           },
-        }
+        },
       );
     }
 
@@ -107,13 +108,16 @@ Deno.serve(async (req) => {
       user: user.id,
     };
 
-    console.log("Sending request to Dify with payload:", JSON.stringify(difyPayload));
+    console.log(
+      "Sending request to Dify with payload:",
+      JSON.stringify(difyPayload),
+    );
 
     const difyResponse = await fetch("https://api.dify.ai/v1/workflows/run", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer app-zNUj8dFNmGhyWgQHJOkPuqUs`,
+        Authorization: `Bearer ${DIFY_API_KEY_NO_SYNTH}`,
       },
       body: JSON.stringify(difyPayload),
     });
@@ -137,7 +141,9 @@ Deno.serve(async (req) => {
     if (!difyResponse.ok) {
       const errorText = await difyResponse.text();
       console.error("Dify API error response:", errorText);
-      throw new Error(`Dify API error: ${difyResponse.status} ${difyResponse.statusText}\nResponse: ${errorText}`);
+      throw new Error(
+        `Dify API error: ${difyResponse.status} ${difyResponse.statusText}\nResponse: ${errorText}`,
+      );
     }
 
     const difyData = await difyResponse.json();
@@ -155,9 +161,9 @@ Deno.serve(async (req) => {
 
     // Increment usage count after successful analysis
     const { error: updateError } = await supabaseClient
-      .from('usage_tracking')
+      .from("usage_tracking")
       .update({ usage_count: currentUsage - 1 })
-      .eq('user_id', user.id);
+      .eq("user_id", user.id);
 
     if (updateError) {
       console.error("Usage update error:", updateError);
@@ -167,8 +173,8 @@ Deno.serve(async (req) => {
     const data = {
       analysis: {
         english: difyData.data.outputs.english,
-        chinese: difyData.data.outputs.chinese
-      }
+        chinese: difyData.data.outputs.chinese,
+      },
     };
 
     console.log("Edge Function: Sending successful response");

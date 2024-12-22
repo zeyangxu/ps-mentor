@@ -1,5 +1,5 @@
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
-import { Award } from "lucide-react"
+import { Award, SmileIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
 import { CriteriaCard } from "./analysis/CriteriaCard"
@@ -73,12 +73,9 @@ export const AnalysisResults = ({ analysis, isAnalyzing }: AnalysisResultsProps)
     );
   }
 
-  // First parse the response to get the language versions
-  const response = analysis as AnalysisResponse;
-
-  // Then parse the specific language version
+  // Parse the response to get the language versions
   const analysisData: AnalysisData = JSON.parse(
-    language === "zh" ? response.chinese : response.english
+    language === "zh" ? analysis.chinese : analysis.english
   );
 
   const scorePercentage = (analysisData.overall_score / analysisData.max_score) * 100;
@@ -108,6 +105,12 @@ export const AnalysisResults = ({ analysis, isAnalyzing }: AnalysisResultsProps)
         </div>
       </CardHeader>
       <CardContent>
+        <div className="flex items-center gap-2 p-3 mb-6 bg-secondary/50 rounded-lg border border-border/50">
+          <SmileIcon className="w-5 h-5 text-primary flex-shrink-0" />
+          <p className="text-sm">
+            Dr. PS checker 的训练模型以及训练数据均以英文形式输入，故评估结果请以英文版本为准，辅以中文结果为参考。
+          </p>
+        </div>
         <div className="space-y-6">
           <div className="space-y-2">
             <div className="flex justify-between items-center">

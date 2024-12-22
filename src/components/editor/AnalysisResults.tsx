@@ -51,7 +51,7 @@ export const AnalysisResults = ({ analysis, isAnalyzing }: AnalysisResultsProps)
             <div className="absolute inset-4 border-4 border-dashed border-primary/10 rounded-full animate-[spin_5s_linear_infinite]" />
           </div>
           <p className="text-muted-foreground text-center animate-pulse">
-            正在深度分析您的文书/PS，请稍候...
+            Dr. PS Checker 正在深度分析您的文书/PS，请稍候...
           </p>
         </CardContent>
       </Card>

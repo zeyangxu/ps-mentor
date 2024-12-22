@@ -108,7 +108,7 @@ export const AnalysisResults = ({ analysis, isAnalyzing }: AnalysisResultsProps)
         <div className="flex items-center gap-2 p-3 mb-6 bg-secondary/50 rounded-lg border border-border/50">
           <SmileIcon className="w-5 h-5 text-primary flex-shrink-0" />
           <p className="text-sm">
-            Dr. PS checker 的训练模型以及训练数据均以英文形式输入，故评估结果请以英文版本为准，辅以中文结果为参考。
+            Dr. PS Checker 的训练模型以及训练数据均以英文形式输入，在此基础上结合中文语言特点进行了相应调整。因此，在查看评估结果及改进建议时，请您综合参考双语版本，以便获取更为全面的反馈信息哦。
           </p>
         </div>
         <div className="space-y-6">
@@ -120,7 +120,7 @@ export const AnalysisResults = ({ analysis, isAnalyzing }: AnalysisResultsProps)
               </span>
             </div>
             <div className="h-2 bg-secondary rounded-full overflow-hidden">
-              <div 
+              <div
                 className="h-full bg-primary rounded-full transition-all duration-1000 ease-out"
                 style={{ width: `${scorePercentage}%` }}
               />

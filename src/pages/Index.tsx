@@ -106,29 +106,29 @@ const Index = () => {
             Dr PS Checker 将从以下六大维度切入，对您的PS展开深度解析，<br />
             <span className="text-primary">为您精准打分，解读每一项得分背后的原因，提供个性化的修改建议</span>，
             <br />
-            <span className="text-primary"></span>超千字的PS评估报告</span>，助您的 PS 脱颖而出，为留学申请增添有力筹码！
-        </p>
-      </div>
+            超千字的PS评估报告，助您的 PS 脱颖而出，为留学申请增添有力筹码！
+          </p>
+        </div>
 
-      <div className="grid md:grid-cols-3 gap-8">
-        {features.map((feature, index) => (
-          <Card
-            key={feature.title}
-            className="p-6 animate-fade-up group hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
-            style={{ animationDelay: `${index * 100}ms` }}
-          >
-            <CardContent className="p-0">
-              <div className="bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4 group-hover:scale-125 group-hover:bg-primary/20 transition-all duration-300">
-                {feature.icon}
-              </div>
-              <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors duration-300">{feature.title}</h3>
-              <p className="text-muted-foreground group-hover:text-foreground transition-colors duration-300">{feature.description}</p>
-            </CardContent>
-          </Card>
-        ))}
+        <div className="grid md:grid-cols-3 gap-8">
+          {features.map((feature, index) => (
+            <Card
+              key={feature.title}
+              className="p-6 animate-fade-up group hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
+              <CardContent className="p-0">
+                <div className="bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4 group-hover:scale-125 group-hover:bg-primary/20 transition-all duration-300">
+                  {feature.icon}
+                </div>
+                <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors duration-300">{feature.title}</h3>
+                <p className="text-muted-foreground group-hover:text-foreground transition-colors duration-300">{feature.description}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </div>
     </div>
-    </div >
   );
 };
 

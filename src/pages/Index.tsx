@@ -66,7 +66,7 @@ const Index = () => {
           </p>
           <Link to="/editor">
             <Button size="lg" className="gap-2 transform hover:scale-110 hover:shadow-lg transition-all duration-300 ease-in-out">
-              开始评估 <ArrowRight className="w-4 h-4" />
+              一键评估 <ArrowRight className="w-4 h-4" />
             </Button>
           </Link>
         </div>

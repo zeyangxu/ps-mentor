@@ -6,7 +6,7 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "jsr:@supabase/supabase-js@2";
 import { corsHeaders } from "../_shared/cors.ts";
-import { DIFY_API_KEY_NO_SYNTH } from "../../common/constants.ts";
+import { DIFY_API_KEY_NO_SYNTH } from "../_common/dify.ts";
 
 console.log("Edge Function: Starting execution");
 

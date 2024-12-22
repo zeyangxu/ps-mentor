@@ -60,7 +60,7 @@ export const EditorInput = ({
       {hasUsageLeft ? (
         <>
           <Textarea
-            placeholder="在此粘贴您的文书/PS..."
+            placeholder="请点击上传，或直接在此粘贴您的文书/PS..."
             className="min-h-[500px] resize-none"
             value={content}
             onChange={(e) => setContent(e.target.value)}

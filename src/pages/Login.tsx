@@ -27,7 +27,7 @@ const Login = () => {
               <br />
               点击注册后，请前往您的邮箱，点击Supabase发来邮件中的确认链接完成注册。
               <br />
-              注册成功后，您可以免费体验1次反馈超千字的文书深度评估。😊
+              注册成功后，您可以免费体验 1 次反馈超千字的文书深度评估。😊
             </AlertDescription>
           </Alert>
           <div className="w-full bg-card rounded-lg shadow-lg p-8 relative z-10 hover:scale-[1.01] transition-transform duration-300">

@@ -15,9 +15,9 @@ const Login = () => {
         <div className="max-w-xl w-full mx-auto px-6 relative animate-fade-up">
           <div className="flex justify-center mb-8">
             <img 
-              src="/lovable-uploads/90ada833-6e4f-405f-b17e-081f8a76bba4.png" 
+              src="/lovable-uploads/392db423-89a7-4be0-be5f-d508e73d5651.png" 
               alt="PS Logo" 
-              className="w-16 h-16"
+              className="w-20 h-20 hover:scale-110 transition-transform duration-300"
             />
           </div>
           <Alert className="mb-6">

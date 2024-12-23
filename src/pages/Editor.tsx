@@ -103,9 +103,9 @@ const Editor = () => {
         <div className="flex justify-between items-center mb-8">
           <div className="flex items-center gap-4">
             <img 
-              src="/lovable-uploads/90ada833-6e4f-405f-b17e-081f8a76bba4.png" 
+              src="/lovable-uploads/392db423-89a7-4be0-be5f-d508e73d5651.png" 
               alt="PS Logo" 
-              className="w-10 h-10"
+              className="w-12 h-12 hover:scale-110 transition-transform duration-300"
             />
             <h1 className="text-3xl font-bold hover:text-primary transition-colors duration-300">Dr. PS Checker</h1>
           </div>

@@ -57,9 +57,9 @@ const Index = () => {
         <div className="text-center animate-fade-up mb-20">
           <div className="flex justify-center mb-6">
             <img 
-              src="/lovable-uploads/90ada833-6e4f-405f-b17e-081f8a76bba4.png" 
+              src="/lovable-uploads/392db423-89a7-4be0-be5f-d508e73d5651.png" 
               alt="PS Logo" 
-              className="w-24 h-24 mb-4"
+              className="w-32 h-32 mb-4 hover:scale-110 transition-transform duration-300"
             />
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 leading-tight hover:text-primary transition-colors duration-300">

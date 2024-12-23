@@ -114,20 +114,12 @@ const Index = () => {
         </h2>
 
         <div className="text-center animate-fade-up mb-12">
-          <div className="max-w-4xl mx-auto space-y-4 px-4">
-            <p className="text-xl md:text-2xl font-medium leading-relaxed bg-gradient-to-r from-primary/80 to-primary bg-clip-text text-transparent animate-fade-up">
-              Dr PS Checker 将从以下六大维度切入，对您的PS展开深度解析
-            </p>
-            <div className="relative">
-              <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-lg blur opacity-30"></div>
-              <p className="relative text-lg md:text-xl text-foreground leading-relaxed font-medium py-2">
-                为您精准打分，解读每一项得分背后的原因，提供个性化的修改建议
-              </p>
-            </div>
-            <p className="text-lg md:text-xl font-bold text-primary/90 leading-relaxed animate-pulse">
-              超千字的 PS 评估报告，助您的 PS 脱颖而出，为留学申请增添有力筹码！
-            </p>
-          </div>
+          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-4xl mx-auto font-bold hover:text-foreground transition-colors duration-300">
+            Dr PS Checker 将从以下六大维度切入，对您的PS展开深度解析，<br />
+            <span className="text-primary">为您精准打分，解读每一项得分背后的原因，提供个性化的修改建议</span>，
+            <br />
+            超千字的 PS 评估报告，助您的 PS 脱颖而出，为留学申请增添有力筹码！
+          </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">

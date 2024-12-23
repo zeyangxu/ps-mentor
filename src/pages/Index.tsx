@@ -56,9 +56,9 @@ const Index = () => {
       <div className="container mx-auto px-4 py-16 max-w-6xl relative z-10">
         <div className="text-center animate-fade-up mb-20">
           <div className="flex justify-center mb-6">
-            <img 
-              src="/lovable-uploads/392db423-89a7-4be0-be5f-d508e73d5651.png" 
-              alt="PS Logo" 
+            <img
+              src="/lovable-uploads/392db423-89a7-4be0-be5f-d508e73d5651.png"
+              alt="PS Logo"
               className="w-32 h-32 mb-4 hover:scale-110 transition-transform duration-300"
             />
           </div>
@@ -84,7 +84,7 @@ const Index = () => {
               </div>
               <h2 className="text-2xl font-semibold mb-4 group-hover:text-primary transition-colors duration-300">留学文书/PS的重要性</h2>
               <p className="text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors duration-300">
-                个人陈述（Personal Statement, 简称文书/PS）是欧美大学申请中至关重要的一环。一篇出色的PS能<span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed] group-hover:drop-shadow-[0_0_2px_#7c3aed] transition-all duration-300">弥补学术成绩及相关经验的不足</span>，帮助申请者在众多竞争者中脱颖而出。而相反，一篇质量不佳的PS可能会<span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed] group-hover:drop-shadow-[0_0_2px_#7c3aed] transition-all duration-300">拉低整体申请水平</span>，甚至让招生官对申请者的能力和动机产生质疑。
+                个人陈述（Personal Statement, 简称文书/PS）是欧美大学申请中至关重要的一环。一篇出色的 PS 能在一定程度上<span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed] group-hover:drop-shadow-[0_0_2px_#7c3aed] transition-all duration-300">弥补学术成绩及相关经验的不足</span>，帮助申请者在众多竞争者中脱颖而出。相反，一篇质量不佳的 PS 可能会<span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed] group-hover:drop-shadow-[0_0_2px_#7c3aed] transition-all duration-300">拉低整体申请水平</span>，甚至让招生官对申请者的学术能力产生质疑。
               </p>
             </CardContent>
           </Card>

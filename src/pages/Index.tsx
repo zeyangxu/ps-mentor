@@ -62,8 +62,11 @@ const Index = () => {
               className="w-32 h-32 mb-4 hover:scale-110 transition-transform duration-300"
             />
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 leading-tight hover:text-primary transition-colors duration-300">
-            Dr. PS Checker
+          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 leading-tight relative group">
+            <span className="inline-block animate-[tracking-in-expand_0.7s_cubic-bezier(0.215,0.610,0.355,1.000)_both] hover:text-primary transition-colors duration-300">
+              Dr. PS Checker
+            </span>
+            <span className="absolute -bottom-2 left-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
           </h1>
           <p className="text-base md:text-xl text-muted-foreground mb-8 mx-auto leading-relaxed whitespace-nowrap overflow-x-auto flex justify-center">
             <span className="font-bold hover:text-primary transition-colors duration-300">最前沿的 AI 算法，最资深的研发团队，最精细的文书多维剖析，为您的留学保驾护航！</span>

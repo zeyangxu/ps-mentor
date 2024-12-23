@@ -22,7 +22,7 @@ const Login = () => {
           </div>
           <Alert className="mb-6">
             <InfoIcon className="h-4 w-4" />
-            <AlertDescription className="ml-2">
+            <AlertDescription className="ml-2 whitespace-nowrap overflow-x-auto">
               目前Dr. PS Checker 仅支持邮箱这一种注册方式，给您带来不便，还请谅解。
               <br />
               点击注册后，请前往您的邮箱，点击Supabase发来邮件中的确认链接完成注册。

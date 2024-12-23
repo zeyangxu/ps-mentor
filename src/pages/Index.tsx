@@ -106,7 +106,12 @@ const Index = () => {
         </div>
 
         {/* Features Section */}
-        <h2 className="text-4xl font-bold text-center mb-6 hover:text-primary transition-colors duration-300">六大评估维度</h2>
+        <h2 className="text-4xl font-bold text-center mb-6 relative group">
+          <span className="inline-block animate-[tracking-in-expand_0.7s_cubic-bezier(0.215,0.610,0.355,1.000)_both] hover:text-primary transition-colors duration-300">
+            六大评估维度
+          </span>
+          <span className="absolute -bottom-2 left-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
+        </h2>
 
         <div className="text-center animate-fade-up mb-12">
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-4xl mx-auto font-bold hover:text-foreground transition-colors duration-300">

@@ -12,7 +12,7 @@ const Login = () => {
           <div className="absolute top-40 right-40 w-16 h-16 rounded-full bg-primary/10 animate-pulse [animation-duration:3s] [animation-delay:2s]" />
         </div>
 
-        <div className="max-w-xl w-full mx-auto px-6 relative animate-fade-up">
+        <div className="max-w-2xl w-full mx-auto px-6 relative animate-fade-up">
           <div className="flex justify-center mb-8">
             <img
               src="/lovable-uploads/392db423-89a7-4be0-be5f-d508e73d5651.png"

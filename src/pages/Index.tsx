@@ -84,7 +84,7 @@ const Index = () => {
               </div>
               <h2 className="text-2xl font-semibold mb-4 group-hover:text-primary transition-colors duration-300">留学文书/PS的重要性</h2>
               <p className="text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors duration-300">
-                个人陈述（Personal Statement, 简称文书/PS）是欧美大学申请中重要的一环。一篇出色的 PS 能在一定程度上<span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed] group-hover:drop-shadow-[0_0_2px_#7c3aed] transition-all duration-300">弥补学术成绩及相关经验的不足</span>，帮助申请者脱颖而出。相反，一篇质量不佳的 PS 可能会<span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed] group-hover:drop-shadow-[0_0_2px_#7c3aed] transition-all duration-300">拉低整体申请水平</span>，让招生官对申请者的学术能力产生质疑。
+                个人陈述（Personal Statement, 简称文书/PS）是欧美大学申请中重要的一环。一篇出色的 PS 能在一定程度上<span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed] group-hover:drop-shadow-[0_0_2px_#7c3aed] transition-all duration-300">弥补学术成绩及相关经验的不足</span>，帮助申请者脱颖而出。相反，一篇质量不佳的 PS 可能会<span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed] group-hover:drop-shadow-[0_0_2px_#7c3aed] transition-all duration-300">拉低整体申请水平</span>，让招生官对申请者的综合能力产生质疑。
               </p>
             </CardContent>
           </Card>
@@ -96,7 +96,7 @@ const Index = () => {
               </div>
               <h2 className="text-2xl font-semibold mb-4 group-hover:text-primary transition-colors duration-300">留学文书/PS现存困境</h2>
               <p className="text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors duration-300">
-                在实际申请过程中，许多申请者因<span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed] group-hover:drop-shadow-[0_0_2px_#7c3aed] transition-all duration-300">缺乏对PS写作要求的系统理解</span>，或受到<span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed] group-hover:drop-shadow-[0_0_2px_#7c3aed] transition-all duration-300">市面上质量参差不齐的文书代写机构的影响</span>，往往难以撰写出符合学校期望的文书/PS。这不仅增加了申请的难度，也使一些本具竞争力的申请者未能有效展现自己的潜力，错失录取机会！
+                在实际申请过程中，许多申请者因<span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed] group-hover:drop-shadow-[0_0_2px_#7c3aed] transition-all duration-300">缺乏对 PS 写作要求的系统理解</span>，或受到<span className="text-primary drop-shadow-[0_0_0.5px_#7c3aed] group-hover:drop-shadow-[0_0_2px_#7c3aed] transition-all duration-300">市面上质量参差不齐的文书代写机构的影响</span>，往往难以撰写出符合学校期望的文书。这不仅增加了申请的难度，也使一些本具竞争力的申请者未能有效展现自己的潜力，从而错失录取机会！
               </p>
             </CardContent>
           </Card>

@@ -13,6 +13,13 @@ const Login = () => {
         </div>
 
         <div className="max-w-xl w-full mx-auto px-6 relative animate-fade-up">
+          <div className="flex justify-center mb-8">
+            <img 
+              src="/lovable-uploads/90ada833-6e4f-405f-b17e-081f8a76bba4.png" 
+              alt="PS Logo" 
+              className="w-16 h-16"
+            />
+          </div>
           <Alert className="mb-6">
             <InfoIcon className="h-4 w-4" />
             <AlertDescription className="ml-2">

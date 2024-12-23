@@ -56,7 +56,11 @@ const Index = () => {
       <div className="container mx-auto px-4 py-16 max-w-6xl relative z-10">
         <div className="text-center animate-fade-up mb-20">
           <div className="flex justify-center mb-6">
-            <Sparkles className="w-12 h-12 text-primary animate-[spin_8s_linear_infinite]" />
+            <img 
+              src="/lovable-uploads/90ada833-6e4f-405f-b17e-081f8a76bba4.png" 
+              alt="PS Logo" 
+              className="w-24 h-24 mb-4"
+            />
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 leading-tight hover:text-primary transition-colors duration-300">
             Dr. PS Checker

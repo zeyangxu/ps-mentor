@@ -101,7 +101,14 @@ const Editor = () => {
     <div className="min-h-screen bg-gradient-to-b from-secondary/50 to-background relative overflow-hidden">
       <div className="container mx-auto px-4 pt-24 pb-8 relative animate-fade-up">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold hover:text-primary transition-colors duration-300">Dr. PS Checker</h1>
+          <div className="flex items-center gap-4">
+            <img 
+              src="/lovable-uploads/90ada833-6e4f-405f-b17e-081f8a76bba4.png" 
+              alt="PS Logo" 
+              className="w-10 h-10"
+            />
+            <h1 className="text-3xl font-bold hover:text-primary transition-colors duration-300">Dr. PS Checker</h1>
+          </div>
           <LogoutButton />
         </div>
         <div className="grid md:grid-cols-2 gap-8">

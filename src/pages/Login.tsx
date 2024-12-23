@@ -1,6 +1,6 @@
-import { AuthForm } from "@/components/auth/AuthForm"
-import { Alert, AlertDescription } from "@/components/ui/alert"
-import { InfoIcon } from "lucide-react"
+import { AuthForm } from "@/components/auth/AuthForm";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { InfoIcon } from "lucide-react";
 
 const Login = () => {
   return (
@@ -12,7 +12,7 @@ const Login = () => {
           <div className="absolute top-40 right-40 w-16 h-16 rounded-full bg-primary/10 animate-pulse [animation-duration:3s] [animation-delay:2s]" />
         </div>
 
-        <div className="max-w-2xl w-full mx-auto px-6 relative animate-fade-up">
+        <div className="max-w-xl w-full mx-auto px-6 relative animate-fade-up">
           <div className="flex justify-center mb-8">
             <img
               src="/lovable-uploads/392db423-89a7-4be0-be5f-d508e73d5651.png"
@@ -22,10 +22,10 @@ const Login = () => {
           </div>
           <Alert className="mb-6">
             <InfoIcon className="h-4 w-4" />
-            <AlertDescription className="ml-2">
-              目前我们仅支持邮箱这一种注册方式，给您带来不便，还请谅解。
+            <AlertDescription className="ml-2 whitespace-nowrap overflow-x-auto">
+              目前Dr. PS Checker 仅支持邮箱这一种注册方式，给您带来不便，还请谅解。
               <br />
-              点击注册后，请前往您的邮箱查看 Supabase 发来的邮件，点击链接完成注册。
+              点击注册后，请前往您的邮箱，点击Supabase发来邮件中的确认链接完成注册。
               <br />
               注册成功后，您可以免费体验 1 次反馈超千字的文书深度评估。😊
             </AlertDescription>

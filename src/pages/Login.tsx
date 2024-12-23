@@ -14,9 +14,9 @@ const Login = () => {
 
         <div className="max-w-xl w-full mx-auto px-6 relative animate-fade-up">
           <div className="flex justify-center mb-8">
-            <img 
-              src="/lovable-uploads/392db423-89a7-4be0-be5f-d508e73d5651.png" 
-              alt="PS Logo" 
+            <img
+              src="/lovable-uploads/392db423-89a7-4be0-be5f-d508e73d5651.png"
+              alt="PS Logo"
               className="w-20 h-20 hover:scale-110 transition-transform duration-300"
             />
           </div>
@@ -25,9 +25,9 @@ const Login = () => {
             <AlertDescription className="ml-2">
               目前我们仅支持邮箱这一种注册方式，给您带来不便，还请谅解。
               <br />
-              点击注册后，请前往您的邮箱点击确认链接完成注册。
+              点击注册后，请前往您的邮箱查看 Supabase 发来的邮件，点击链接完成注册。
               <br />
-              注册成功后，您可以免费体验2次反馈超千字的文书深度评估。😊
+              注册成功后，您可以免费体验 1 次反馈超千字的文书深度评估。😊
             </AlertDescription>
           </Alert>
           <div className="w-full bg-card rounded-lg shadow-lg p-8 relative z-10 hover:scale-[1.01] transition-transform duration-300">

@@ -113,30 +113,32 @@ Deno.serve(async (req) => {
       JSON.stringify(difyPayload),
     );
 
-    const difyResponse = await fetch("https://api.dify.ai/v1/workflows/run", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${DIFY_API_KEY_NO_SYNTH}`,
-      },
-      body: JSON.stringify(difyPayload),
-    });
+    // const difyResponse = await fetch("https://api.dify.ai/v1/workflows/run", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     Authorization: `Bearer ${DIFY_API_KEY_NO_SYNTH}`,
+    //   },
+    //   body: JSON.stringify(difyPayload),
+    // });
 
-    // const difyResponse = {
-    //   ok: true,
-    //   status: 200,
-    //   statusText: '',
-    //   text: () => "",
-    //   json: () => {
-    //     return {
-    //       data: {
-    //         outputs: {
-    //           text: '1. **Final Score**: 2 out of 60\n\n2. **Category**: Below Average\n\n3. **Advice for Improvement**:\n   - **Purpose and Motivation**: Begin by identifying a pivotal experience or passion that has driven your interest in the field you wish to study. This could be an academic project, a personal encounter, or an inspiring professional experience. Describe this moment vividly and explain how it has shaped your academic and career aspirations.\n   \n   - **Academic Competence**: Highlight relevant coursework, projects, or academic achievements that have prepared you for the program you are applying to. Discuss specific theories or methodologies you have encountered and their impact on your understanding of the subject.\n\n   - **Professional or Internship Competence**: If applicable, detail any internships or professional experiences related to your field of interest. Describe your role, responsibilities, challenges faced, and skills acquired. Reflect on how these experiences have equipped you with practical insights and competencies.\n\n   - **Program-specific Reasons**: Conduct thorough research on the program you are applying to. Mention specific courses, faculty members, or features of the program that align with your interests and goals. Explain why these elements are particularly appealing to you.\n\n   - **Future Career Planning**: Clearly outline your career objectives post-graduation. Specify the industry and roles you aim to pursue, detailing both short-term and long-term goals. Discuss how the knowledge and skills gained from the program will help achieve these goals and contribute to your desired impact in the field.\n\n   - **Quality of Writing**: Expand your statement into a coherent narrative that covers multiple paragraphs. Ensure clarity in expression, adherence to grammatical norms, and authenticity in using advanced vocabulary. Strive for a consistent style that effectively communicates your enthusiasm and qualifications.\n\n4. **Good Luck**: With dedication to revising and enriching your personal statement based on this feedback, I am confident you can present a compelling case for your application. Best of luck in crafting a narrative that truly reflects your potential!'
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
+    // Mock Response for testing purpose
+    const difyResponse = {
+      ok: true,
+      status: 200,
+      statusText: '',
+      text: () => "",
+      json: () => {
+        return {
+          data: {
+            outputs: {
+              "chinese": "{\"overall_score\":5,\"max_score\":10,\"overall_level\":\"average\",\"analysis_of_each_criteria\":{\"purpose_and_motivation\":{\"score\":5,\"justification\":\"个人陈述清晰地展现了对法律的兴趣，并提供了一些具体的经历来说明申请者的动机。然而，为了提高评分，申请者可以更深入地分析这些经历，将其与法律中的具体问题或兴趣领域联系起来。\",\"advice_for_improvement\":[\"讨论接触英国和美国案例如何塑造了对法律原则的理解。\",\"反思希望在UCL攻读LLM期间发展哪些技能或知识。\"]},\"academic_competence\":{\"score\":8,\"justification\":\"个人陈述通过讨论具体的课程项目和经历展现了较强的学术能力。\",\"advice_for_improvement\":[\"详细说明在项目中遇到的学术局限性以及如何克服。\",\"深入探讨所获得的可转移技能。\"]},\"professional_internship_competence\":{\"score\":4,\"justification\":\"个人陈述提到了实习经历，但缺乏对具体事件或情境的详细描述。\",\"advice_for_improvement\":[\"描述实习期间处理的具体案例或任务。\",\"反思这些经历如何为进一步的法律学习做好准备。\"]},\"program_specific_reasons\":{\"score\":4,\"justification\":\"个人陈述提到了UCL的声誉和地理位置，但未提及具体的课程或模块。\",\"advice_for_improvement\":[\"研究并加入UCL LLM项目中与兴趣和职业目标相关的具体课程或模块的细节。\",\"讨论某位教授的研究如何激励了他们。\"]},\"future_career_planning\":{\"score\":4,\"justification\":\"个人陈述简要提到了职业规划，但缺乏具体的细节和清晰的目标。\",\"advice_for_improvement\":[\"明确希望在UCL学习期间发展哪些具体的知识和技能。\",\"清晰描述从短期目标到长期抱负的职业进程。\"]},\"quality_of_writing\":{\"score\":5,\"justification\":\"个人陈述中存在语法错误和不流畅的表达，影响了信息的传递。\",\"advice_for_improvement\":[\"仔细校对以消除语法错误。\",\"使用更精准和多样化的词汇。\"]}}}",
+              "english": "{\"overall_score\":5,\"max_score\":10,\"overall_level\":\"average\",\"analysis_of_each_criteria\":{\"purpose_and_motivation\":{\"score\":5,\"justification\":\"The personal statement demonstrates a clear interest in law and provides some specific examples of experiences that have motivated the applicant.\",\"advice_for_improvement\":[\"Analyze experiences more critically, linking them to specific issues or areas of interest within law.\",\"Reflect on the skills or knowledge they aim to develop during their LLM at UCL and how these align with their career aspirations.\"]},\"academic_competence\":{\"score\":8,\"justification\":\"The personal statement demonstrates a strong academic competence by discussing specific coursework projects and experiences.\",\"advice_for_improvement\":[\"Elaborate on the academic limitations encountered during projects and how they were overcome.\",\"Discuss transferable skills acquired in more detail.\"]},\"professional_internship_competence\":{\"score\":4,\"justification\":\"The personal statement mentions two internship experiences, including the names of the institutions and job roles, as well as listing job responsibilities.\",\"advice_for_improvement\":[\"Describe a particular case or task worked on during internships, detailing challenges faced, methods used to address them, and outcomes achieved.\",\"Reflect on how these experiences have prepared them for further study in law.\"]},\"program_specific_reasons\":{\"score\":4,\"justification\":\"The personal statement mentions generic program features such as UCL's reputation, distinguished professors, and its location in London.\",\"advice_for_improvement\":[\"Research and include details about specific courses or modules offered in the LLM program at UCL that align with their interests and career goals.\",\"Discuss a professor whose work inspires them or a unique aspect of UCL's legal clinics.\"]},\"future_career_planning\":{\"score\":4,\"justification\":\"The personal statement briefly mentions a career plan, specifying the legal industry and a job role.\",\"advice_for_improvement\":[\"Specify what particular knowledge and skills they aim to develop during their studies at UCL and how these will contribute to their career progression.\",\"Outline a clear progression from short-term goals to long-term ambitions.\"]},\"quality_of_writing\":{\"score\":5,\"justification\":\"The personal statement contains numerous grammatical errors and awkward phrasing that distract from the overall message.\",\"advice_for_improvement\":[\"Proofread carefully to eliminate errors and consider using more precise and varied vocabulary.\",\"Use more complex sentence structures to enhance the writing style.\"]}}}"
+            }
+          }
+        }
+      }
+    }
 
     if (!difyResponse.ok) {
       const errorText = await difyResponse.text();

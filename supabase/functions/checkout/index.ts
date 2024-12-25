@@ -7,12 +7,16 @@ import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { EpayCore } from "./sdk.ts";
 import epayConfig from "./epay.config.ts";
 import { generatePaymentUrl, PaymentData } from "./zpay.sdk.ts";
+import { getUserInfo } from "../_shared/auth.ts";
 
 Deno.serve(async (req) => {
-  const params: PaymentData = await req.json();
+  const params: PaymentData & { extra: Record<string, string> } = await req
+    .json();
   const epaySdk = new EpayCore(epayConfig);
+  const userInfo = await getUserInfo(req);
+  const userId = "719a4347-56f5-4380-8140-cbc2e3171b7b";
 
-  console.log("🦄 === [add-limit]", params);
+  console.log("🦄 === [add-limit]", params, userInfo);
 
   const paymentData: PaymentData = {
     pid: "20220726190052",
@@ -22,13 +26,11 @@ Deno.serve(async (req) => {
     sitename: params.sitename,
     notify_url: params.notify_url,
     return_url: params.return_url,
-    param: "test-param",
+    param: `${userId}_${Date.now()}`,
     out_trade_no: new Date().toISOString().replace(/[-T:]/g, "").slice(0, 14) +
       Math.floor(Math.random() * 1000)
         .toString()
         .padStart(3, "0"),
-    // return_url: params.return_url,
-    // sitename: params.sitename,
   };
 
   const key = "vg9ZRZN4FOKtDM06UfqH69GDJoG4gGIJ";

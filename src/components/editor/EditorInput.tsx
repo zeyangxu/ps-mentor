@@ -75,9 +75,7 @@ export const EditorInput = ({
             {isAnalyzing ? "分析中..." : "文书深度评估"}
           </Button>
         </>
-      ) : (
-        <PaymentOptions />
-      )}
+      ) : null}
 
       {analysis && hasUsageLeft && (
         <Alert className="bg-secondary border-secondary">

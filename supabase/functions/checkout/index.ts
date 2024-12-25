@@ -23,7 +23,6 @@ Deno.serve(async (req) => {
     type: "alipay",
     "money": "0.01",
     name: params.name,
-    sitename: params.sitename,
     notify_url: params.notify_url,
     return_url: params.return_url,
     param: `${userId}_${Date.now()}`,

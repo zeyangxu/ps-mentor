@@ -3,7 +3,7 @@ import { Card } from "./ui/card";
 
 export const ServiceContact = () => {
   return (
-    <Card className="fixed bottom-0 left-0 right-0 p-6 bg-gradient-to-br from-primary/10 to-secondary hover:shadow-lg transition-all duration-300 max-w-full animate-fade-up">
+    <Card className="sticky bottom-0 left-0 right-0 p-6 bg-gradient-to-br from-primary/10 to-secondary hover:shadow-lg transition-all duration-300 max-w-full animate-fade-up">
       <div className="container mx-auto max-w-6xl">
         <div className="flex items-center gap-2 mb-4">
           <MessageSquare className="w-5 h-5 text-primary" />

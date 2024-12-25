@@ -11,6 +11,11 @@ const SUPABASE_ANON_KEY = Deno.env.get("SUPABASE_ANON_KEY") || "";
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
+const MoneyUsageMap = {
+  "19.9": 1,
+  "79.9": 5
+}
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response("ok", { headers: corsHeaders });

@@ -10,6 +10,7 @@ import { DIFY_API_KEY_NO_SYNTH } from "../_common/dify.ts";
 
 console.log("Edge Function: Starting execution");
 
+
 Deno.serve(async (req) => {
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {

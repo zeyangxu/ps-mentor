@@ -1,11 +1,9 @@
 import { Card } from "@/components/ui/card"
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
-import { useState } from "react"
+import { Button } from "@/components/ui/button"
 import { supabase } from "@/lib/supabase"
 import { useToast } from "@/hooks/use-toast"
 
 export const PaymentOptions = () => {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null)
   const { toast } = useToast()
 
   const handlePayment = async (amount: string) => {
@@ -57,75 +55,42 @@ export const PaymentOptions = () => {
   }
 
   return (
-    <div className="space-y-8">
-      <div className="space-y-4">
-        <h3 className="text-xl font-semibold text-center">推荐使用支付宝</h3>
-        <div className="grid md:grid-cols-2 gap-4">
-          <Dialog open={!!selectedImage} onOpenChange={(open) => !open && setSelectedImage(null)}>
-            <Card className="p-4 flex flex-col items-center">
-              <DialogTrigger asChild>
-                <img 
-                  src="/lovable-uploads/bc1db9f3-a61f-49b7-bd7f-240a3e196786.png" 
-                  alt="支付宝支付 ¥19.90" 
-                  className="w-full max-w-[240px] rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
-                  onClick={() => handlePayment("19.9")}
-                />
-              </DialogTrigger>
-              <p className="mt-2 text-lg font-semibold">¥19.90/次</p>
-            </Card>
-            <Card className="p-4 flex flex-col items-center">
-              <DialogTrigger asChild>
-                <img 
-                  src="/lovable-uploads/36d54d5d-d91a-49e8-b85d-340014a5ac97.png" 
-                  alt="支付宝支付 ¥79.90" 
-                  className="w-full max-w-[240px] rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
-                  onClick={() => handlePayment("79.9")}
-                />
-              </DialogTrigger>
-              <p className="mt-2 text-lg font-semibold">¥79.90/5次</p>
-            </Card>
-          </Dialog>
+    <div className="grid md:grid-cols-2 gap-4">
+      <Card className="p-6 flex flex-col items-center space-y-4">
+        <div className="text-center">
+          <h3 className="text-2xl font-bold">¥19.90</h3>
+          <p className="text-muted-foreground">单次分析</p>
         </div>
-      </div>
+        <ul className="space-y-2 text-sm">
+          <li>✓ 一次完整的文书分析</li>
+          <li>✓ 详细的评分和建议</li>
+          <li>✓ 专业的修改指导</li>
+        </ul>
+        <Button 
+          className="w-full" 
+          onClick={() => handlePayment("19.9")}
+        >
+          立即购买
+        </Button>
+      </Card>
 
-      <div className="space-y-4">
-        <h3 className="text-xl font-semibold text-center">推荐使用微信支付</h3>
-        <div className="grid md:grid-cols-2 gap-4">
-          <Dialog open={!!selectedImage} onOpenChange={(open) => !open && setSelectedImage(null)}>
-            <Card className="p-4 flex flex-col items-center">
-              <DialogTrigger asChild>
-                <img 
-                  src="/lovable-uploads/426c581c-0a3f-4603-9666-f8aac0d8a256.png" 
-                  alt="微信支付 ¥19.90" 
-                  className="w-full max-w-[240px] rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
-                  onClick={() => handlePayment("19.9")}
-                />
-              </DialogTrigger>
-              <p className="mt-2 text-lg font-semibold">¥19.90/次</p>
-            </Card>
-            <Card className="p-4 flex flex-col items-center">
-              <DialogTrigger asChild>
-                <img 
-                  src="/lovable-uploads/0c247c28-3376-48b7-a94f-5db9edc21fda.png" 
-                  alt="微信支付 ¥79.90" 
-                  className="w-full max-w-[240px] rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
-                  onClick={() => handlePayment("79.9")}
-                />
-              </DialogTrigger>
-              <p className="mt-2 text-lg font-semibold">¥79.90/5次</p>
-            </Card>
-            <DialogContent className="max-w-[90vw] w-auto">
-              {selectedImage && (
-                <img 
-                  src={selectedImage} 
-                  alt="支付二维码" 
-                  className="w-full max-w-[500px] mx-auto"
-                />
-              )}
-            </DialogContent>
-          </Dialog>
+      <Card className="p-6 flex flex-col items-center space-y-4">
+        <div className="text-center">
+          <h3 className="text-2xl font-bold">¥79.90</h3>
+          <p className="text-muted-foreground">五次分析套餐</p>
         </div>
-      </div>
+        <ul className="space-y-2 text-sm">
+          <li>✓ 五次完整的文书分析</li>
+          <li>✓ 更优惠的价格</li>
+          <li>✓ 可分次使用</li>
+        </ul>
+        <Button 
+          className="w-full" 
+          onClick={() => handlePayment("79.9")}
+        >
+          立即购买
+        </Button>
+      </Card>
     </div>
   )
 }

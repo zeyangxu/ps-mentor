@@ -4,11 +4,10 @@
 
 // Setup type definitions for built-in Supabase Runtime APIs
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
-import { EpayCore } from "./sdk.ts";
-import epayConfig from "./epay.config.ts";
 import { generatePaymentUrl, PaymentData } from "./zpay.sdk.ts";
 import { getUserInfo } from "../_shared/auth.ts";
 import { EPAY_KEY } from "../_common/epay.ts";
+import { corsHeaders } from "../_shared/cors.ts";
 
 enum IncreaseType {
   One = "19.9",
@@ -46,11 +45,11 @@ Deno.serve(async (req) => {
     const paymentUrl = await generatePaymentUrl(paymentData, EPAY_KEY);
     console.log("Payment URL:", paymentUrl);
     return new Response(JSON.stringify({ code: 0, link: paymentUrl }), {
-      headers: { "Content-Type": "application/json" },
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   } catch (error) {
     return new Response(JSON.stringify({ code: 1, message: error.message }), {
-      headers: { "Content-Type": "application/json" },
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   }
 });

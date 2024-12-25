@@ -7,6 +7,7 @@ import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import crypto from "node:crypto";
 import { EpayCore } from "./sdk";
 import epayConfig from "./epay.config";
+import { PaymentData, generatePaymentUrl } from "./zpay.sdk";
 
 const YI_PAY_ENDPOINT = "https://yi-pay.com/api/pay/create";
 
@@ -85,6 +86,37 @@ interface YiPaymentRequest {
 Deno.serve(async (req) => {
   const params = await req.json();
   const epaySdk = new EpayCore(epayConfig);
+
+  const paymentData: PaymentData = {
+    pid: "20220726190052",
+    money: "0.01",
+    name: "test",
+    notify_url: "https://statement-sage.lovable.app/editor",
+    out_trade_no:
+      new Date().toISOString().replace(/[-T:]/g, "").slice(0, 14) +
+      Math.floor(Math.random() * 1000)
+        .toString()
+        .padStart(3, "0"),
+    return_url: "https://statement-sage.lovable.app/editor",
+    sitename: "pschecker",
+    type: "alipay",
+  };
+
+  const key = "vg9ZRZN4FOKtDM06UfqH69GDJoG4gGIJ";
+
+  // Generate payment URL
+  try {
+    const paymentUrl = await generatePaymentUrl(paymentData, key);
+    console.log("Payment URL:", paymentUrl);
+    return new Response(JSON.stringify({ code: 0, link: paymentUrl }), {
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (error) {
+    return new Response(JSON.stringify({ code: 1, message: error.message }), {
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+
   try {
     const link = await epaySdk.getPayLink({
       pid: 9870,

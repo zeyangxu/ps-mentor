@@ -5,6 +5,8 @@
 // Setup type definitions for built-in Supabase Runtime APIs
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import crypto from "node:crypto";
+import { EpayCore } from "./sdk";
+import epayConfig from "./epay.config";
 
 const YI_PAY_ENDPOINT = "https://yi-pay.com/api/pay/create";
 
@@ -82,11 +84,27 @@ interface YiPaymentRequest {
 
 Deno.serve(async (req) => {
   const params = await req.json();
-  const res = await requestYiPaySubmitSigned(params);
-
-  return new Response(JSON.stringify(res), {
-    headers: { "Content-Type": "application/json" },
-  });
+  const epaySdk = new EpayCore(epayConfig);
+  try {
+    const link = await epaySdk.getPayLink({
+      pid: 9870,
+      method: "web",
+      device: "pc",
+      type: "alipay",
+      notify_url: "",
+      return_url: "https://statement-sage.lovable.app/editor",
+      name: "文书打分使用次数",
+      money: "20.00",
+      timestamp: "1734870485",
+    });
+    return new Response(JSON.stringify({ code: 0, link }), {
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (err) {
+    return new Response(JSON.stringify({ code: 1, message: err.message }), {
+      headers: { "Content-Type": "application/json" },
+    });
+  }
 });
 
 export async function requestYiPaySubmitSigned(params: YiPaymentRequest) {

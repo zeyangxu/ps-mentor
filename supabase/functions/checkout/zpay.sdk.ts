@@ -10,13 +10,16 @@ interface PaymentData {
   pid: string;
   money: string;
   name: string;
-  notify_url: string;
+  notify_url?: string;
   out_trade_no: string;
-  return_url: string;
+  return_url?: string;
   type: PaymentType;
   sign?: string;
   sign_type?: string;
   param: string;
+  // After payment
+  trade_no?: string;
+  trade_status?: string;
 }
 
 /**

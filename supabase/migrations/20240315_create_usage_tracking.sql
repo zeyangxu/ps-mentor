@@ -4,7 +4,8 @@ create table public.usage_tracking (
   user_id uuid references auth.users(id) not null unique,
   usage_count int not null default 0,
   created_at timestamptz default now() not null,
-  updated_at timestamptz default now() not null
+  updated_at timestamptz default now() not null,
+  email text not null
 );
 
 -- Enable Row Level Security

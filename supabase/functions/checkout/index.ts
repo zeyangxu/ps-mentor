@@ -14,10 +14,9 @@ Deno.serve(async (req) => {
   const params: PaymentData & { extra: Record<string, string> } = await req
     .json();
   const epaySdk = new EpayCore(epayConfig);
-  const userInfo = await getUserInfo(req);
-  const userId = "719a4347-56f5-4380-8140-cbc2e3171b7b";
+  const { userInfo } = await getUserInfo(req);
 
-  console.log("🦄 === [add-limit]", params, userInfo);
+  console.log("🦄 === [checkout] user", userInfo);
 
   const paymentData: PaymentData = {
     pid: "20220726190052",
@@ -26,7 +25,7 @@ Deno.serve(async (req) => {
     name: params.name,
     notify_url: params.notify_url,
     return_url: params.return_url,
-    param: `${userId}_${Date.now()}`,
+    param: `${userInfo.id}_${Date.now()}`,
     out_trade_no: new Date().toISOString().replace(/[-T:]/g, "").slice(0, 14) +
       Math.floor(Math.random() * 1000)
         .toString()
@@ -42,27 +41,6 @@ Deno.serve(async (req) => {
     });
   } catch (error) {
     return new Response(JSON.stringify({ code: 1, message: error.message }), {
-      headers: { "Content-Type": "application/json" },
-    });
-  }
-
-  try {
-    const link = await epaySdk.getPayLink({
-      pid: 9870,
-      method: "web",
-      device: "pc",
-      type: "alipay",
-      notify_url: "",
-      return_url: "https://statement-sage.lovable.app/editor",
-      name: "文书打分使用次数",
-      money: "20.00",
-      timestamp: "1734870485",
-    });
-    return new Response(JSON.stringify({ code: 0, link }), {
-      headers: { "Content-Type": "application/json" },
-    });
-  } catch (err) {
-    return new Response(JSON.stringify({ code: 1, message: err.message }), {
       headers: { "Content-Type": "application/json" },
     });
   }

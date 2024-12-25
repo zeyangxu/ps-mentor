@@ -19,7 +19,6 @@ create policy "Users can view their own payment records"
   on public.payment_records for select
   using (auth.uid() = user_id);
 
-create policy "Service role can insert payment records"
+create policy "Anyone can insert payment records"
   on public.payment_records for insert
-  to service_role
   with check (true);

@@ -17,6 +17,7 @@ interface PaymentData {
   type: PaymentType;
   sign?: string;
   sign_type?: string;
+  param?: string;
 }
 
 /**

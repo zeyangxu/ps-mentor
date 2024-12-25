@@ -121,7 +121,7 @@ const Editor = () => {
             isLoadingUsage={isLoadingUsage}
             usageCount={usageCount}
             usageError={usageError}
-            analysis={analysis}
+            analysis={analysis?.analysis || null}
           />
           <AnalysisResults analysis={analysis} isAnalyzing={isAnalyzing} />
         </div>

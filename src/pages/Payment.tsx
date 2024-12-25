@@ -16,28 +16,52 @@ const Payment = () => {
       try {
         // Get all URL parameters
         const params = Object.fromEntries(searchParams.entries());
-        
-        // Call the add-limit function with all parameters
-        const { data, error } = await supabase.functions.invoke('add-limit', {
-          body: params
-        });
+        const { data: session } = await supabase.auth.getSession()
 
-        if (error) {
-          console.error('Payment processing error:', error);
+        const functionUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/add-limit`
+      
+      const response = await fetch(functionUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${session.session.access_token}`,
+          'apikey': import.meta.env.VITE_SUPABASE_ANON_KEY
+        },
+        body: JSON.stringify({ content: params })
+      })
+        
+      if (!response.ok) {
+        console.error('Payment processing error:', error);
           setStatus("error");
           toast({
             variant: "destructive",
             title: "支付处理失败",
             description: "请联系客服处理"
           });
-        } else {
-          console.log('Payment processed successfully:', data);
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+      
+      const data = await response.json()
+      
+      if (!data || !data.analysis) {
+        console.error('Payment processing error:', error);
+          setStatus("error");
+          toast({
+            variant: "destructive",
+            title: "支付处理失败",
+            description: "请联系客服处理"
+          });
+        throw new Error("Invalid response format from the function")
+      }
+
+      console.log('Payment processed successfully:', data);
           setStatus("success");
           toast({
             title: "支付处理成功",
             description: "您的使用次数已增加"
           });
-        }
+      
+      return data.analysis
       } catch (err) {
         console.error('Error processing payment:', err);
         setStatus("error");

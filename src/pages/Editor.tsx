@@ -123,7 +123,7 @@ const Editor = () => {
             usageError={usageError}
             analysis={analysis?.analysis || null}
           />
-          <AnalysisResults analysis={analysis} isAnalyzing={isAnalyzing} />
+          <AnalysisResults analysis={analysis?.analysis} isAnalyzing={isAnalyzing} />
         </div>
       </div>
       <ServiceContact />

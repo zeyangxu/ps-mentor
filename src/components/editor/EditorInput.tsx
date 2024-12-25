@@ -15,7 +15,10 @@ interface EditorInputProps {
   isLoadingUsage: boolean;
   usageCount: number;
   usageError: any;
-  analysis: string | null;
+  analysis: {
+    chinese: string;
+    english: string;
+  } | null;
 }
 
 export const EditorInput = ({
@@ -75,7 +78,9 @@ export const EditorInput = ({
             {isAnalyzing ? "分析中..." : "文书深度评估"}
           </Button>
         </>
-      ) : null}
+      ) : (
+        <PaymentOptions />
+      )}
 
       {analysis && hasUsageLeft && (
         <Alert className="bg-secondary border-secondary">

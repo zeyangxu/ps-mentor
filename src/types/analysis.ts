@@ -1,4 +1,6 @@
 export interface AnalysisResponse {
-  chinese: string;
-  english: string;
+  analysis: {
+    chinese: string;
+    english: string;
+  };
 }

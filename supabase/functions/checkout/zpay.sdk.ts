@@ -13,11 +13,10 @@ interface PaymentData {
   notify_url: string;
   out_trade_no: string;
   return_url: string;
-  sitename: string;
   type: PaymentType;
   sign?: string;
   sign_type?: string;
-  param?: string;
+  param: string;
 }
 
 /**
@@ -25,7 +24,7 @@ interface PaymentData {
  * @param text Text to hash
  * @returns MD5 hash string
  */
-async function md5(text: string): Promise<string> {
+export async function md5(text: string): Promise<string> {
   const encoder = new TextEncoder();
   const data = encoder.encode(text);
   const hashBuffer = await crypto.subtle.digest("MD5", data);
@@ -40,7 +39,7 @@ async function md5(text: string): Promise<string> {
  * @param params Payment parameters
  * @returns Sorted and joined parameter string
  */
-function getVerifyParams(params: PaymentData): string | null {
+export function getVerifyParams(params: PaymentData): string | null {
   if (!params) return null;
 
   const sPara: [string, string][] = [];
@@ -86,8 +85,7 @@ const paymentData: PaymentData = {
   money: "amount",
   name: "product_name",
   notify_url: "http://xxxxx",
-  out_trade_no:
-    new Date().toISOString().replace(/[-T:]/g, "").slice(0, 14) +
+  out_trade_no: new Date().toISOString().replace(/[-T:]/g, "").slice(0, 14) +
     Math.floor(Math.random() * 1000)
       .toString()
       .padStart(3, "0"),

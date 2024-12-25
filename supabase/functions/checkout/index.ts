@@ -8,6 +8,7 @@ import { EpayCore } from "./sdk.ts";
 import epayConfig from "./epay.config.ts";
 import { generatePaymentUrl, PaymentData } from "./zpay.sdk.ts";
 import { getUserInfo } from "../_shared/auth.ts";
+import { EPAY_KEY } from "../_common/epay.ts";
 
 Deno.serve(async (req) => {
   const params: PaymentData & { extra: Record<string, string> } = await req
@@ -32,11 +33,9 @@ Deno.serve(async (req) => {
         .padStart(3, "0"),
   };
 
-  const key = "vg9ZRZN4FOKtDM06UfqH69GDJoG4gGIJ";
-
   // Generate payment URL
   try {
-    const paymentUrl = await generatePaymentUrl(paymentData, key);
+    const paymentUrl = await generatePaymentUrl(paymentData, EPAY_KEY);
     console.log("Payment URL:", paymentUrl);
     return new Response(JSON.stringify({ code: 0, link: paymentUrl }), {
       headers: { "Content-Type": "application/json" },

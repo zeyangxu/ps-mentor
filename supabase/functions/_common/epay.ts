@@ -1,0 +1,1 @@
+export const EPAY_KEY = "vg9ZRZN4FOKtDM06UfqH69GDJoG4gGIJ";

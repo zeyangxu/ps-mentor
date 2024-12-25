@@ -2,6 +2,8 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.39.7';
 import { serve } from 'https://deno.land/std@0.177.0/http/server.ts';
 import { corsHeaders } from '../_shared/cors.ts';
 import { createHash } from 'https://deno.land/std@0.177.0/hash/mod.ts';
+import { getVerifyParams, md5 } from '../checkout/zpay.sdk.ts';
+import { EPAY_KEY } from '../_common/epay.ts';
 
 const PAYMENT_SECRET = Deno.env.get('PAYMENT_SECRET') || '';
 const SUPABASE_URL = Deno.env.get('SUPABASE_URL') || '';
@@ -17,27 +19,25 @@ serve(async (req) => {
   try {
     const params = await req.json();
     const {
-      pid,
-      trade_no,
-      out_trade_no,
-      type,
-      name,
-      money,
-      trade_status,
       sign,
-      sign_type
+      sign_type,
+      ...restParams
     } = params;
 
     // Verify the payment signature
-    const signString = `money=${money}&name=${name}&out_trade_no=${out_trade_no}&pid=${pid}&trade_no=${trade_no}&trade_status=${trade_status}&type=${type}${PAYMENT_SECRET}`;
-    const calculatedSign = createHash('md5').update(signString).toString();
+    const paramString = getVerifyParams(restParams);
+  if (!paramString) {
+    throw new Error("Invalid payment parameters");
+  }
 
-    if (calculatedSign !== sign || sign_type !== 'MD5') {
+  const signRecalculate = await md5(paramString + EPAY_KEY);
+
+    if (signRecalculate !== sign || sign_type !== 'MD5') {
       throw new Error('Invalid signature');
     }
 
     // Extract user_id from pid (format: user_id_timestamp)
-    const [userId] = pid.split('_');
+    const [userId] = restParams.param.split('_');
     if (!userId) {
       throw new Error('Invalid user ID format');
     }
@@ -75,12 +75,12 @@ serve(async (req) => {
     const { error: paymentError } = await supabase
       .from('payment_records')
       .insert({
-        payment_id: pid,
+        payment_id: restParams.param,
         user_id: userId,
-        amount: money,
-        trade_no,
-        trade_status,
-        payment_type: type
+        amount: restParams.money,
+        trade_no: restParams.trade_no,
+        trade_status: restParams.trade_status,
+        payment_type: restParams.type
       });
 
     if (paymentError) {

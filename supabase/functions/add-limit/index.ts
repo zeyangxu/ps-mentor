@@ -1,46 +1,107 @@
-// Follow this setup guide to integrate the Deno language server with your editor:
-// https://deno.land/manual/getting_started/setup_your_environment
-// This enables autocomplete, go to definition, etc.
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.39.7';
+import { serve } from 'https://deno.land/std@0.177.0/http/server.ts';
+import { corsHeaders } from '../_shared/cors.ts';
+import { createHash } from 'https://deno.land/std@0.177.0/hash/mod.ts';
 
-// Setup type definitions for built-in Supabase Runtime APIs
-import "jsr:@supabase/functions-js/edge-runtime.d.ts";
+const PAYMENT_SECRET = Deno.env.get('PAYMENT_SECRET') || '';
+const SUPABASE_URL = Deno.env.get('SUPABASE_URL') || '';
+const SUPABASE_ANON_KEY = Deno.env.get('SUPABASE_ANON_KEY') || '';
 
-console.log("Hello from Functions!");
+const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-Deno.serve(async (req, info) => {
-  const url = new URL(req.url);
-  const searchParams = url.searchParams;
-  const token = searchParams.get("token");
-  const price = searchParams.get("price");
-  const origin = req.headers.get("Origin");
-  const referer = req.headers.get("Referer");
+serve(async (req) => {
+  if (req.method === 'OPTIONS') {
+    return new Response('ok', { headers: corsHeaders });
+  }
 
-  const data = {
-    code: 0,
-    message: `User ${token} purchase money ${price}`,
-  };
+  try {
+    const params = await req.json();
+    const {
+      pid,
+      trade_no,
+      out_trade_no,
+      type,
+      name,
+      money,
+      trade_status,
+      sign,
+      sign_type
+    } = params;
 
-  console.log("🦄 === [add-limit]", {
-    data: JSON.stringify(data),
-    origin,
-    referer,
-    url: req.url,
-  });
+    // Verify the payment signature
+    const signString = `money=${money}&name=${name}&out_trade_no=${out_trade_no}&pid=${pid}&trade_no=${trade_no}&trade_status=${trade_status}&type=${type}${PAYMENT_SECRET}`;
+    const calculatedSign = createHash('md5').update(signString).toString();
 
-  return new Response(
-    JSON.stringify(data),
-    { headers: { "Content-Type": "application/json" } },
-  );
+    if (calculatedSign !== sign || sign_type !== 'MD5') {
+      throw new Error('Invalid signature');
+    }
+
+    // Extract user_id from pid (format: user_id_timestamp)
+    const [userId] = pid.split('_');
+    if (!userId) {
+      throw new Error('Invalid user ID format');
+    }
+
+    // Check if this payment has already been processed
+    const { data: existingPayment } = await supabase
+      .from('payment_records')
+      .select('id')
+      .eq('payment_id', pid)
+      .single();
+
+    if (existingPayment) {
+      return new Response(
+        JSON.stringify({ success: false, message: 'Payment already processed' }),
+        {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          status: 400,
+        }
+      );
+    }
+
+    // Begin transaction
+    const { data: user, error: userError } = await supabase
+      .from('users')
+      .update({ usage_limit: supabase.sql`usage_limit + 3` })
+      .eq('id', userId)
+      .select()
+      .single();
+
+    if (userError) {
+      throw userError;
+    }
+
+    // Record the payment
+    const { error: paymentError } = await supabase
+      .from('payment_records')
+      .insert({
+        payment_id: pid,
+        user_id: userId,
+        amount: money,
+        trade_no,
+        trade_status,
+        payment_type: type
+      });
+
+    if (paymentError) {
+      throw paymentError;
+    }
+
+    return new Response(
+      JSON.stringify({ success: true, message: 'Payment processed successfully' }),
+      {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        status: 200,
+      }
+    );
+  } catch (error) {
+    console.error('Error processing payment:', error);
+    return new Response(
+      JSON.stringify({ success: false, message: error.message }),
+      {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        status: 400,
+      }
+    );
+  }
 });
-
-/* To invoke locally:
-
-  1. Run `supabase start` (see: https://supabase.com/docs/reference/cli/supabase-start)
-  2. Make an HTTP request:
-
-  curl -i --location --request POST 'http://127.0.0.1:54321/functions/v1/add-limit' \
-    --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0' \
-    --header 'Content-Type: application/json' \
-    --data '{"name":"Functions"}'
-
-*/

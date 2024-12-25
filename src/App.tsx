@@ -7,6 +7,7 @@ import { MinimalNav } from "@/components/MinimalNav";
 import Index from "./pages/Index";
 import Editor from "./pages/Editor";
 import Login from "./pages/Login";
+import Payment from "./pages/Payment";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/editor" element={<Editor />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/payment" element={<Payment />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

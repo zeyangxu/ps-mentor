@@ -18,6 +18,7 @@ serve(async (req) => {
 
   try {
     const params = await req.json();
+    const { supabaseClient } = await getUserInfo(req);
     const {
       sign,
       sign_type,
@@ -51,17 +52,17 @@ serve(async (req) => {
     });
 
     // Check if this payment has already been processed
-    const { data: existingPayment } = await supabase
+    const { data: existingPayment, error: checkPaymentError } = await supabaseClient
       .from("payment_records")
-      .select("id")
+      .select()
       .eq("payment_id", restParams.param)
-      .single();
 
     console.log("🦄 === [add-limit] 2", {
       existingPayment,
+      checkPaymentError
     });
 
-    if (existingPayment) {
+    if (existingPayment.length > 0) {
       return new Response(
         JSON.stringify({
           success: false,
@@ -74,28 +75,35 @@ serve(async (req) => {
       );
     }
 
-    const { supabaseClient } = await getUserInfo(req);
-
-    const { data: newUsageData, error: insertError } = await supabaseClient
+    const { data: newUsageData, error: checkUsageError } = await supabaseClient
       .from("usage_tracking")
       .select("usage_count")
       .eq("user_id", userId)
       .maybeSingle();
 
+    console.log("🦄 === [add-limit] 2.5", {
+      newUsageData,
+      checkUsageError,
+    });
+
+    if (checkUsageError) {
+      throw checkUsageError;
+    }
+
     // Begin transaction
-    const { data: user, error: userError } = await supabaseClient
+    const { data: user, error: insertError } = await supabaseClient
       .from("usage_tracking")
       .update({ usage_count: newUsageData.usage_count + 3 })
-      .eq("id", userId);
+      .eq("user_id", userId);
 
     console.log("🦄 === [add-limit] 3", {
       user,
       newUsageData,
-      userError,
+      insertError,
     });
 
-    if (userError) {
-      throw userError;
+    if (insertError) {
+      throw insertError;
     }
 
     // Record the payment

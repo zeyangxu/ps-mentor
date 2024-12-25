@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, FileText, Sparkles, Target, BookOpen, BriefcaseIcon, GraduationCap, Brain, Rocket, PenTool } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
+import { ServiceContact } from "@/components/ServiceContact";
 
 const features = [
   {
@@ -140,6 +141,8 @@ const Index = () => {
           ))}
         </div>
       </div>
+      
+      <ServiceContact />
     </div>
   );
 };

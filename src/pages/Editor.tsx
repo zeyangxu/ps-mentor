@@ -8,6 +8,7 @@ import { Navigate } from "react-router-dom"
 import { EditorInput } from "@/components/editor/EditorInput"
 import { AnalysisResults } from "@/components/editor/AnalysisResults"
 import { AnalysisResponse } from "@/types/analysis"
+import { ServiceContact } from "@/components/ServiceContact"
 
 const Editor = () => {
   const [content, setContent] = useState("")
@@ -125,6 +126,7 @@ const Editor = () => {
           <AnalysisResults analysis={analysis} isAnalyzing={isAnalyzing} />
         </div>
       </div>
+      <ServiceContact />
     </div>
   )
 }

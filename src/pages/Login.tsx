@@ -1,6 +1,7 @@
 import { AuthForm } from "@/components/auth/AuthForm";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { InfoIcon } from "lucide-react";
+import { ServiceContact } from "@/components/ServiceContact";
 
 const Login = () => {
   return (
@@ -36,6 +37,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+      <ServiceContact />
     </div>
   );
 };

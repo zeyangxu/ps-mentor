@@ -6,7 +6,6 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { generatePaymentUrl, PaymentData } from "./zpay.sdk.ts";
 import { getUserInfo } from "../_shared/auth.ts";
-import { EPAY_KEY } from "../_common/epay.ts";
 import { corsHeaders } from "../_shared/cors.ts";
 import { MoneyUsageMap } from "../_common/payment.ts";
 
@@ -20,14 +19,14 @@ Deno.serve(async (req) => {
     return new Response("ok", { headers: corsHeaders });
   }
 
-  const params: PaymentData & { extra: Record<string, string> } =
-    await req.json();
+  const params: PaymentData & { extra: Record<string, string> } = await req
+    .json();
 
   // Generate payment URL
   try {
     if (
-      !Object.keys(MoneyUsageMap).some(price =>
-        Number(price) === Number(params.money),
+      !Object.keys(MoneyUsageMap).some((price) =>
+        Number(price) === Number(params.money)
       )
     ) {
       throw new Error("Invalid topup amount");
@@ -52,7 +51,10 @@ Deno.serve(async (req) => {
           .padStart(3, "0"),
     };
 
-    const paymentUrl = await generatePaymentUrl(paymentData, EPAY_KEY);
+    const paymentUrl = await generatePaymentUrl(
+      paymentData,
+      Deno.env.get("EPAY_KEY") ?? "",
+    );
     console.log("Payment URL:", paymentUrl);
     return new Response(JSON.stringify({ code: 0, link: paymentUrl }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },

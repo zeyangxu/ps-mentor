@@ -1,8 +1,6 @@
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2.39.7";
 import { serve } from "https://deno.land/std@0.177.0/http/server.ts";
 import { corsHeaders } from "../_shared/cors.ts";
 import { getVerifyParams, md5, PaymentData } from "../checkout/zpay.sdk.ts";
-import { EPAY_KEY } from "../_common/epay.ts";
 import { getUserInfo } from "../_shared/auth.ts";
 import { MoneyUsageMap } from "../_common/payment.ts";
 
@@ -26,7 +24,7 @@ serve(async (req) => {
       throw new Error("Invalid payment parameters");
     }
 
-    const signRecalculate = await md5(paramString + EPAY_KEY);
+    const signRecalculate = await md5(paramString + Deno.env.get("EPAY_KEY"));
 
     if (signRecalculate !== sign || sign_type !== "MD5") {
       throw new Error("Invalid signature");
@@ -135,7 +133,7 @@ serve(async (req) => {
   } catch (error) {
     console.error("Error processing payment:", error);
     return new Response(
-      JSON.stringify({ success: false, message: error.message }),
+      JSON.stringify({ success: false, message: (error as Error).message }),
       {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
         status: 400,

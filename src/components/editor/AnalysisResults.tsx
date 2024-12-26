@@ -1,9 +1,9 @@
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
-import { Award, SmileIcon } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { useState } from "react"
-import { CriteriaCard } from "./analysis/CriteriaCard"
-import { ScrollArea } from "@/components/ui/scroll-area"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Award, SmileIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { CriteriaCard } from "./analysis/CriteriaCard";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface CriteriaAnalysis {
   score: number;
@@ -35,7 +35,9 @@ interface AnalysisResultsProps {
   isAnalyzing?: boolean;
 }
 
-export const AnalysisResults = ({ analysis, isAnalyzing }: AnalysisResultsProps) => {
+export const AnalysisResults = (
+  { analysis, isAnalyzing }: AnalysisResultsProps,
+) => {
   const [language, setLanguage] = useState<"en" | "zh">("en");
 
   if (isAnalyzing) {
@@ -75,10 +77,11 @@ export const AnalysisResults = ({ analysis, isAnalyzing }: AnalysisResultsProps)
 
   // Parse the response to get the language versions
   const analysisData: AnalysisData = JSON.parse(
-    language === "zh" ? analysis.chinese : analysis.english
+    language === "zh" ? analysis.chinese : analysis.english,
   );
 
-  const scorePercentage = (analysisData.overall_score / analysisData.max_score) * 100;
+  const scorePercentage =
+    (analysisData.overall_score / analysisData.max_score) * 100;
 
   return (
     <div className="space-y-4">
@@ -105,18 +108,21 @@ export const AnalysisResults = ({ analysis, isAnalyzing }: AnalysisResultsProps)
             </Button>
           </div>
         </CardHeader>
-        <ScrollArea className="h-[calc(100vh-13rem)]">
+        <ScrollArea className="h-[650px]">
           <CardContent>
             <div className="flex items-center gap-2 p-3 mb-6 bg-secondary/50 rounded-lg border border-border/50">
               <SmileIcon className="w-5 h-5 text-primary flex-shrink-0" />
               <p className="text-sm">
-                Dr. PS Checker 的训练模型以及训练数据均以英文形式输入，在此基础上结合中文语言特点进行了相应调整。因此，在查看评估结果及改进建议时，请您综合参考双语版本，以便获取更为全面的反馈信息哦。
+                Dr. PS Checker
+                的训练模型以及训练数据均以英文形式输入，在此基础上结合中文语言特点进行了相应调整。因此，在查看评估结果及改进建议时，请您综合参考双语版本，以便获取更为全面的反馈信息哦。
               </p>
             </div>
             <div className="space-y-6">
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
-                  <span className="text-sm font-medium">{language === "zh" ? "总分" : "Total Score"}</span>
+                  <span className="text-sm font-medium">
+                    {language === "zh" ? "总分" : "Total Score"}
+                  </span>
                   <span className="text-sm font-medium">
                     {analysisData.overall_score}/{analysisData.max_score}
                   </span>
@@ -128,12 +134,17 @@ export const AnalysisResults = ({ analysis, isAnalyzing }: AnalysisResultsProps)
                   />
                 </div>
                 <p className="text-sm text-muted-foreground mt-1">
-                  {language === "zh" ? "整体水平" : "Overall Level"}: <span className="font-medium text-foreground capitalize">{analysisData.overall_level}</span>
+                  {language === "zh" ? "整体水平" : "Overall Level"}:{" "}
+                  <span className="font-medium text-foreground capitalize">
+                    {analysisData.overall_level}
+                  </span>
                 </p>
               </div>
 
               <div className="space-y-4">
-                {Object.entries(analysisData.analysis_of_each_criteria).map(([key, criteria]) => (
+                {Object.entries(analysisData.analysis_of_each_criteria).map((
+                  [key, criteria],
+                ) => (
                   <CriteriaCard
                     key={key}
                     criteriaKey={key}
@@ -151,11 +162,16 @@ export const AnalysisResults = ({ analysis, isAnalyzing }: AnalysisResultsProps)
         <CardContent className="p-4 space-y-2">
           <h4 className="font-medium text-sm">声明</h4>
           <p className="text-sm text-muted-foreground">
-            Dr. PS Checker 仅对已给定的内容展开分析，并不涉及对文书可能的 AI 生成率进行评估。您的评估分数与文书的 AI 率不存在直接或间接的关联。
-            <br /><br />
-            一篇好的文书可以使用 AI 作为工具进行辅助，但我们不建议直接使用 AI 生成内容，这会在很大程度影响您的申请成功率。
-            <br /><br />
-            若您有专业的 AI 率检测需求，建议您使用诸如 turnitin 等专业的 AI 检测率工具进行检测，以确保检测结果的专业性与准确性。
+            Dr. PS Checker 仅对已给定的内容展开分析，并不涉及对文书可能的 AI
+            生成率进行评估。您的评估分数与文书的 AI 率不存在直接或间接的关联。
+            <br />
+            <br />
+            一篇好的文书可以使用 AI 作为工具进行辅助，但我们不建议直接使用 AI
+            生成内容，这会在很大程度影响您的申请成功率。
+            <br />
+            <br />
+            若您有专业的 AI 率检测需求，建议您使用诸如 turnitin 等专业的 AI
+            检测率工具进行检测，以确保检测结果的专业性与准确性。
           </p>
         </CardContent>
       </Card>

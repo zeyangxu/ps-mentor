@@ -1,10 +1,6 @@
-import { QrCode, MessageSquare } from "lucide-react";
+import { MessageSquare, QrCode } from "lucide-react";
 import { Card } from "./ui/card";
-import {
-  Dialog,
-  DialogContent,
-  DialogTrigger,
-} from "./ui/dialog";
+import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
 
 export const ServiceContact = () => {
   return (
@@ -12,9 +8,11 @@ export const ServiceContact = () => {
       <div className="container mx-auto max-w-6xl">
         <div className="flex items-center gap-2 mb-4">
           <MessageSquare className="w-5 h-5 text-primary" />
-          <h3 className="text-lg font-semibold text-foreground">Dr. PS Checker 客服</h3>
+          <h3 className="text-lg font-semibold text-foreground">
+            Dr. PS Checker 客服
+          </h3>
         </div>
-        
+
         <div className="flex justify-center gap-8">
           <div className="flex flex-col items-center gap-2 p-4 bg-white rounded-lg shadow-sm">
             <Dialog>
@@ -22,7 +20,7 @@ export const ServiceContact = () => {
                 <img
                   src="/lovable-uploads/19c3bccf-32ed-4206-84e5-f130627442c9.png"
                   alt="WeChat QR Code"
-                  className="w-[200px] h-[200px] rounded-lg hover:scale-105 transition-transform duration-300 cursor-pointer"
+                  className="h-[200px] rounded-lg hover:scale-105 transition-transform duration-300 cursor-pointer"
                 />
               </DialogTrigger>
               <DialogContent className="sm:max-w-[425px] flex items-center justify-center p-0">
@@ -33,16 +31,16 @@ export const ServiceContact = () => {
                 />
               </DialogContent>
             </Dialog>
-            <p className="text-sm text-muted-foreground mt-2">扫码添加微信客服</p>
+            <p className="text-sm text-muted-foreground mt-2">关注微信公众号，后台私信</p>
           </div>
-          
+
           <div className="flex flex-col items-center gap-2 p-4 bg-white rounded-lg shadow-sm">
             <Dialog>
               <DialogTrigger asChild>
                 <img
                   src="/lovable-uploads/d433049a-11c6-4d35-9604-75f338cb1690.png"
                   alt="Xiaohongshu QR Code"
-                  className="w-[200px] h-[200px] rounded-lg hover:scale-105 transition-transform duration-300 cursor-pointer"
+                  className="h-[200px] rounded-lg hover:scale-105 transition-transform duration-300 cursor-pointer"
                 />
               </DialogTrigger>
               <DialogContent className="sm:max-w-[425px] flex items-center justify-center p-0">

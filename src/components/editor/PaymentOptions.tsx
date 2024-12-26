@@ -6,7 +6,7 @@ import { useToast } from "@/hooks/use-toast"
 export const PaymentOptions = () => {
   const { toast } = useToast()
 
-  const handlePayment = async (amount: string) => {
+  const handlePayment = async (amount: string, type: 'alipay' | 'wxpay' = 'alipay') => {
     try {
       const { data: session } = await supabase.auth.getSession()
       if (!session.session) {
@@ -29,6 +29,7 @@ export const PaymentOptions = () => {
         body: JSON.stringify({
           name: "充值分析次数",
           money: amount,
+          type: type,
           notify_url: `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/add-limit`,
           return_url: `${window.location.origin}/payment`,
         }),
@@ -66,12 +67,21 @@ export const PaymentOptions = () => {
           <li>✓ 详细的评分和建议</li>
           <li>✓ 专业的修改指导</li>
         </ul>
-        <Button 
-          className="w-full" 
-          onClick={() => handlePayment(import.meta.env.VITE_PAYMENT_PLAN_ONE)}
-        >
-          立即购买
-        </Button>
+        <div className="flex flex-col w-full gap-2">
+          <Button 
+            className="w-full" 
+            onClick={() => handlePayment(import.meta.env.VITE_PAYMENT_PLAN_ONE, 'alipay')}
+          >
+            支付宝支付
+          </Button>
+          <Button 
+            variant="secondary"
+            className="w-full" 
+            onClick={() => handlePayment(import.meta.env.VITE_PAYMENT_PLAN_ONE, 'wxpay')}
+          >
+            微信支付
+          </Button>
+        </div>
       </Card>
 
       <Card className="p-6 flex flex-col items-center space-y-4">
@@ -84,12 +94,21 @@ export const PaymentOptions = () => {
           <li>✓ 更优惠的价格</li>
           <li>✓ 可分次使用</li>
         </ul>
-        <Button 
-          className="w-full" 
-          onClick={() => handlePayment(import.meta.env.VITE_PAYMENT_PLAN_FIVE)}
-        >
-          立即购买
-        </Button>
+        <div className="flex flex-col w-full gap-2">
+          <Button 
+            className="w-full" 
+            onClick={() => handlePayment(import.meta.env.VITE_PAYMENT_PLAN_FIVE, 'alipay')}
+          >
+            支付宝支付
+          </Button>
+          <Button 
+            variant="secondary"
+            className="w-full" 
+            onClick={() => handlePayment(import.meta.env.VITE_PAYMENT_PLAN_FIVE, 'wxpay')}
+          >
+            微信支付
+          </Button>
+        </div>
       </Card>
     </div>
   )

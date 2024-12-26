@@ -33,7 +33,7 @@ Deno.serve(async (req) => {
 
     const paymentData: PaymentData = {
       pid: Deno.env.get("ZPAY_ID") ?? "",
-      type: "alipay",
+      type: params.type,
       money: params.money,
       name: params.name,
       notify_url: params.notify_url,

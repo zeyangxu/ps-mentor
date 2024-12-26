@@ -24,7 +24,7 @@ serve(async (req) => {
       throw new Error("Invalid payment parameters");
     }
 
-    const signRecalculate = await md5(paramString + Deno.env.get("EPAY_KEY"));
+    const signRecalculate = await md5(paramString + Deno.env.get("ZPAY_KEY"));
 
     if (signRecalculate !== sign || sign_type !== "MD5") {
       throw new Error("Invalid signature");

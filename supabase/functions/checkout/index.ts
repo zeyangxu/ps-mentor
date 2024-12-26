@@ -9,11 +9,6 @@ import { getUserInfo } from "../_shared/auth.ts";
 import { corsHeaders } from "../_shared/cors.ts";
 import { MoneyUsageMap } from "../_common/payment.ts";
 
-enum IncreaseType {
-  One = "19.9",
-  Five = "79.9",
-}
-
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response("ok", { headers: corsHeaders });
@@ -37,7 +32,7 @@ Deno.serve(async (req) => {
     console.log("🦄 === [checkout] user", userInfo);
 
     const paymentData: PaymentData = {
-      pid: "20220726190052",
+      pid: Deno.env.get("ZPAY_ID") ?? "",
       type: "alipay",
       money: params.money,
       name: params.name,
@@ -53,15 +48,18 @@ Deno.serve(async (req) => {
 
     const paymentUrl = await generatePaymentUrl(
       paymentData,
-      Deno.env.get("EPAY_KEY") ?? "",
+      Deno.env.get("ZPAY_KEY") ?? "",
     );
     console.log("Payment URL:", paymentUrl);
     return new Response(JSON.stringify({ code: 0, link: paymentUrl }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   } catch (error) {
-    return new Response(JSON.stringify({ code: 1, message: error.message }), {
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
-    });
+    return new Response(
+      JSON.stringify({ code: 1, message: (error as Error).message }),
+      {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      },
+    );
   }
 });

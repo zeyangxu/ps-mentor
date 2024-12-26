@@ -11,23 +11,31 @@ import { corsHeaders } from "../_shared/cors.ts";
 
 enum IncreaseType {
   One = "19.9",
-  Five = "79.9"
+  Five = "79.9",
 }
 
 Deno.serve(async (req) => {
-  const params: PaymentData & { extra: Record<string, string> } = await req
-    .json();
+  if (req.method === "OPTIONS") {
+    return new Response("ok", { headers: corsHeaders });
+  }
+
+  const params: PaymentData & { extra: Record<string, string> } =
+    await req.json();
 
   // Generate payment URL
   try {
-    if (![IncreaseType.One, IncreaseType.Five].includes(params.money as IncreaseType)) {
-      throw new Error('Invalid topup amount')
+    if (
+      ![IncreaseType.One, IncreaseType.Five].includes(
+        params.money as IncreaseType,
+      )
+    ) {
+      throw new Error("Invalid topup amount");
     }
 
     const { userInfo } = await getUserInfo(req);
 
     console.log("🦄 === [checkout] user", userInfo);
-  
+
     const paymentData: PaymentData = {
       pid: "20220726190052",
       type: "alipay",
@@ -36,7 +44,8 @@ Deno.serve(async (req) => {
       notify_url: params.notify_url,
       return_url: params.return_url,
       param: `${userInfo.id}_${Date.now()}`,
-      out_trade_no: new Date().toISOString().replace(/[-T:]/g, "").slice(0, 14) +
+      out_trade_no:
+        new Date().toISOString().replace(/[-T:]/g, "").slice(0, 14) +
         Math.floor(Math.random() * 1000)
           .toString()
           .padStart(3, "0"),

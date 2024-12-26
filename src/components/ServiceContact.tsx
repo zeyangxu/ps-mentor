@@ -13,7 +13,7 @@ export const ServiceContact = () => {
           </h3>
         </div>
 
-        <div className="flex justify-center gap-8">
+        <div className="flex-col flex justify-center gap-8 md:flex-row">
           <div className="flex flex-col items-center gap-2 p-4 bg-white rounded-lg shadow-sm">
             <Dialog>
               <DialogTrigger asChild>
@@ -31,7 +31,9 @@ export const ServiceContact = () => {
                 />
               </DialogContent>
             </Dialog>
-            <p className="text-sm text-muted-foreground mt-2">关注微信公众号，后台私信</p>
+            <p className="text-sm text-muted-foreground mt-2">
+              关注微信公众号，后台私信
+            </p>
           </div>
 
           <div className="flex flex-col items-center gap-2 p-4 bg-white rounded-lg shadow-sm">

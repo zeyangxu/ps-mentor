@@ -83,7 +83,7 @@ const Index = () => {
             <span className="absolute -bottom-2 left-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full group-hover:left-0">
             </span>
           </h1>
-          <p className="text-base md:text-xl text-muted-foreground mb-8 mx-auto leading-relaxed whitespace-nowrap overflow-x-auto flex justify-center">
+          <p className="text-base md:text-xl text-muted-foreground mb-8 mx-auto leading-relaxed overflow-x-auto flex justify-center">
             <span className="font-bold hover:text-primary transition-colors duration-300">
               最前沿的 AI
               算法，最资深的研发团队，最精细的文书多维剖析，为您的留学保驾护航！

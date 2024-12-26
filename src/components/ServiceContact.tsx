@@ -15,53 +15,49 @@ export const ServiceContact = () => {
           <h3 className="text-lg font-semibold text-foreground">Dr. PS Checker 客服</h3>
         </div>
         
-        <div className="flex justify-between items-start gap-8">
-          <div className="flex-1 h-[248px] p-4 border-2 border-primary/20 rounded-lg bg-white/50 shadow-sm flex items-center">
-            <p className="text-primary font-medium whitespace-nowrap overflow-x-auto">
-              关注Dr. PS Checker 微信公众号和小红书，领取一次免费评估机会，还可以获得第一手讯息和优惠活动哦！
-            </p>
-          </div>
+        <p className="text-center text-primary font-medium mb-6 animate-pulse">
+          关注Dr. PS Checker 微信公众号和小红书，领取一次免费评估机会，还可以获得第一手讯息和优惠活动哦！
+        </p>
 
-          <div className="flex justify-end gap-8">
-            <div className="flex flex-col items-center gap-2 p-4 bg-white rounded-lg shadow-sm">
-              <Dialog>
-                <DialogTrigger asChild>
-                  <img
-                    src="/lovable-uploads/19c3bccf-32ed-4206-84e5-f130627442c9.png"
-                    alt="WeChat QR Code"
-                    className="w-[200px] h-[200px] rounded-lg hover:scale-105 transition-transform duration-300 cursor-pointer"
-                  />
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px] flex items-center justify-center p-0">
-                  <img
-                    src="/lovable-uploads/19c3bccf-32ed-4206-84e5-f130627442c9.png"
-                    alt="WeChat QR Code"
-                    className="w-full h-auto max-h-[80vh] object-contain p-2"
-                  />
-                </DialogContent>
-              </Dialog>
-              <p className="text-sm text-muted-foreground mt-2">扫码添加微信客服</p>
-            </div>
-            
-            <div className="flex flex-col items-center gap-2 p-4 bg-white rounded-lg shadow-sm">
-              <Dialog>
-                <DialogTrigger asChild>
-                  <img
-                    src="/lovable-uploads/d433049a-11c6-4d35-9604-75f338cb1690.png"
-                    alt="Xiaohongshu QR Code"
-                    className="w-[200px] h-[200px] rounded-lg hover:scale-105 transition-transform duration-300 cursor-pointer"
-                  />
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px] flex items-center justify-center p-0">
-                  <img
-                    src="/lovable-uploads/d433049a-11c6-4d35-9604-75f338cb1690.png"
-                    alt="Xiaohongshu QR Code"
-                    className="w-full h-auto max-h-[80vh] object-contain p-2"
-                  />
-                </DialogContent>
-              </Dialog>
-              <p className="text-sm text-muted-foreground mt-2">关注小红书账号</p>
-            </div>
+        <div className="flex justify-center gap-8">
+          <div className="flex flex-col items-center gap-2 p-4 bg-white rounded-lg shadow-sm">
+            <Dialog>
+              <DialogTrigger asChild>
+                <img
+                  src="/lovable-uploads/19c3bccf-32ed-4206-84e5-f130627442c9.png"
+                  alt="WeChat QR Code"
+                  className="w-[200px] h-[200px] rounded-lg hover:scale-105 transition-transform duration-300 cursor-pointer"
+                />
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[425px] flex items-center justify-center p-0">
+                <img
+                  src="/lovable-uploads/19c3bccf-32ed-4206-84e5-f130627442c9.png"
+                  alt="WeChat QR Code"
+                  className="w-full h-auto max-h-[80vh] object-contain p-2"
+                />
+              </DialogContent>
+            </Dialog>
+            <p className="text-sm text-muted-foreground mt-2">扫码添加微信客服</p>
+          </div>
+          
+          <div className="flex flex-col items-center gap-2 p-4 bg-white rounded-lg shadow-sm">
+            <Dialog>
+              <DialogTrigger asChild>
+                <img
+                  src="/lovable-uploads/d433049a-11c6-4d35-9604-75f338cb1690.png"
+                  alt="Xiaohongshu QR Code"
+                  className="w-[200px] h-[200px] rounded-lg hover:scale-105 transition-transform duration-300 cursor-pointer"
+                />
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[425px] flex items-center justify-center p-0">
+                <img
+                  src="/lovable-uploads/d433049a-11c6-4d35-9604-75f338cb1690.png"
+                  alt="Xiaohongshu QR Code"
+                  className="w-full h-auto max-h-[80vh] object-contain p-2"
+                />
+              </DialogContent>
+            </Dialog>
+            <p className="text-sm text-muted-foreground mt-2">关注小红书账号</p>
           </div>
         </div>
 

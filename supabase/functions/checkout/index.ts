@@ -8,6 +8,7 @@ import { generatePaymentUrl, PaymentData } from "./zpay.sdk.ts";
 import { getUserInfo } from "../_shared/auth.ts";
 import { EPAY_KEY } from "../_common/epay.ts";
 import { corsHeaders } from "../_shared/cors.ts";
+import { MoneyUsageMap } from "../_common/payment.ts";
 
 enum IncreaseType {
   One = "19.9",
@@ -25,8 +26,8 @@ Deno.serve(async (req) => {
   // Generate payment URL
   try {
     if (
-      ![IncreaseType.One, IncreaseType.Five].includes(
-        params.money as IncreaseType,
+      !Object.keys(MoneyUsageMap).some(price =>
+        Number(price) === Number(params.money),
       )
     ) {
       throw new Error("Invalid topup amount");

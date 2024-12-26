@@ -58,7 +58,7 @@ export const PaymentOptions = () => {
     <div className="grid md:grid-cols-2 gap-4">
       <Card className="p-6 flex flex-col items-center space-y-4">
         <div className="text-center">
-          <h3 className="text-2xl font-bold">¥19.90</h3>
+          <h3 className="text-2xl font-bold">¥{import.meta.env.VITE_PAYMENT_PLAN_ONE}</h3>
           <p className="text-muted-foreground">单次分析</p>
         </div>
         <ul className="space-y-2 text-sm">
@@ -68,7 +68,7 @@ export const PaymentOptions = () => {
         </ul>
         <Button 
           className="w-full" 
-          onClick={() => handlePayment("19.9")}
+          onClick={() => handlePayment(import.meta.env.VITE_PAYMENT_PLAN_ONE)}
         >
           立即购买
         </Button>
@@ -76,7 +76,7 @@ export const PaymentOptions = () => {
 
       <Card className="p-6 flex flex-col items-center space-y-4">
         <div className="text-center">
-          <h3 className="text-2xl font-bold">¥79.90</h3>
+          <h3 className="text-2xl font-bold">¥{import.meta.env.VITE_PAYMENT_PLAN_FIVE}</h3>
           <p className="text-muted-foreground">五次分析套餐</p>
         </div>
         <ul className="space-y-2 text-sm">
@@ -86,7 +86,7 @@ export const PaymentOptions = () => {
         </ul>
         <Button 
           className="w-full" 
-          onClick={() => handlePayment("79.9")}
+          onClick={() => handlePayment(import.meta.env.VITE_PAYMENT_PLAN_FIVE)}
         >
           立即购买
         </Button>

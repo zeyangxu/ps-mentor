@@ -1,20 +1,10 @@
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.39.7";
 import { serve } from "https://deno.land/std@0.177.0/http/server.ts";
 import { corsHeaders } from "../_shared/cors.ts";
-import { getVerifyParams, md5 } from "../checkout/zpay.sdk.ts";
+import { getVerifyParams, md5, PaymentData } from "../checkout/zpay.sdk.ts";
 import { EPAY_KEY } from "../_common/epay.ts";
 import { getUserInfo } from "../_shared/auth.ts";
-
-const PAYMENT_SECRET = Deno.env.get("PAYMENT_SECRET") || "";
-const SUPABASE_URL = Deno.env.get("SUPABASE_URL") || "";
-const SUPABASE_ANON_KEY = Deno.env.get("SUPABASE_ANON_KEY") || "";
-
-const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-const MoneyUsageMap = {
-  "19.9": 1,
-  "79.9": 5
-}
+import { MoneyUsageMap } from "../_common/payment.ts";
 
 serve(async (req) => {
   if (req.method === "OPTIONS") {
@@ -22,7 +12,7 @@ serve(async (req) => {
   }
 
   try {
-    const params = await req.json();
+    const params: PaymentData = await req.json();
     const { supabaseClient } = await getUserInfo(req);
     const {
       sign,
@@ -57,14 +47,15 @@ serve(async (req) => {
     });
 
     // Check if this payment has already been processed
-    const { data: existingPayment, error: checkPaymentError } = await supabaseClient
-      .from("payment_records")
-      .select()
-      .eq("payment_id", restParams.param)
+    const { data: existingPayment, error: checkPaymentError } =
+      await supabaseClient
+        .from("payment_records")
+        .select()
+        .eq("payment_id", restParams.param);
 
     console.log("🦄 === [add-limit] 2", {
       existingPayment,
-      checkPaymentError
+      checkPaymentError,
     });
 
     if (existingPayment.length > 0) {
@@ -98,7 +89,9 @@ serve(async (req) => {
     // Begin transaction
     const { data: user, error: insertError } = await supabaseClient
       .from("usage_tracking")
-      .update({ usage_count: newUsageData.usage_count + 3 })
+      .update({
+        usage_count: newUsageData.usage_count + MoneyUsageMap[params.money],
+      })
       .eq("user_id", userId);
 
     console.log("🦄 === [add-limit] 3", {

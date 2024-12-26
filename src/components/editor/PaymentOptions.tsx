@@ -77,7 +77,7 @@ export const PaymentOptions = () => {
         </div>
       )}
       <div className="grid md:grid-cols-2 gap-4">
-        <Card className="p-6 flex flex-col items-center space-y-4">
+        <Card className="p-6 flex flex-col items-center space-y-4 justify-between">
           <div className="text-center">
             <h3 className="text-2xl font-bold">
               ¥{import.meta.env.VITE_PAYMENT_PLAN_ONE}
@@ -110,7 +110,7 @@ export const PaymentOptions = () => {
           </div>
         </Card>
 
-        <Card className="p-6 flex flex-col items-center space-y-4">
+        <Card className="p-6 flex flex-col items-center space-y-4 justify-between">
           <div className="text-center">
             <h3 className="text-2xl font-bold">
               ¥{import.meta.env.VITE_PAYMENT_PLAN_THREE}

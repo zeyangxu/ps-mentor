@@ -17,7 +17,7 @@ export const ServiceContact = () => {
         
         <div className="flex justify-between items-start gap-8">
           <div className="flex-1 p-4 border-2 border-primary/20 rounded-lg bg-white/50 shadow-sm">
-            <p className="text-primary font-medium">
+            <p className="text-primary font-medium whitespace-nowrap overflow-x-auto">
               关注Dr. PS Checker 微信公众号和小红书，领取一次免费评估机会，还可以获得第一手讯息和优惠活动哦！
             </p>
           </div>

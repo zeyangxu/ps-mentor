@@ -15,6 +15,10 @@ export const ServiceContact = () => {
           <h3 className="text-lg font-semibold text-foreground">Dr. PS Checker 客服</h3>
         </div>
         
+        <p className="text-center text-primary font-medium mb-6 animate-pulse">
+          关注Dr. PS Checker 微信公众号和小红书，领取一次免费评估机会，还可以获得第一手讯息和优惠活动哦！
+        </p>
+
         <div className="flex justify-center gap-8">
           <div className="flex flex-col items-center gap-2 p-4 bg-white rounded-lg shadow-sm">
             <Dialog>

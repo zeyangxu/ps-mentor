@@ -78,7 +78,7 @@ const Index = () => {
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 leading-tight relative group">
             <span className="inline-block animate-[tracking-in-expand_0.7s_cubic-bezier(0.215,0.610,0.355,1.000)_both] hover:text-primary transition-colors duration-300">
-              Dr. PS Checker
+              My PS Mentor
             </span>
             <span className="absolute -bottom-2 left-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full group-hover:left-0">
             </span>
@@ -155,7 +155,7 @@ const Index = () => {
 
         <div className="text-center animate-fade-up mb-12">
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-4xl mx-auto font-bold hover:text-foreground transition-colors duration-300">
-            Dr. PS Checker 将从以下六大维度切入，对您的PS展开深度解析，<br />
+            My PS Mentor 将从以下六大维度切入，对您的PS展开深度解析，<br />
             <span className="text-primary">
               为您精准打分，解读每一项得分背后的原因，提供个性化的修改建议
             </span>，

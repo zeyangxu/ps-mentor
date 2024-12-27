@@ -9,7 +9,7 @@ export const ServiceContact = () => {
         <div className="flex items-center gap-2 mb-4">
           <MessageSquare className="w-5 h-5 text-primary" />
           <h3 className="text-lg font-semibold text-foreground">
-            Dr. PS Checker 客服
+            My PS Mentor 客服
           </h3>
         </div>
 

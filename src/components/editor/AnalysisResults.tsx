@@ -53,7 +53,7 @@ export const AnalysisResults = (
             <div className="absolute inset-4 border-4 border-dashed border-primary/10 rounded-full animate-[spin_5s_linear_infinite]" />
           </div>
           <p className="text-muted-foreground text-center animate-pulse">
-            Dr. PS Checker 正在深度分析您的文书/PS，请稍候...
+            My PS Mentor 正在深度分析您的文书/PS，请稍候...
           </p>
         </CardContent>
       </Card>
@@ -113,7 +113,7 @@ export const AnalysisResults = (
             <div className="flex items-center gap-2 p-3 mb-6 bg-secondary/50 rounded-lg border border-border/50">
               <SmileIcon className="w-5 h-5 text-primary flex-shrink-0" />
               <p className="text-sm">
-                Dr. PS Checker
+                My PS Mentor
                 的训练模型以及训练数据均以英文形式输入，在此基础上结合中文语言特点进行了相应调整。因此，在查看评估结果及改进建议时，请您综合参考双语版本，以便获取更为全面的反馈信息哦。
               </p>
             </div>
@@ -162,7 +162,7 @@ export const AnalysisResults = (
         <CardContent className="p-4 space-y-2">
           <h4 className="font-medium text-sm">声明</h4>
           <p className="text-sm text-muted-foreground">
-            Dr. PS Checker 仅对已给定的内容展开分析，并不涉及对文书可能的 AI
+            My PS Mentor 仅对已给定的内容展开分析，并不涉及对文书可能的 AI
             生成率进行评估。您的评估分数与文书的 AI 率不存在直接或间接的关联。
             <br />
             <br />

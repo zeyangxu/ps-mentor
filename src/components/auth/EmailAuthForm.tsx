@@ -23,7 +23,7 @@ export function EmailAuthForm() {
           email,
           password,
           options: {
-            emailRedirectTo: window.location.origin,
+            emailRedirectTo: "https://ps-mentor.com/editor",
           },
         });
         

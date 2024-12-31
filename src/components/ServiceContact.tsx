@@ -40,14 +40,14 @@ export const ServiceContact = () => {
             <Dialog>
               <DialogTrigger asChild>
                 <img
-                  src="/lovable-uploads/d433049a-11c6-4d35-9604-75f338cb1690.png"
+                  src="/lovable-uploads/9a857a4a-c257-47b5-b6ef-890b69f0eeed.png"
                   alt="Xiaohongshu QR Code"
                   className="h-[200px] rounded-lg hover:scale-105 transition-transform duration-300 cursor-pointer"
                 />
               </DialogTrigger>
               <DialogContent className="sm:max-w-[425px] flex items-center justify-center p-0">
                 <img
-                  src="/lovable-uploads/d433049a-11c6-4d35-9604-75f338cb1690.png"
+                  src="/lovable-uploads/9a857a4a-c257-47b5-b6ef-890b69f0eeed.png"
                   alt="Xiaohongshu QR Code"
                   className="w-full h-auto max-h-[80vh] object-contain p-2"
                 />

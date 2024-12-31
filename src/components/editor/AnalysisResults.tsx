@@ -78,7 +78,7 @@ export const AnalysisResults = (
             <div className="absolute inset-4 border-4 border-dashed border-primary/10 rounded-full animate-[spin_5s_linear_infinite]" />
           </div>
           <p className="text-muted-foreground text-center animate-pulse">
-            My PS Mentor 正在深度分析您的文书/PS，请稍候...
+            My PS Mentor 正在深度分析您的文书/PS，请您耐心等候1分钟左右哦...
           </p>
         </CardContent>
       </Card>

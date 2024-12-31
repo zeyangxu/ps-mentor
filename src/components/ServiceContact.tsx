@@ -53,7 +53,7 @@ export const ServiceContact = () => {
                 />
               </DialogContent>
             </Dialog>
-            <p className="text-sm text-muted-foreground mt-2">关注小红书账号</p>
+            <p className="text-sm text-muted-foreground mt-2">关注小红书账号，后台私信</p>
           </div>
         </div>
 

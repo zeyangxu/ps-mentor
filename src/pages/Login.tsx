@@ -16,7 +16,7 @@ const Login = () => {
         <div className="max-w-[700px] w-full mx-auto px-6 relative animate-fade-up">
           <Alert className="mb-6">
             <InfoIcon className="h-4 w-4" />
-            <AlertDescription className="ml-2 whitespace-nowrap overflow-x-auto">
+            <AlertDescription className="ml-2 overflow-x-auto">
               目前My PS Mentor
               仅支持邮箱这一种注册方式，给您带来不便，还请谅解。
               <br />

@@ -58,7 +58,6 @@ export const ServiceContact = () => {
         </div>
 
         <p className="text-xs text-center text-muted-foreground mt-4">
-          工作时间：周一至周日 9:00-22:00
         </p>
       </div>
     </Card>

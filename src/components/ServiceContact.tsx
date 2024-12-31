@@ -1,4 +1,4 @@
-import { MessageSquare, QrCode } from "lucide-react";
+import { MessageSquare } from "lucide-react";
 import { Card } from "./ui/card";
 import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
 
@@ -18,14 +18,14 @@ export const ServiceContact = () => {
             <Dialog>
               <DialogTrigger asChild>
                 <img
-                  src="/lovable-uploads/19c3bccf-32ed-4206-84e5-f130627442c9.png"
+                  src="/lovable-uploads/95115651-1e7e-4608-bba5-3f0fc7142ed4.png"
                   alt="WeChat QR Code"
                   className="h-[200px] rounded-lg hover:scale-105 transition-transform duration-300 cursor-pointer"
                 />
               </DialogTrigger>
               <DialogContent className="sm:max-w-[425px] flex items-center justify-center p-0">
                 <img
-                  src="/lovable-uploads/19c3bccf-32ed-4206-84e5-f130627442c9.png"
+                  src="/lovable-uploads/95115651-1e7e-4608-bba5-3f0fc7142ed4.png"
                   alt="WeChat QR Code"
                   className="w-full h-auto max-h-[80vh] object-contain p-2"
                 />
@@ -40,14 +40,14 @@ export const ServiceContact = () => {
             <Dialog>
               <DialogTrigger asChild>
                 <img
-                  src="/lovable-uploads/d433049a-11c6-4d35-9604-75f338cb1690.png"
+                  src="/lovable-uploads/e1a3df74-38bb-44bc-a50a-537ad8d928cb.png"
                   alt="Xiaohongshu QR Code"
                   className="h-[200px] rounded-lg hover:scale-105 transition-transform duration-300 cursor-pointer"
                 />
               </DialogTrigger>
               <DialogContent className="sm:max-w-[425px] flex items-center justify-center p-0">
                 <img
-                  src="/lovable-uploads/d433049a-11c6-4d35-9604-75f338cb1690.png"
+                  src="/lovable-uploads/e1a3df74-38bb-44bc-a50a-537ad8d928cb.png"
                   alt="Xiaohongshu QR Code"
                   className="w-full h-auto max-h-[80vh] object-contain p-2"
                 />

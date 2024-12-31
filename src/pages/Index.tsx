@@ -45,7 +45,7 @@ const features = [
   },
   {
     title: "写作质量",
-    description: "您的语言是否正确、准确、流畅又具个人风格？",
+    description: "您的行文是否逻辑流畅，语言是否正确、准确又具个人风格？",
     icon: <PenTool className="w-6 h-6 text-primary" />,
   },
 ];

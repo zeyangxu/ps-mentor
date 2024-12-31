@@ -62,7 +62,7 @@ export const AnalysisResults = (
         0,
       );
 
-    return total / Object.values(analysisData.analysis_of_each_criteria ?? {}).length;
+    return Number((total / Object.values(analysisData.analysis_of_each_criteria ?? {}).length).toFixed(2));
   }, [analysisData.analysis_of_each_criteria]);
 
   if (isAnalyzing) {

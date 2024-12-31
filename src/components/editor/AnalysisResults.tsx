@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Award, SmileIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { CriteriaCard } from "./analysis/CriteriaCard";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
@@ -40,6 +40,31 @@ export const AnalysisResults = (
 ) => {
   const [language, setLanguage] = useState<"en" | "zh">("en");
 
+  // Parse the response to get the language versions
+  const analysisData: AnalysisData = analysis
+    ? JSON.parse(
+      language === "zh" ? analysis?.chinese : analysis?.english,
+    )
+    : {};
+
+  const scorePercentage =
+    (analysisData.overall_score / analysisData.max_score) * 100;
+
+  const averageScore = useMemo(() => {
+    const total = Object.values(analysisData?.analysis_of_each_criteria ?? {})
+      .reduce(
+        (acc, standard) => {
+          if (standard.score) {
+            return acc + standard.score;
+          }
+          return acc;
+        },
+        0,
+      );
+
+    return total / Object.values(analysisData.analysis_of_each_criteria ?? {}).length;
+  }, [analysisData.analysis_of_each_criteria]);
+
   if (isAnalyzing) {
     return (
       <Card className="border-2">
@@ -74,14 +99,6 @@ export const AnalysisResults = (
       </Card>
     );
   }
-
-  // Parse the response to get the language versions
-  const analysisData: AnalysisData = JSON.parse(
-    language === "zh" ? analysis.chinese : analysis.english,
-  );
-
-  const scorePercentage =
-    (analysisData.overall_score / analysisData.max_score) * 100;
 
   return (
     <div className="space-y-4">
@@ -124,7 +141,7 @@ export const AnalysisResults = (
                     {language === "zh" ? "总分" : "Total Score"}
                   </span>
                   <span className="text-sm font-medium">
-                    {analysisData.overall_score}/{analysisData.max_score}
+                    {averageScore}/{analysisData.max_score}
                   </span>
                 </div>
                 <div className="h-2 bg-secondary rounded-full overflow-hidden">

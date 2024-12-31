@@ -65,7 +65,11 @@ Deno.serve(async (req) => {
     if (usageError && usageError.code === "PGRST116") {
       const { data: newUsageData, error: insertError } = await supabaseClient
         .from("usage_tracking")
-        .insert({ user_id: user.id, usage_count: Deno.env.get("USAGE_LIMIT_INITIAL"), email: user.email })
+        .insert({
+          user_id: user.id,
+          usage_count: Number(Deno.env.get("USAGE_LIMIT_INITIAL")),
+          email: user.email,
+        })
         .select()
         .single();
 

@@ -78,7 +78,7 @@ const Index = () => {
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 leading-tight relative group">
             <span className="inline-block animate-[tracking-in-expand_0.7s_cubic-bezier(0.215,0.610,0.355,1.000)_both] hover:text-primary transition-colors duration-300">
-              My PS Mentor，<br />你的24h AI 文书评估老师
+              My PS Mentor，<br />你的24小时 AI 文书评估老师
             </span>
             <span className="absolute -bottom-2 left-1/2 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full group-hover:left-0">
             </span>
